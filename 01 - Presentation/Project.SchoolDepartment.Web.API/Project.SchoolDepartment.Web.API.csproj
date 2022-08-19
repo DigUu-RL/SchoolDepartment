@@ -14,4 +14,8 @@
     <Folder Include="Controllers\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\04 - Infra\CrossCutting\Project.SchoolDepartment.Infra.CrossCutting.CCT\Project.SchoolDepartment.Infra.CrossCutting.CCT.csproj" />
+  </ItemGroup>
+
 </Project>
