@@ -92,6 +92,7 @@ public class AlunoMap : IEntityTypeConfiguration<Aluno>
 				Logradouro = "Rua Aleatória",
 				Bairro = "Bairro Qualquer",
 				Numero = 278,
+				Cidade = "Cidade Qualquer",
 				UF = "SP",
 				CursoGuid = Guid.Parse("a69dda80-aed1-452a-afa7-5c09d4885ba1"),
 				TurmaGuid = Guid.Parse("43b26e0f-93e9-46ca-a574-c5e0b78c7a3b")

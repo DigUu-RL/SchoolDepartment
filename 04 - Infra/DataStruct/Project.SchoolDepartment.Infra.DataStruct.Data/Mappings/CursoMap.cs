@@ -12,7 +12,7 @@ public class CursoMap : IEntityTypeConfiguration<Curso>
 
 		builder
 			.Property(x => x.Nome)
-			.HasColumnType("VACHAR")
+			.HasColumnType("VARCHAR")
 			.HasMaxLength(180)
 			.IsRequired();
 	}

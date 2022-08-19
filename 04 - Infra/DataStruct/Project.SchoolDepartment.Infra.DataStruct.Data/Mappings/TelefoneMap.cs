@@ -24,12 +24,14 @@ public class TelefoneMap : IEntityTypeConfiguration<Telefone>
 			new Telefone
 			{
 				Guid = Guid.NewGuid(),
-				Numero = "9".PadRight(11, '9')
+				Numero = "9".PadRight(11, '9'),
+				AlunoGuid = Guid.Parse("c70c3bce-c77a-428a-b8c1-28174b6e0ba6")
 			},
 			new Telefone
 			{
 				Guid = Guid.NewGuid(),
-				Numero = "8".PadRight(11, '8')
+				Numero = "8".PadRight(11, '8'), 
+				AlunoGuid = Guid.Parse("c70c3bce-c77a-428a-b8c1-28174b6e0ba6")
 			}
 		};
 
