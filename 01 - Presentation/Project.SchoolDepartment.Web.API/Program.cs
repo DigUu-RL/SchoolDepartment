@@ -1,5 +1,4 @@
 using Hangfire;
-using Hangfire.MySql;
 using Project.SchoolDepartment.Infra.CrossCutting.CCT;
 using Project.SchoolDepartment.Infra.Middleware;
 

@@ -12,6 +12,7 @@ public static class ConfigureServiceCollection
 	public static IServiceCollection ApplyDependencyInjection(this IServiceCollection services)
 	{
 		services.AddDbContext<Context>();
+
 		services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 		return services;
