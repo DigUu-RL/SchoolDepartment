@@ -1,10 +1,9 @@
 ﻿using Project.SchoolDepartment.Infra.DataStruct.Data.Enums;
 
-namespace Project.SchoolDepartment.Domain.Models;
+namespace Project.SchoolDepartment.Domain.Requests;
 
-public class AlunoModel
+public class AlunoRequest
 {
-	public Guid Guid { get; set; }
 	public string? Nome { get; set; }
 	public string? Sobrenome { get; set; }
 	public string? CPF { get; set; }
@@ -15,9 +14,5 @@ public class AlunoModel
 	public int Numero { get; set; }
 	public string? Cidade { get; set; }
 	public string? UF { get; set; }
-	public Guid CursoGuid { get; set; }
-	public CursoModel? Curso { get; set; }
-	public Guid TurmaGuid { get; set; }
-	public TurmaModel? Turma { get; set; }
-	public List<TelefoneModel>? Telefones { get; set; }
+	public List<TelefoneRequest>? Telefones { get; set; }
 }

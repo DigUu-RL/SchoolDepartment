@@ -1,5 +1,6 @@
-﻿using Hangfire;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using Project.SchoolDepartment.Application.Interfaces;
+using Project.SchoolDepartment.Domain.Requests;
 
 namespace Project.SchoolDepartment.Web.API.Controllers;
 
@@ -7,29 +8,43 @@ namespace Project.SchoolDepartment.Web.API.Controllers;
 [Route("api/aluno")]
 public class AlunoController : ControllerBase
 {
-	[HttpGet]
-	public IActionResult Teste()
+	private readonly IApplicationAlunoService _alunoService;
+
+	public AlunoController(IApplicationAlunoService alunoService)
 	{
-		string? s = string.Empty;
-
-		try
-		{
-			BackgroundJob.Enqueue(() => WriteNumbersAsync());
-		}
-		catch (Exception ex)
-		{
-			s = ex.InnerException?.Message;
-		}
-
-		return Ok(s);
+		_alunoService = alunoService;
 	}
 
-	[NonAction]
-	public void WriteNumbersAsync()
+	[HttpGet]
+	public async Task<IActionResult> GetAll(int page = 1, int quantity = 10)
 	{
-		for (int i = 0; i < 1000; i++)
-		{
-			System.IO.File.WriteAllText($@"C:\Users\rodri\Downloads\text{1 + i}.txt", "file number: " + (1 + i));
-		}
+		return Ok(await _alunoService.GetAllAsync(page, quantity));
+	}
+
+	[HttpGet("{id}")]
+	public async Task<IActionResult> GetById(Guid id)
+	{
+		return Ok(await _alunoService.GetByIdAsync(id));
+	}
+
+	[HttpPost("create")]
+	public async Task<IActionResult> Create([FromBody] AlunoRequest request)
+	{
+		await _alunoService.CreateAsync(request);
+		return Ok();
+	}
+
+	[HttpPut("update")]
+	public async Task<IActionResult> Update([FromBody] AlunoRequest request)
+	{
+		await _alunoService.UpdateAsync(request);
+		return NoContent();
+	}
+
+	[HttpDelete("delete/{id}")]
+	public async Task<IActionResult> Delete(Guid id)
+	{
+		await _alunoService.DeleteAsync(id);
+		return NoContent();
 	}
 }

@@ -13,6 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\02 - Application\Project.SchoolDepartment.Application\Project.SchoolDepartment.Application.csproj" />
     <ProjectReference Include="..\..\04 - Infra\CrossCutting\Project.SchoolDepartment.Infra.CrossCutting.CCT\Project.SchoolDepartment.Infra.CrossCutting.CCT.csproj" />
     <ProjectReference Include="..\..\04 - Infra\Middleware\Project.SchoolDepartment.Infra.Middleware\Project.SchoolDepartment.Infra.Middleware.csproj" />
   </ItemGroup>

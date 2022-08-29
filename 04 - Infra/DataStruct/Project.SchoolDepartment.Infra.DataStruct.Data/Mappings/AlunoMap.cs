@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Project.SchoolDepartment.Domain.Helpers;
 using Project.SchoolDepartment.Infra.DataStruct.Data.Entities;
 using Project.SchoolDepartment.Infra.DataStruct.Data.Enums;
 
@@ -87,7 +86,7 @@ public class AlunoMap : IEntityTypeConfiguration<Aluno>
 				Nome = "Eduardo",
 				Sobrenome = "Oliveira da Silva",
 				CPF = "11111111111",
-				RA = Util.RandomString(80),
+				RA = "SFHJHSJH46JY54JY6JS54GARGHSTAEFGSJ4T65TRYH48TSRJTJ5THS5TRHGHAEJKDLF846531AHKFSFJ",
 				Genero = Genero.Masculino,
 				Logradouro = "Rua Aleatória",
 				Bairro = "Bairro Qualquer",

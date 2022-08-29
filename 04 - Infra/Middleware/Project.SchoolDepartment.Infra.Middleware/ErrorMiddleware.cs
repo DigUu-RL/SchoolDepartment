@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
-using Project.SchoolDepartment.Domain.Helpers;
+using Newtonsoft.Json;
 using Project.SchoolDepartment.Infra.Middleware.Exceptions;
 using System.Net;
 
@@ -35,10 +35,15 @@ public class ErrorMiddleware
 		if (statusCode is default(HttpStatusCode))
 			statusCode = HttpStatusCode.InternalServerError;
 
-		string result = new { statusCode, errorMessage = ex.Message }.ToJson();
+		string result = JsonConvert.SerializeObject(new
+		{
+			statusCode,
+			errorName = statusCode.ToString(),
+			errorMessage = ex.Message
+		});
 
 		context.Response.ContentType = "application/json";
-		context.Response.StatusCode = statusCode.ToInt32();
+		context.Response.StatusCode = (int) statusCode;
 		await context.Response.WriteAsync(result);
 	}
 }

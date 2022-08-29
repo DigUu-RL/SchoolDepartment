@@ -7,14 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="AutoMapper\" />
-    <Folder Include="Interfaces\" />
-    <Folder Include="Requests\" />
-    <Folder Include="Services\" />
+    <PackageReference Include="AutoMapper" Version="11.0.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <ProjectReference Include="..\..\04 - Infra\DataStruct\Project.SchoolDepartment.Infra.DataStruct.Repository\Project.SchoolDepartment.Infra.DataStruct.Repository.csproj" />
+    <ProjectReference Include="..\..\04 - Infra\Middleware\Project.SchoolDepartment.Infra.Middleware\Project.SchoolDepartment.Infra.Middleware.csproj" />
   </ItemGroup>
 
 </Project>

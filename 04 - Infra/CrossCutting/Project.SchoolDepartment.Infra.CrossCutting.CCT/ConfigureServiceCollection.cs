@@ -2,8 +2,14 @@
 using Hangfire.MySql;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using MySqlConnector;
+using Project.SchoolDepartment.Application.Interfaces;
+using Project.SchoolDepartment.Application.Services;
+using Project.SchoolDepartment.Domain.Interfaces;
+using Project.SchoolDepartment.Domain.Services;
 using Project.SchoolDepartment.Infra.DataStruct.Data.Contexts;
+using Project.SchoolDepartment.Infra.DataStruct.Repository.Interfaces;
+using Project.SchoolDepartment.Infra.DataStruct.Repository.Repositories;
+using System.Text.Json.Serialization;
 
 namespace Project.SchoolDepartment.Infra.CrossCutting.CCT;
 
@@ -15,6 +21,10 @@ public static class ConfigureServiceCollection
 
 		services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
+		services.AddScoped(typeof(IApplicationAlunoService), typeof(ApplicationAlunoService));
+		services.AddScoped(typeof(IDomainAlunoService), typeof(DomainAlunoService));
+		services.AddScoped(typeof(IAlunoRepository), typeof(AlunoRepository));
+
 		return services;
 	}
 
@@ -22,7 +32,7 @@ public static class ConfigureServiceCollection
 	{
 		services.AddHangfire(x =>
 		{
-			x.UseStorage(new MySqlStorage(new MySqlConnection(configuration.GetConnectionString("SchoolDepartment")), new MySqlStorageOptions()));
+			x.UseStorage(new MySqlStorage(configuration.GetConnectionString("HangfireConnection"), new MySqlStorageOptions()));
 		}).AddHangfireServer();
 
 		return services;
