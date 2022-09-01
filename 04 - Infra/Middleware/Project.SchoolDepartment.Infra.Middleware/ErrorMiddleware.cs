@@ -39,11 +39,13 @@ public class ErrorMiddleware
 		{
 			statusCode,
 			errorName = statusCode.ToString(),
-			errorMessage = ex.Message
+			errorMessage = ex.Message,
+			innerException = ex.InnerException?.Message
 		});
 
 		context.Response.ContentType = "application/json";
 		context.Response.StatusCode = (int) statusCode;
+
 		await context.Response.WriteAsync(result);
 	}
 }

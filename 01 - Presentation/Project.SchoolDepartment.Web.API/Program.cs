@@ -14,8 +14,7 @@ builder.Services.AddControllers().AddJsonOptions(x => x.JsonSerializerOptions.Re
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.ApplyDependencyInjection();
-builder.Services.ApplyHangFire(builder.Configuration);
+builder.Services.ConfigureServices(builder.Configuration);
 
 WebApplication app = builder.Build();
 
