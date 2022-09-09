@@ -8,7 +8,7 @@ namespace Project.SchoolDepartment.Infra.DataStruct.Data.Contexts;
 
 public class Context : DbContext
 {
-	private string connectionString = "Server = localhost; Database = school_department_db; User Id = root; Password = Veneno13$;";
+	// private string connectionString = "Server = localhost; Database = school_department_db; User Id = root; Password = Veneno13$;";
 
 	private readonly IConfiguration _configuration;
 
@@ -29,7 +29,7 @@ public class Context : DbContext
 
 	protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 	{
-		//string connectionString = _configuration.GetConnectionString("SchoolDepartment");
+		string connectionString = _configuration.GetConnectionString("SchoolDepartment");
 
 		optionsBuilder.UseMySql(connectionString, ServerVersion.AutoDetect(new MySqlConnection(connectionString)));
 		base.OnConfiguring(optionsBuilder);

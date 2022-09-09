@@ -17,8 +17,7 @@ public class AlunoRepository : IAlunoRepository
 
 	public async Task<Paginated<Aluno>> GetAllAsync(int page, int quantity)
 	{
-		IQueryable<Aluno> query = _context.Aluno
-			.Include(x => x.Telefones);
+		IQueryable<Aluno> query = _context.Aluno.Include(x => x.Telefones);
 
 		Paginated<Aluno> data = await Paginated<Aluno>.CreateAsync(query, page, quantity);
 		return data;

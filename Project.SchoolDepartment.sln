@@ -31,6 +31,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Project.SchoolDepartment.Do
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Project.SchoolDepartment.Application", "02 - Application\Project.SchoolDepartment.Application\Project.SchoolDepartment.Application.csproj", "{213AFB5C-9C78-40E9-8780-2CD1A7DE410F}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "05 - Integration", "05 - Integration", "{6469011C-38C5-49DA-BBBF-2746CFBF14AC}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Project.SchoolDepartment.Integration", "05 - Integration\Project.SchoolDepartment.Integration\Project.SchoolDepartment.Integration.csproj", "{BB025D67-7922-4E41-B54E-96BC7D6B4E0B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -65,6 +69,10 @@ Global
 		{213AFB5C-9C78-40E9-8780-2CD1A7DE410F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{213AFB5C-9C78-40E9-8780-2CD1A7DE410F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{213AFB5C-9C78-40E9-8780-2CD1A7DE410F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BB025D67-7922-4E41-B54E-96BC7D6B4E0B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BB025D67-7922-4E41-B54E-96BC7D6B4E0B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BB025D67-7922-4E41-B54E-96BC7D6B4E0B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BB025D67-7922-4E41-B54E-96BC7D6B4E0B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -80,6 +88,7 @@ Global
 		{BFCC1EA0-23B9-4FEA-A945-F4A431059CAB} = {B0AA7845-A3C4-4102-BD03-F8005E88DA5A}
 		{9A011FEB-8E86-40DE-98BE-2E42792B90EE} = {4B69B5B2-4082-4657-A3E8-F7412086A5BE}
 		{213AFB5C-9C78-40E9-8780-2CD1A7DE410F} = {FA5A3DDC-80A0-43BD-833B-003729A398CC}
+		{BB025D67-7922-4E41-B54E-96BC7D6B4E0B} = {6469011C-38C5-49DA-BBBF-2746CFBF14AC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {767528AC-E13A-4067-925C-C71B217479D8}
