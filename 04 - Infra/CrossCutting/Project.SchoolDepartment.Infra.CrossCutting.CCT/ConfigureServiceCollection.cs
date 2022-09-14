@@ -1,8 +1,5 @@
-﻿using Hangfire;
-using Hangfire.MySql;
-using Microsoft.Extensions.Configuration;
+﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Newtonsoft.Json;
 using Project.SchoolDepartment.Application.Interfaces;
 using Project.SchoolDepartment.Application.Services;
 using Project.SchoolDepartment.Domain.Interfaces;
@@ -20,21 +17,6 @@ public static class ConfigureServiceCollection
 		services.AddDbContext<Context>();
 
 		services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
-
-		// configuring Hangfire
-		var storage = new MySqlStorage(configuration.GetConnectionString("HangfireConnection"), new MySqlStorageOptions());
-
-		services.AddHangfire(x =>
-		{
-			x.UseSerializerSettings(new JsonSerializerSettings
-			{
-				ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
-			});
-
-			x.UseStorage(storage);
-		}).AddHangfireServer();
-
-		JobStorage.Current = storage;
 
 		services.AddScoped(typeof(IApplicationAlunoService), typeof(ApplicationAlunoService));
 		services.AddScoped(typeof(IDomainAlunoService), typeof(DomainAlunoService));

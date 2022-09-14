@@ -23,8 +23,6 @@ if (app.Environment.IsDevelopment())
 {
 	app.UseSwagger();
 	app.UseSwaggerUI();
-
-	app.UseHangfireDashboard();
 }
 
 app.UseMiddleware(typeof(ErrorMiddleware));
