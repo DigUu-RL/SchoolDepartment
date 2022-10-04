@@ -4,7 +4,7 @@ using Project.SchoolDepartment.Infra.DataStruct.Data.Entities;
 
 namespace Project.SchoolDepartment.Domain.AutoMapper;
 
-public class ToModel : Profile
+public sealed class ToModel : Profile
 {
 	public ToModel()
 	{

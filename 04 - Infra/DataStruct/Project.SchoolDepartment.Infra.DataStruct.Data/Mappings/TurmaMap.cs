@@ -5,13 +5,19 @@ using Project.SchoolDepartment.Infra.DataStruct.Data.Enums;
 
 namespace Project.SchoolDepartment.Infra.DataStruct.Data.Mappings;
 
-public class TurmaMap : IEntityTypeConfiguration<Turma>
+public sealed class TurmaMap : IEntityTypeConfiguration<Turma>
 {
 	public void Configure(EntityTypeBuilder<Turma> builder)
 	{
 		builder.HasKey(x => x.Guid);
 
-		builder.Property(x => x.QuantidadeAlunos).IsRequired();
+		builder
+			.Property(x => x.Guid)
+			.ValueGeneratedOnAdd();
+
+		builder
+			.Property(x => x.QuantidadeAlunos)
+			.IsRequired();
 
 		builder
 			.Property(x => x.Periodo)
@@ -19,8 +25,13 @@ public class TurmaMap : IEntityTypeConfiguration<Turma>
 			.HasMaxLength(5)
 			.IsRequired();
 
-		builder.Property(x => x.DataInicio).IsRequired();
-		builder.Property(x => x.DataFim).IsRequired();
+		builder
+			.Property(x => x.DataInicio)
+			.IsRequired();
+
+		builder
+			.Property(x => x.DataFim)
+			.IsRequired();
 	}
 
 	public static void PreLoadedData(ModelBuilder modelBuilder)
@@ -38,6 +49,6 @@ public class TurmaMap : IEntityTypeConfiguration<Turma>
 			} 
 		};
 
-		turmas.ForEach(x => modelBuilder.Entity<Turma>().HasData(x));
+		modelBuilder.Entity<Turma>().HasData(turmas);
 	}
 }

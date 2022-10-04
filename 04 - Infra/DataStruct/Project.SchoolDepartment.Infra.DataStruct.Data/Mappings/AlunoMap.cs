@@ -5,7 +5,7 @@ using Project.SchoolDepartment.Infra.DataStruct.Data.Enums;
 
 namespace Project.SchoolDepartment.Infra.DataStruct.Data.Mappings;
 
-public class AlunoMap : IEntityTypeConfiguration<Aluno>
+public sealed class AlunoMap : IEntityTypeConfiguration<Aluno>
 {
 	public void Configure(EntityTypeBuilder<Aluno> builder)
 	{
@@ -18,6 +18,10 @@ public class AlunoMap : IEntityTypeConfiguration<Aluno>
 		builder
 			.HasIndex(x => x.RA)
 			.IsUnique();
+
+		builder
+			.Property(x => x.Guid)
+			.ValueGeneratedOnAdd();
 
 		builder
 			.Property(x => x.Nome)
@@ -61,7 +65,9 @@ public class AlunoMap : IEntityTypeConfiguration<Aluno>
 			.HasMaxLength(80)
 			.IsRequired();
 
-		builder.Property(x => x.Numero).IsRequired();
+		builder
+			.Property(x => x.Numero)
+			.IsRequired();
 
 		builder
 			.Property(x => x.Cidade)
@@ -98,6 +104,6 @@ public class AlunoMap : IEntityTypeConfiguration<Aluno>
 			}
 		};
 
-		alunos.ForEach(x => modelBuilder.Entity<Aluno>().HasData(x));
+		modelBuilder.Entity<Aluno>().HasData(alunos);
 	}
 }

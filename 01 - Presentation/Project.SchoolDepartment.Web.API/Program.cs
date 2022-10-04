@@ -7,7 +7,11 @@ WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddControllers().AddJsonOptions(x => x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
+builder.Services
+	.AddControllers()
+	.AddJsonOptions(x => x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
+
+builder.Services.AddCors();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 
@@ -22,6 +26,8 @@ app.UseSwagger();
 app.UseSwaggerUI();
 
 app.UseMiddleware(typeof(ErrorMiddleware));
+
+app.UseCors(x => x.AllowAnyOrigin().AllowAnyHeader().AllowAnyHeader());
 
 app.UseHttpsRedirection();
 

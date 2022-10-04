@@ -4,11 +4,15 @@ using Project.SchoolDepartment.Infra.DataStruct.Data.Entities;
 
 namespace Project.SchoolDepartment.Infra.DataStruct.Data.Mappings;
 
-public class CursoMap : IEntityTypeConfiguration<Curso>
+public sealed class CursoMap : IEntityTypeConfiguration<Curso>
 {
 	public void Configure(EntityTypeBuilder<Curso> builder)
 	{
 		builder.HasKey(x => x.Guid);
+
+		builder
+			.Property(x => x.Guid)
+			.ValueGeneratedOnAdd();
 
 		builder
 			.Property(x => x.Nome)
@@ -28,6 +32,6 @@ public class CursoMap : IEntityTypeConfiguration<Curso>
 			}
 		};
 
-		cursos.ForEach(x => modelBuilder.Entity<Curso>().HasData(x));
+		modelBuilder.Entity<Curso>().HasData(cursos);
 	}
 }

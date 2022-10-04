@@ -7,18 +7,18 @@ namespace Project.SchoolDepartment.Infra.Middleware;
 
 public class ErrorMiddleware
 {
-	private readonly RequestDelegate request;
+	private readonly RequestDelegate next;
 
-	public ErrorMiddleware(RequestDelegate request)
+	public ErrorMiddleware(RequestDelegate next)
 	{
-		this.request = request;
+		this.next = next;
 	}
 
 	public async Task Invoke(HttpContext context)
 	{
 		try
 		{
-			await request(context);
+			await next(context);
 		}
 		catch (GlobalException ex)
 		{

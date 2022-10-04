@@ -4,7 +4,7 @@ using Project.SchoolDepartment.Domain.Models;
 
 namespace Project.SchoolDepartment.Application.AutoMapper;
 
-public class ToDTO : Profile
+public sealed class ToDTO : Profile
 {
 	public ToDTO()
 	{

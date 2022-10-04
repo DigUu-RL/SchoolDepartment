@@ -4,11 +4,15 @@ using Project.SchoolDepartment.Infra.DataStruct.Data.Entities;
 
 namespace Project.SchoolDepartment.Infra.DataStruct.Data.Mappings;
 
-public class TelefoneMap : IEntityTypeConfiguration<Telefone>
+public sealed class TelefoneMap : IEntityTypeConfiguration<Telefone>
 {
 	public void Configure(EntityTypeBuilder<Telefone> builder)
 	{
 		builder.HasKey(x => x.Guid);
+
+		builder
+			.Property(x => x.Guid)
+			.ValueGeneratedOnAdd();
 		
 		builder
 			.Property(x => x.Numero)
@@ -35,6 +39,6 @@ public class TelefoneMap : IEntityTypeConfiguration<Telefone>
 			}
 		};
 
-		telefones.ForEach(x => modelBuilder.Entity<Telefone>().HasData(x));
+		modelBuilder.Entity<Telefone>().HasData(telefones);
 	}
 }
