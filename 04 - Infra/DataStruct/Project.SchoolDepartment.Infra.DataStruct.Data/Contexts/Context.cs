@@ -29,9 +29,7 @@ public class Context : DbContext
 
 	protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 	{
-		string connectionString = _configuration.GetConnectionString("SchoolDepartment");
-
-		optionsBuilder.UseMySql(connectionString, ServerVersion.AutoDetect(new MySqlConnection(connectionString)));
+		optionsBuilder.UseSqlServer(_configuration.GetConnectionString("SchoolDepartment"));
 		base.OnConfiguring(optionsBuilder);
 	}
 
