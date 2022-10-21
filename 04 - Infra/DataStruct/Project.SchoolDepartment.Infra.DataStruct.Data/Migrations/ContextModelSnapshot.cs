@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Project.SchoolDepartment.Infra.DataStruct.Data.Contexts;
 
@@ -16,14 +17,16 @@ namespace Project.SchoolDepartment.Infra.DataStruct.Data.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.8")
-                .HasAnnotation("Relational:MaxIdentifierLength", 64);
+                .HasAnnotation("ProductVersion", "6.0.10")
+                .HasAnnotation("Relational:MaxIdentifierLength", 128);
+
+            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
             modelBuilder.Entity("Project.SchoolDepartment.Infra.DataStruct.Data.Entities.Aluno", b =>
                 {
                     b.Property<Guid>("Guid")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("char(36)");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Bairro")
                         .IsRequired()
@@ -41,7 +44,7 @@ namespace Project.SchoolDepartment.Infra.DataStruct.Data.Migrations
                         .HasColumnType("VARCHAR(60)");
 
                     b.Property<Guid>("CursoGuid")
-                        .HasColumnType("char(36)");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Genero")
                         .IsRequired()
@@ -72,7 +75,7 @@ namespace Project.SchoolDepartment.Infra.DataStruct.Data.Migrations
                         .HasColumnType("VARCHAR(120)");
 
                     b.Property<Guid>("TurmaGuid")
-                        .HasColumnType("char(36)");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("UF")
                         .IsRequired()
@@ -105,7 +108,7 @@ namespace Project.SchoolDepartment.Infra.DataStruct.Data.Migrations
                             Logradouro = "Rua Aleatória",
                             Nome = "Eduardo",
                             Numero = 278,
-                            RA = "FLF7BWJEFIUDR9EDQUUCDB6EUKFE8WKHG7ZZKH6GLQ9DUAJPX5B3AXUWWYEFHB9KLZ5CLO1WF5YLEF8I",
+                            RA = "SFHJHSJH46JY54JY6JS54GARGHSTAEFGSJ4T65TRYH48TSRJTJ5THS5TRHGHAEJKDLF846531AHKFSFJ",
                             Sobrenome = "Oliveira da Silva",
                             TurmaGuid = new Guid("43b26e0f-93e9-46ca-a574-c5e0b78c7a3b"),
                             UF = "SP"
@@ -116,7 +119,7 @@ namespace Project.SchoolDepartment.Infra.DataStruct.Data.Migrations
                 {
                     b.Property<Guid>("Guid")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("char(36)");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Nome")
                         .IsRequired()
@@ -139,10 +142,10 @@ namespace Project.SchoolDepartment.Infra.DataStruct.Data.Migrations
                 {
                     b.Property<Guid>("Guid")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("char(36)");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("AlunoGuid")
-                        .HasColumnType("char(36)");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Numero")
                         .IsRequired()
@@ -158,13 +161,13 @@ namespace Project.SchoolDepartment.Infra.DataStruct.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Guid = new Guid("67a0c359-dd38-4527-9393-db3a311ad0b4"),
+                            Guid = new Guid("8d31d875-c0d6-4308-bf9f-49ea1474bfee"),
                             AlunoGuid = new Guid("c70c3bce-c77a-428a-b8c1-28174b6e0ba6"),
                             Numero = "99999999999"
                         },
                         new
                         {
-                            Guid = new Guid("c93a8a36-bf0b-411d-a11a-10f65493562a"),
+                            Guid = new Guid("1ca4f177-be93-4384-ba14-f0e5e2641274"),
                             AlunoGuid = new Guid("c70c3bce-c77a-428a-b8c1-28174b6e0ba6"),
                             Numero = "88888888888"
                         });
@@ -174,16 +177,16 @@ namespace Project.SchoolDepartment.Infra.DataStruct.Data.Migrations
                 {
                     b.Property<Guid>("Guid")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("char(36)");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("CursoGuid")
-                        .HasColumnType("char(36)");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("DataFim")
-                        .HasColumnType("datetime(6)");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime>("DataInicio")
-                        .HasColumnType("datetime(6)");
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Periodo")
                         .IsRequired()

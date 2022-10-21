@@ -1,4 +1,3 @@
-using Hangfire;
 using Project.SchoolDepartment.Infra.CrossCutting.CCT;
 using Project.SchoolDepartment.Infra.Middleware;
 using System.Text.Json.Serialization;
@@ -22,8 +21,11 @@ builder.Services.ConfigureServices(builder.Configuration);
 
 WebApplication app = builder.Build();
 
-app.UseSwagger();
-app.UseSwaggerUI();
+if (app.Environment.IsDevelopment())
+{
+	app.UseSwagger();
+	app.UseSwaggerUI();
+}
 
 app.UseMiddleware(typeof(ErrorMiddleware));
 

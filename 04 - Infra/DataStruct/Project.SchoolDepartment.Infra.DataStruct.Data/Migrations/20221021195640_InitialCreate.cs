@@ -9,34 +9,28 @@ namespace Project.SchoolDepartment.Infra.DataStruct.Data.Migrations
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.AlterDatabase()
-                .Annotation("MySql:CharSet", "utf8mb4");
-
             migrationBuilder.CreateTable(
                 name: "Curso",
                 columns: table => new
                 {
-                    Guid = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci"),
+                    Guid = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Nome = table.Column<string>(type: "VARCHAR(180)", maxLength: 180, nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4")
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Curso", x => x.Guid);
-                })
-                .Annotation("MySql:CharSet", "utf8mb4");
+                });
 
             migrationBuilder.CreateTable(
                 name: "Turma",
                 columns: table => new
                 {
-                    Guid = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci"),
+                    Guid = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     QuantidadeAlunos = table.Column<int>(type: "int", nullable: false),
-                    Periodo = table.Column<string>(type: "VARCHAR(5)", maxLength: 5, nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    DataInicio = table.Column<DateTime>(type: "datetime(6)", nullable: false),
-                    DataFim = table.Column<DateTime>(type: "datetime(6)", nullable: false),
-                    CursoGuid = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci")
+                    Periodo = table.Column<string>(type: "VARCHAR(5)", maxLength: 5, nullable: false),
+                    DataInicio = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    DataFim = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CursoGuid = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -47,35 +41,25 @@ namespace Project.SchoolDepartment.Infra.DataStruct.Data.Migrations
                         principalTable: "Curso",
                         principalColumn: "Guid",
                         onDelete: ReferentialAction.Cascade);
-                })
-                .Annotation("MySql:CharSet", "utf8mb4");
+                });
 
             migrationBuilder.CreateTable(
                 name: "Aluno",
                 columns: table => new
                 {
-                    Guid = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci"),
-                    Nome = table.Column<string>(type: "VARCHAR(60)", maxLength: 60, nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    Sobrenome = table.Column<string>(type: "VARCHAR(120)", maxLength: 120, nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    CPF = table.Column<string>(type: "CHAR(11)", maxLength: 11, nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    RA = table.Column<string>(type: "CHAR(80)", maxLength: 80, nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    Genero = table.Column<string>(type: "VARCHAR(9)", maxLength: 9, nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    Logradouro = table.Column<string>(type: "VARCHAR(160)", maxLength: 160, nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    Bairro = table.Column<string>(type: "VARCHAR(80)", maxLength: 80, nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Guid = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Nome = table.Column<string>(type: "VARCHAR(60)", maxLength: 60, nullable: false),
+                    Sobrenome = table.Column<string>(type: "VARCHAR(120)", maxLength: 120, nullable: false),
+                    CPF = table.Column<string>(type: "CHAR(11)", maxLength: 11, nullable: false),
+                    RA = table.Column<string>(type: "CHAR(80)", maxLength: 80, nullable: false),
+                    Genero = table.Column<string>(type: "VARCHAR(9)", maxLength: 9, nullable: false),
+                    Logradouro = table.Column<string>(type: "VARCHAR(160)", maxLength: 160, nullable: false),
+                    Bairro = table.Column<string>(type: "VARCHAR(80)", maxLength: 80, nullable: false),
                     Numero = table.Column<int>(type: "int", nullable: false),
-                    Cidade = table.Column<string>(type: "VARCHAR(60)", maxLength: 60, nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    UF = table.Column<string>(type: "CHAR(2)", maxLength: 2, nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    CursoGuid = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci"),
-                    TurmaGuid = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci")
+                    Cidade = table.Column<string>(type: "VARCHAR(60)", maxLength: 60, nullable: false),
+                    UF = table.Column<string>(type: "CHAR(2)", maxLength: 2, nullable: false),
+                    CursoGuid = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    TurmaGuid = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -92,17 +76,15 @@ namespace Project.SchoolDepartment.Infra.DataStruct.Data.Migrations
                         principalTable: "Turma",
                         principalColumn: "Guid",
                         onDelete: ReferentialAction.Cascade);
-                })
-                .Annotation("MySql:CharSet", "utf8mb4");
+                });
 
             migrationBuilder.CreateTable(
                 name: "Telefone",
                 columns: table => new
                 {
-                    Guid = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci"),
-                    Numero = table.Column<string>(type: "VARCHAR(11)", maxLength: 11, nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    AlunoGuid = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci")
+                    Guid = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Numero = table.Column<string>(type: "VARCHAR(11)", maxLength: 11, nullable: false),
+                    AlunoGuid = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -113,8 +95,7 @@ namespace Project.SchoolDepartment.Infra.DataStruct.Data.Migrations
                         principalTable: "Aluno",
                         principalColumn: "Guid",
                         onDelete: ReferentialAction.Cascade);
-                })
-                .Annotation("MySql:CharSet", "utf8mb4");
+                });
 
             migrationBuilder.InsertData(
                 table: "Curso",
@@ -129,17 +110,17 @@ namespace Project.SchoolDepartment.Infra.DataStruct.Data.Migrations
             migrationBuilder.InsertData(
                 table: "Aluno",
                 columns: new[] { "Guid", "Bairro", "CPF", "Cidade", "CursoGuid", "Genero", "Logradouro", "Nome", "Numero", "RA", "Sobrenome", "TurmaGuid", "UF" },
-                values: new object[] { new Guid("c70c3bce-c77a-428a-b8c1-28174b6e0ba6"), "Bairro Qualquer", "11111111111", "Cidade Qualquer", new Guid("a69dda80-aed1-452a-afa7-5c09d4885ba1"), "Masculino", "Rua Aleatória", "Eduardo", 278, "FLF7BWJEFIUDR9EDQUUCDB6EUKFE8WKHG7ZZKH6GLQ9DUAJPX5B3AXUWWYEFHB9KLZ5CLO1WF5YLEF8I", "Oliveira da Silva", new Guid("43b26e0f-93e9-46ca-a574-c5e0b78c7a3b"), "SP" });
+                values: new object[] { new Guid("c70c3bce-c77a-428a-b8c1-28174b6e0ba6"), "Bairro Qualquer", "11111111111", "Cidade Qualquer", new Guid("a69dda80-aed1-452a-afa7-5c09d4885ba1"), "Masculino", "Rua Aleatória", "Eduardo", 278, "SFHJHSJH46JY54JY6JS54GARGHSTAEFGSJ4T65TRYH48TSRJTJ5THS5TRHGHAEJKDLF846531AHKFSFJ", "Oliveira da Silva", new Guid("43b26e0f-93e9-46ca-a574-c5e0b78c7a3b"), "SP" });
 
             migrationBuilder.InsertData(
                 table: "Telefone",
                 columns: new[] { "Guid", "AlunoGuid", "Numero" },
-                values: new object[] { new Guid("67a0c359-dd38-4527-9393-db3a311ad0b4"), new Guid("c70c3bce-c77a-428a-b8c1-28174b6e0ba6"), "99999999999" });
+                values: new object[] { new Guid("1ca4f177-be93-4384-ba14-f0e5e2641274"), new Guid("c70c3bce-c77a-428a-b8c1-28174b6e0ba6"), "88888888888" });
 
             migrationBuilder.InsertData(
                 table: "Telefone",
                 columns: new[] { "Guid", "AlunoGuid", "Numero" },
-                values: new object[] { new Guid("c93a8a36-bf0b-411d-a11a-10f65493562a"), new Guid("c70c3bce-c77a-428a-b8c1-28174b6e0ba6"), "88888888888" });
+                values: new object[] { new Guid("8d31d875-c0d6-4308-bf9f-49ea1474bfee"), new Guid("c70c3bce-c77a-428a-b8c1-28174b6e0ba6"), "99999999999" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Aluno_CPF",

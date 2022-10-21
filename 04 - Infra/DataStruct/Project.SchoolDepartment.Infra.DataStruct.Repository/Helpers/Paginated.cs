@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System.Security.Cryptography;
 
 namespace Project.SchoolDepartment.Infra.DataStruct.Repository.Helpers;
 

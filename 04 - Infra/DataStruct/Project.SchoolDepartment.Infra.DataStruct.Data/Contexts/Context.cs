@@ -8,7 +8,14 @@ namespace Project.SchoolDepartment.Infra.DataStruct.Data.Contexts;
 
 public class Context : DbContext
 {
-	// private string connectionString = "Server = localhost; Database = school_department_db; User Id = root; Password = Veneno13$;";
+	private const string connectionString = "Data Source = localhost;" +
+		"Initial Catalog = school_department_db;" +
+		"Integrated Security = True;" +
+		"Connect Timeout = 3000000;" +
+		"Encrypt = False;" +
+		"TrustServerCertificate = True;" +
+		"ApplicationIntent = ReadWrite;" +
+		"MultiSubnetFailover = False";
 
 	private readonly IConfiguration _configuration;
 
@@ -22,14 +29,9 @@ public class Context : DbContext
 		_configuration = configuration;
 	}
 
-	public DbSet<Aluno> Aluno { get; set; }
-	public DbSet<Curso> Curso { get; set; }
-	public DbSet<Turma> Turma { get; set; }
-	public DbSet<Telefone> Telefone { get; set; }
-
 	protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 	{
-		optionsBuilder.UseSqlServer(_configuration.GetConnectionString("SchoolDepartment"));
+		optionsBuilder.UseSqlServer(/*_configuration.GetConnectionString("SchoolDepartment")*/connectionString);
 		base.OnConfiguring(optionsBuilder);
 	}
 
