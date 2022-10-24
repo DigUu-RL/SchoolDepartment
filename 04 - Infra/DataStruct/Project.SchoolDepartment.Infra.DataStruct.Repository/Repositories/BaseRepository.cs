@@ -7,28 +7,19 @@ namespace Project.SchoolDepartment.Infra.DataStruct.Repository.Repositories;
 
 public abstract class BaseRepository<TEntity> : IBaseRepository<TEntity> where TEntity : class
 {
-	protected readonly Context _context;
+	private readonly Context _context;
 
 	protected BaseRepository(Context context)
 	{
 		_context = context;
+
+		Entity = context.Set<TEntity>();
+		Queryable = context.Set<TEntity>().AsQueryable<TEntity>();
 	}
 
-	protected DbSet<TEntity> Entity
-	{
-		get
-		{
-			return _context.Set<TEntity>();
-		}
-	}
-
-	protected IQueryable<TEntity> Queryable
-	{
-		get
-		{
-			return Entity.AsQueryable<TEntity>();
-		}
-	}
+	protected Context Context { get => _context; }
+	protected DbSet<TEntity> Entity { get; }
+	protected IQueryable<TEntity> Queryable { get; }
 
 	public abstract Task<Paginated<TEntity>> GetAllAsync(int page, int quantity);
 

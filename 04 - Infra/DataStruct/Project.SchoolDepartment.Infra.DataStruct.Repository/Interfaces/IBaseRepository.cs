@@ -5,6 +5,7 @@ namespace Project.SchoolDepartment.Infra.DataStruct.Repository.Interfaces;
 
 public interface IBaseRepository<TEntity> : IEquatable<TEntity> where TEntity : class
 {
+	Task<Paginated<TEntity>> GetAllAsync(int page, int quantity);
 	Task<TEntity?> GetByGuidAsync(Guid guid);
 	Task CreateAsync(TEntity entity);
 	Task UpdateAsync(TEntity entity);
