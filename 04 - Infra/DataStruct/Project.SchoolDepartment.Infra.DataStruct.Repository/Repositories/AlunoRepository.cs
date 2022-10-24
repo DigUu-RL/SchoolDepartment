@@ -10,7 +10,7 @@ public class AlunoRepository : BaseRepository<Aluno>, IAlunoRepository
 {
 	public AlunoRepository(Context context) : base(context) { }
 
-	public async Task<Paginated<Aluno>> GetAllAsync(int page, int quantity)
+	public override async Task<Paginated<Aluno>> GetAllAsync(int page, int quantity)
 	{
 		IQueryable<Aluno> query = Entity
 			.Include(aluno => aluno.Curso)

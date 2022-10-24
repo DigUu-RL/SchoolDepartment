@@ -2,7 +2,6 @@
 using Project.SchoolDepartment.Infra.DataStruct.Data.Contexts;
 using Project.SchoolDepartment.Infra.DataStruct.Repository.Helpers;
 using Project.SchoolDepartment.Infra.DataStruct.Repository.Interfaces;
-using System.Linq.Expressions;
 
 namespace Project.SchoolDepartment.Infra.DataStruct.Repository.Repositories;
 
@@ -30,6 +29,8 @@ public abstract class BaseRepository<TEntity> : IBaseRepository<TEntity> where T
 			return Entity.AsQueryable<TEntity>();
 		}
 	}
+
+	public abstract Task<Paginated<TEntity>> GetAllAsync(int page, int quantity);
 
 	public virtual async Task<TEntity?> GetByGuidAsync(Guid guid)
 	{
