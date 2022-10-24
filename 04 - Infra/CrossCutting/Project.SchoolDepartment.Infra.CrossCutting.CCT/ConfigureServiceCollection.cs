@@ -12,7 +12,7 @@ namespace Project.SchoolDepartment.Infra.CrossCutting.CCT;
 
 public static class ConfigureServiceCollection
 {
-	public static IServiceCollection ConfigureServices(this IServiceCollection services, IConfiguration configuration)
+	public static IServiceCollection ConfigureServices(this IServiceCollection services)
 	{
 		services.AddDbContext<Context>();
 
