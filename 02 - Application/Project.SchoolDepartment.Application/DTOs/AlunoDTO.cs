@@ -1,11 +1,9 @@
-﻿using Project.SchoolDepartment.Domain.Models;
-using Project.SchoolDepartment.Infra.DataStruct.Data.Enums;
+﻿using Project.SchoolDepartment.Infra.DataStruct.Data.Enums;
 
 namespace Project.SchoolDepartment.Application.DTOs;
 
 public class AlunoDTO
 {
-	public Guid Guid { get; set; }
 	public string? Nome { get; set; }
 	public string? Sobrenome { get; set; }
 	public string? CPF { get; set; }
@@ -20,5 +18,5 @@ public class AlunoDTO
 	public CursoDTO? Curso { get; set; }
 	public Guid TurmaGuid { get; set; }
 	public TurmaDTO? Turma { get; set; }
-	public List<TelefoneDTO>? Telefones { get; set; }
+	public ICollection<TelefoneDTO>? Telefones { get; set; }
 }

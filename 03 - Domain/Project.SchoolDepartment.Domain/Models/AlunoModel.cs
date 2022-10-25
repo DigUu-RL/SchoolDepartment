@@ -4,7 +4,6 @@ namespace Project.SchoolDepartment.Domain.Models;
 
 public class AlunoModel
 {
-	public Guid Guid { get; set; }
 	public string? Nome { get; set; }
 	public string? Sobrenome { get; set; }
 	public string? CPF { get; set; }
@@ -19,5 +18,5 @@ public class AlunoModel
 	public CursoModel? Curso { get; set; }
 	public Guid TurmaGuid { get; set; }
 	public TurmaModel? Turma { get; set; }
-	public List<TelefoneModel>? Telefones { get; set; }
+	public ICollection<TelefoneModel>? Telefones { get; set; }
 }

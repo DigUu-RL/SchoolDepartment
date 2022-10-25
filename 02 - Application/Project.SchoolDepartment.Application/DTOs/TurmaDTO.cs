@@ -11,5 +11,5 @@ public class TurmaDTO
 	public DateTime DataFim { get; set; }
 	public Guid CursoGuid { get; set; }
 	public CursoDTO? Curso { get; set; }
-	public PaginatedDTO<AlunoDTO>? Alunos { get; set; }
+	public ICollection<AlunoDTO>? Alunos { get; set; }
 }

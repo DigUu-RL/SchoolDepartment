@@ -10,5 +10,5 @@ public class TurmaModel
 	public DateTime DataInicio { get; set; }
 	public DateTime DataFim { get; set; }
 	public CursoModel? Curso { get; set; }
-	public PaginatedModel<AlunoModel>? Alunos { get; set; }
+	public ICollection<AlunoModel>? Alunos { get; set; }
 }

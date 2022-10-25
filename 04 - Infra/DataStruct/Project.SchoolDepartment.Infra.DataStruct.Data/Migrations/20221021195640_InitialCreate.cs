@@ -69,13 +69,13 @@ namespace Project.SchoolDepartment.Infra.DataStruct.Data.Migrations
                         column: x => x.CursoGuid,
                         principalTable: "Curso",
                         principalColumn: "Guid",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                     table.ForeignKey(
                         name: "FK_Aluno_Turma_TurmaGuid",
                         column: x => x.TurmaGuid,
                         principalTable: "Turma",
                         principalColumn: "Guid",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                 });
 
             migrationBuilder.CreateTable(

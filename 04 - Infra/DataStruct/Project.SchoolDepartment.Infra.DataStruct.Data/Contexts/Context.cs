@@ -1,19 +1,17 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
-using MySqlConnector;
-using Project.SchoolDepartment.Infra.DataStruct.Data.Entities;
 using Project.SchoolDepartment.Infra.DataStruct.Data.Mappings;
 
 namespace Project.SchoolDepartment.Infra.DataStruct.Data.Contexts;
 
 public class Context : DbContext
 {
-	private const string connectionString = "Data Source = localhost;" +
+	private const string connectionString = "Data Source = DIGITAL-FFPGQ4E\\SQLEXPRESS;" +
 		"Initial Catalog = school_department_db;" +
 		"Integrated Security = True;" +
-		"Connect Timeout = 3000000;" +
+		"Connect Timeout = 30;" +
 		"Encrypt = False;" +
-		"TrustServerCertificate = True;" +
+		"TrustServerCertificate = False;" +
 		"ApplicationIntent = ReadWrite;" +
 		"MultiSubnetFailover = False";
 
