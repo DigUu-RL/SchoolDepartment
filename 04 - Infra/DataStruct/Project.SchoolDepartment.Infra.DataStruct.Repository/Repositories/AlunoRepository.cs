@@ -13,9 +13,9 @@ public class AlunoRepository : BaseRepository<Aluno>, IAlunoRepository
 	public override async Task<Paginated<Aluno>> GetAllAsync(int page, int quantity)
 	{
 		IQueryable<Aluno> query = Entity
-			.Include(aluno => aluno.Curso)
-			.Include(aluno => aluno.Telefones)
-			.Include(aluno => aluno.Turma);
+			.Include(a => a.Telefones)
+			.Include(a => a.Curso)
+			.Include(a => a.Turma);
 
 		Paginated<Aluno> data = await Paginated<Aluno>.CreateAsync(query, page, quantity);
 		return data;
