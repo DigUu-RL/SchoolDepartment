@@ -10,14 +10,14 @@ public class AlunoRepository : BaseRepository<Aluno>, IAlunoRepository
 {
 	public AlunoRepository(Context context) : base(context) { }
 
-	public override async Task<Paginated<Aluno>> GetAllAsync(int page, int quantity)
+	public override async Task<PaginatedList<Aluno>> GetAllAsync(int page, int quantity)
 	{
-		IQueryable<Aluno> query = Entity
+		IQueryable<Aluno> query = Queryable
 			.Include(a => a.Telefones)
 			.Include(a => a.Curso)
 			.Include(a => a.Turma);
 
-		Paginated<Aluno> data = await Paginated<Aluno>.CreateAsync(query, page, quantity);
+		PaginatedList<Aluno> data = await PaginatedList<Aluno>.CreateInstanceAsync(query, page, quantity);
 		return data;
 	}
 }

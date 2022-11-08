@@ -12,16 +12,13 @@ public abstract class BaseRepository<TEntity> : IBaseRepository<TEntity> where T
 	protected BaseRepository(Context context)
 	{
 		_context = context;
-
-		Entity = context.Set<TEntity>();
 		Queryable = context.Set<TEntity>().AsQueryable<TEntity>();
 	}
 
 	protected Context Context { get => _context; }
-	protected DbSet<TEntity> Entity { get; }
 	protected IQueryable<TEntity> Queryable { get; }
 
-	public abstract Task<Paginated<TEntity>> GetAllAsync(int page, int quantity);
+	public abstract Task<PaginatedList<TEntity>> GetAllAsync(int page, int quantity);
 
 	public virtual async Task<TEntity?> GetByGuidAsync(Guid guid)
 	{
@@ -45,10 +42,5 @@ public abstract class BaseRepository<TEntity> : IBaseRepository<TEntity> where T
 	{
 		_context.Remove(entity);
 		await _context.SaveChangesAsync();
-	}
-
-	public bool Equals(TEntity? other)
-	{
-		throw new NotImplementedException();
 	}
 }

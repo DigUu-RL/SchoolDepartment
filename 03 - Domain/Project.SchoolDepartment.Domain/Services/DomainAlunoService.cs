@@ -23,7 +23,7 @@ public class DomainAlunoService : IDomainAlunoService
 
 	public async Task<PaginatedModel<AlunoModel>> GetAllAsync(int page, int quantity)
 	{
-		Paginated<Aluno> data = await _alunoRepository.GetAllAsync(page, quantity);
+		PaginatedList<Aluno> data = await _alunoRepository.GetAllAsync(page, quantity);
 
 		var model = new PaginatedModel<AlunoModel>
 		{
