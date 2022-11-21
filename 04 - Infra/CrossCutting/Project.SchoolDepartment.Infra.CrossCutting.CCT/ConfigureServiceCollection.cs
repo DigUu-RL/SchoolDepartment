@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Hangfire;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Project.SchoolDepartment.Application.Interfaces;
 using Project.SchoolDepartment.Application.Services;
@@ -29,6 +30,10 @@ public static class ConfigureServiceCollection
 
 	private static IServiceCollection ConfigureHangfire(this IServiceCollection services, IConfiguration configuration)
 	{
+		GlobalConfiguration.Configuration.UseSqlServerStorage(configuration.GetConnectionString("Hangfire"));
+
+		//configure recurring jobs ...
+
 		return services;
 	}
 }
