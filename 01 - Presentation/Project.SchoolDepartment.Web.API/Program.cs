@@ -1,3 +1,4 @@
+using Hangfire;
 using Project.SchoolDepartment.Infra.CrossCutting.CCT;
 using Project.SchoolDepartment.Infra.Middleware;
 using System.Text.Json.Serialization;
@@ -17,7 +18,7 @@ builder.Services.AddCors();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.ConfigureServices();
+builder.Services.ConfigureServices(builder.Configuration);
 
 WebApplication app = builder.Build();
 
@@ -25,6 +26,9 @@ if (app.Environment.IsDevelopment())
 {
 	app.UseSwagger();
 	app.UseSwaggerUI();
+
+	app.UseHangfireDashboard("/hangfire");
+	app.UseHangfireServer();
 }
 
 app.UseMiddleware(typeof(ErrorMiddleware));

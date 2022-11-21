@@ -12,7 +12,7 @@ namespace Project.SchoolDepartment.Infra.CrossCutting.CCT;
 
 public static class ConfigureServiceCollection
 {
-	public static IServiceCollection ConfigureServices(this IServiceCollection services)
+	public static IServiceCollection ConfigureServices(this IServiceCollection services, IConfiguration configuration)
 	{
 		services.AddDbContext<Context>();
 
@@ -22,6 +22,13 @@ public static class ConfigureServiceCollection
 		services.AddScoped(typeof(IDomainAlunoService), typeof(DomainAlunoService));
 		services.AddScoped(typeof(IAlunoRepository), typeof(AlunoRepository));
 
+		services.ConfigureHangfire(configuration);
+
+		return services;
+	}
+
+	private static IServiceCollection ConfigureHangfire(this IServiceCollection services, IConfiguration configuration)
+	{
 		return services;
 	}
 }
