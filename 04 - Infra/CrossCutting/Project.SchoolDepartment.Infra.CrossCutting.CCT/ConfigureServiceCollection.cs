@@ -73,7 +73,7 @@ public static class ConfigureServiceCollection
 	{
 		GlobalConfiguration.Configuration.UseSqlServerStorage(configuration.GetConnectionString("Hangfire"));
 
-		//configure recurring jobs ...
+		// configure recurring jobs ...
 
 		return services;
 	}
