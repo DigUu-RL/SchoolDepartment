@@ -8,6 +8,8 @@ public sealed class TelefoneMap : IEntityTypeConfiguration<Telefone>
 {
 	public void Configure(EntityTypeBuilder<Telefone> builder)
 	{
+		builder.ToTable(nameof(Telefone));
+
 		builder.HasKey(x => x.Guid);
 
 		builder

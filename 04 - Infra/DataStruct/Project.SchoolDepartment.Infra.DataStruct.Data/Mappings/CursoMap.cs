@@ -8,6 +8,8 @@ public sealed class CursoMap : IEntityTypeConfiguration<Curso>
 {
 	public void Configure(EntityTypeBuilder<Curso> builder)
 	{
+		builder.ToTable(nameof(Curso));
+
 		builder.HasKey(x => x.Guid);
 
 		builder

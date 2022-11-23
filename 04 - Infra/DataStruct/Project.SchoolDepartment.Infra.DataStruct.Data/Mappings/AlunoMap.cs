@@ -9,6 +9,8 @@ public sealed class AlunoMap : IEntityTypeConfiguration<Aluno>
 {
 	public void Configure(EntityTypeBuilder<Aluno> builder)
 	{
+		builder.ToTable(nameof(Aluno));
+
 		builder.HasKey(x => x.Guid);
 
 		builder

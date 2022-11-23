@@ -9,6 +9,8 @@ public sealed class TurmaMap : IEntityTypeConfiguration<Turma>
 {
 	public void Configure(EntityTypeBuilder<Turma> builder)
 	{
+		builder.ToTable(nameof(Turma));
+
 		builder.HasKey(x => x.Guid);
 
 		builder

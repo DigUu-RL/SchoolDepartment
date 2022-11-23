@@ -71,7 +71,7 @@ public class DomainAlunoService : IDomainAlunoService
 
 	public async Task DeleteAsync(Guid guid)
 	{
-		Aluno? data = await _alunoRepository.GetByGuidAsync(Guid.NewGuid());
+		Aluno? data = await _alunoRepository.GetByGuidAsync(guid);
 
 		if (data is null)
 			throw new GlobalException("Aluno não encontrado!", HttpStatusCode.NotFound);
