@@ -28,9 +28,9 @@ public static class ConfigureServiceCollection
 		services.AddScoped(typeof(IDomainAlunoService), typeof(DomainAlunoService));
 		services.AddScoped(typeof(IAlunoRepository), typeof(AlunoRepository));
 
-		services.ConfigureMaps();
-
 		services.ConfigureHangfire(configuration);
+
+		services.ConfigureMaps();
 
 		return services;
 	}
