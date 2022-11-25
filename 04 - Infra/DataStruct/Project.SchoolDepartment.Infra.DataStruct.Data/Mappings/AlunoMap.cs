@@ -82,6 +82,14 @@ public sealed class AlunoMap : IEntityTypeConfiguration<Aluno>
 			.HasColumnType("CHAR")
 			.HasMaxLength(2)
 			.IsRequired();
+
+		builder
+			.Property(x => x.TurmaGuid)
+			.HasDefaultValue(Guid.Empty);
+
+		builder
+			.Property(x => x.CursoGuid)
+			.HasDefaultValue(Guid.Empty);
 	}
 
 	public static void PreLoadedData(ModelBuilder modelBuilder)

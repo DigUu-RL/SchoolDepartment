@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using Hangfire;
+﻿using Hangfire;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Project.SchoolDepartment.Application.DTOs;
@@ -30,48 +29,12 @@ public static class ConfigureServiceCollection
 
 		services.ConfigureHangfire(configuration);
 
-		services.ConfigureMaps();
-
-		return services;
-	}
-
-	private static IServiceCollection ConfigureMaps(this IServiceCollection services)
-	{
-		var profile = new MapProfile();
-
-		#region TO DTO
-
-		profile.CreateMap(typeof(AlunoModel), typeof(AlunoDTO));
-		profile.CreateMap(typeof(CursoModel), typeof(CursoDTO));
-		profile.CreateMap(typeof(TurmaModel), typeof(TurmaDTO));
-		profile.CreateMap(typeof(TelefoneModel), typeof(TelefoneDTO));
-
-		#region PAGINATED'S
-
-		profile.CreateMap(typeof(PaginatedModel<AlunoModel>), typeof(PaginatedDTO<AlunoDTO>));
-		profile.CreateMap(typeof(PaginatedModel<CursoModel>), typeof(PaginatedDTO<CursoDTO>));
-		profile.CreateMap(typeof(PaginatedModel<TurmaModel>), typeof(PaginatedDTO<TurmaDTO>));
-		profile.CreateMap(typeof(PaginatedModel<TelefoneModel>), typeof(PaginatedDTO<TelefoneDTO>));
-
-		#endregion
-
-		#endregion
-
-		#region TO MODEL
-
-		profile.CreateMap(typeof(Aluno), typeof(AlunoModel));
-		profile.CreateMap(typeof(Curso), typeof(CursoModel));
-		profile.CreateMap(typeof(Turma), typeof(TurmaModel));
-		profile.CreateMap(typeof(Telefone), typeof(TelefoneModel));
-
-		#endregion
-
 		return services;
 	}
 
 	private static IServiceCollection ConfigureHangfire(this IServiceCollection services, IConfiguration configuration)
 	{
-		GlobalConfiguration.Configuration.UseSqlServerStorage(configuration.GetConnectionString("Hangfire"));
+		services.AddHangfire(x => x.UseSqlServerStorage(configuration.GetConnectionString(nameof(Hangfire))));
 
 		// configure recurring jobs ...
 

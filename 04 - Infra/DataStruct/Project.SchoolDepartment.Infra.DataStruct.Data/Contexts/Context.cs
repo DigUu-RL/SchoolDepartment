@@ -6,14 +6,14 @@ namespace Project.SchoolDepartment.Infra.DataStruct.Data.Contexts;
 
 public class Context : DbContext
 {
-	private const string connectionString = "Data Source = DIGITAL-FFPGQ4E\\SQLEXPRESS;" +
-		"Initial Catalog = school_department_db;" +
-		"Integrated Security = True;" +
-		"Connect Timeout = 30;" +
-		"Encrypt = False;" +
-		"TrustServerCertificate = False;" +
-		"ApplicationIntent = ReadWrite;" +
-		"MultiSubnetFailover = False";
+	private const string connectionString = @"Data Source = localhost\SQLEXPRESS; 
+		Initial Catalog = school_department_db; 
+		Integrated Security = True; 
+		Connect Timeout = 30; 
+		Encrypt = False; 
+		TrustServerCertificate = False; 
+		ApplicationIntent = ReadWrite; 
+		MultiSubnetFailover = False;";
 
 	private readonly IConfiguration _configuration;
 
@@ -29,7 +29,8 @@ public class Context : DbContext
 
 	protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 	{
-		optionsBuilder.UseSqlServer(/*_configuration.GetConnectionString("SchoolDepartment")*/connectionString);
+		optionsBuilder.UseSqlServer(_configuration.GetConnectionString(nameof(Project.SchoolDepartment)) /*connectionString*/);
+
 		base.OnConfiguring(optionsBuilder);
 	}
 

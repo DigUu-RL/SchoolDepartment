@@ -30,7 +30,7 @@ namespace Project.SchoolDepartment.Infra.DataStruct.Data.Migrations
                     Periodo = table.Column<string>(type: "VARCHAR(5)", maxLength: 5, nullable: false),
                     DataInicio = table.Column<DateTime>(type: "datetime2", nullable: false),
                     DataFim = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    CursoGuid = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    CursoGuid = table.Column<Guid>(type: "uniqueidentifier", nullable: false, defaultValue: new Guid("00000000-0000-0000-0000-000000000000"))
                 },
                 constraints: table =>
                 {
@@ -40,7 +40,7 @@ namespace Project.SchoolDepartment.Infra.DataStruct.Data.Migrations
                         column: x => x.CursoGuid,
                         principalTable: "Curso",
                         principalColumn: "Guid",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.SetDefault);
                 });
 
             migrationBuilder.CreateTable(
@@ -58,8 +58,8 @@ namespace Project.SchoolDepartment.Infra.DataStruct.Data.Migrations
                     Numero = table.Column<int>(type: "int", nullable: false),
                     Cidade = table.Column<string>(type: "VARCHAR(60)", maxLength: 60, nullable: false),
                     UF = table.Column<string>(type: "CHAR(2)", maxLength: 2, nullable: false),
-                    CursoGuid = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    TurmaGuid = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    CursoGuid = table.Column<Guid>(type: "uniqueidentifier", nullable: false, defaultValue: new Guid("00000000-0000-0000-0000-000000000000")),
+                    TurmaGuid = table.Column<Guid>(type: "uniqueidentifier", nullable: false, defaultValue: new Guid("00000000-0000-0000-0000-000000000000"))
                 },
                 constraints: table =>
                 {
@@ -69,13 +69,13 @@ namespace Project.SchoolDepartment.Infra.DataStruct.Data.Migrations
                         column: x => x.CursoGuid,
                         principalTable: "Curso",
                         principalColumn: "Guid",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.SetDefault);
                     table.ForeignKey(
                         name: "FK_Aluno_Turma_TurmaGuid",
                         column: x => x.TurmaGuid,
                         principalTable: "Turma",
                         principalColumn: "Guid",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.SetDefault);
                 });
 
             migrationBuilder.CreateTable(
@@ -84,7 +84,7 @@ namespace Project.SchoolDepartment.Infra.DataStruct.Data.Migrations
                 {
                     Guid = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Numero = table.Column<string>(type: "VARCHAR(11)", maxLength: 11, nullable: false),
-                    AlunoGuid = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    AlunoGuid = table.Column<Guid>(type: "uniqueidentifier", nullable: false, defaultValue: new Guid("00000000-0000-0000-0000-000000000000"))
                 },
                 constraints: table =>
                 {
@@ -94,7 +94,7 @@ namespace Project.SchoolDepartment.Infra.DataStruct.Data.Migrations
                         column: x => x.AlunoGuid,
                         principalTable: "Aluno",
                         principalColumn: "Guid",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.SetDefault);
                 });
 
             migrationBuilder.InsertData(
@@ -115,12 +115,12 @@ namespace Project.SchoolDepartment.Infra.DataStruct.Data.Migrations
             migrationBuilder.InsertData(
                 table: "Telefone",
                 columns: new[] { "Guid", "AlunoGuid", "Numero" },
-                values: new object[] { new Guid("1ca4f177-be93-4384-ba14-f0e5e2641274"), new Guid("c70c3bce-c77a-428a-b8c1-28174b6e0ba6"), "88888888888" });
+                values: new object[] { new Guid("44a7f03d-3809-4f39-a196-28d1b342c939"), new Guid("c70c3bce-c77a-428a-b8c1-28174b6e0ba6"), "99999999999" });
 
             migrationBuilder.InsertData(
                 table: "Telefone",
                 columns: new[] { "Guid", "AlunoGuid", "Numero" },
-                values: new object[] { new Guid("8d31d875-c0d6-4308-bf9f-49ea1474bfee"), new Guid("c70c3bce-c77a-428a-b8c1-28174b6e0ba6"), "99999999999" });
+                values: new object[] { new Guid("5cc10d8b-381e-4f65-8177-e6a452899c09"), new Guid("c70c3bce-c77a-428a-b8c1-28174b6e0ba6"), "88888888888" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Aluno_CPF",

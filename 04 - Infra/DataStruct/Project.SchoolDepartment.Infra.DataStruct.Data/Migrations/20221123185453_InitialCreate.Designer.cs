@@ -12,7 +12,7 @@ using Project.SchoolDepartment.Infra.DataStruct.Data.Contexts;
 namespace Project.SchoolDepartment.Infra.DataStruct.Data.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20221021195640_InitialCreate")]
+    [Migration("20221123185453_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -46,7 +46,9 @@ namespace Project.SchoolDepartment.Infra.DataStruct.Data.Migrations
                         .HasColumnType("VARCHAR(60)");
 
                     b.Property<Guid>("CursoGuid")
-                        .HasColumnType("uniqueidentifier");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier")
+                        .HasDefaultValue(new Guid("00000000-0000-0000-0000-000000000000"));
 
                     b.Property<string>("Genero")
                         .IsRequired()
@@ -77,7 +79,9 @@ namespace Project.SchoolDepartment.Infra.DataStruct.Data.Migrations
                         .HasColumnType("VARCHAR(120)");
 
                     b.Property<Guid>("TurmaGuid")
-                        .HasColumnType("uniqueidentifier");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier")
+                        .HasDefaultValue(new Guid("00000000-0000-0000-0000-000000000000"));
 
                     b.Property<string>("UF")
                         .IsRequired()
@@ -96,7 +100,7 @@ namespace Project.SchoolDepartment.Infra.DataStruct.Data.Migrations
 
                     b.HasIndex("TurmaGuid");
 
-                    b.ToTable("Aluno");
+                    b.ToTable("Aluno", (string)null);
 
                     b.HasData(
                         new
@@ -130,7 +134,7 @@ namespace Project.SchoolDepartment.Infra.DataStruct.Data.Migrations
 
                     b.HasKey("Guid");
 
-                    b.ToTable("Curso");
+                    b.ToTable("Curso", (string)null);
 
                     b.HasData(
                         new
@@ -147,7 +151,9 @@ namespace Project.SchoolDepartment.Infra.DataStruct.Data.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("AlunoGuid")
-                        .HasColumnType("uniqueidentifier");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier")
+                        .HasDefaultValue(new Guid("00000000-0000-0000-0000-000000000000"));
 
                     b.Property<string>("Numero")
                         .IsRequired()
@@ -158,18 +164,18 @@ namespace Project.SchoolDepartment.Infra.DataStruct.Data.Migrations
 
                     b.HasIndex("AlunoGuid");
 
-                    b.ToTable("Telefone");
+                    b.ToTable("Telefone", (string)null);
 
                     b.HasData(
                         new
                         {
-                            Guid = new Guid("8d31d875-c0d6-4308-bf9f-49ea1474bfee"),
+                            Guid = new Guid("44a7f03d-3809-4f39-a196-28d1b342c939"),
                             AlunoGuid = new Guid("c70c3bce-c77a-428a-b8c1-28174b6e0ba6"),
                             Numero = "99999999999"
                         },
                         new
                         {
-                            Guid = new Guid("1ca4f177-be93-4384-ba14-f0e5e2641274"),
+                            Guid = new Guid("5cc10d8b-381e-4f65-8177-e6a452899c09"),
                             AlunoGuid = new Guid("c70c3bce-c77a-428a-b8c1-28174b6e0ba6"),
                             Numero = "88888888888"
                         });
@@ -182,7 +188,9 @@ namespace Project.SchoolDepartment.Infra.DataStruct.Data.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("CursoGuid")
-                        .HasColumnType("uniqueidentifier");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier")
+                        .HasDefaultValue(new Guid("00000000-0000-0000-0000-000000000000"));
 
                     b.Property<DateTime>("DataFim")
                         .HasColumnType("datetime2");
@@ -202,7 +210,7 @@ namespace Project.SchoolDepartment.Infra.DataStruct.Data.Migrations
 
                     b.HasIndex("CursoGuid");
 
-                    b.ToTable("Turma");
+                    b.ToTable("Turma", (string)null);
 
                     b.HasData(
                         new

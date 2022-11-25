@@ -21,6 +21,10 @@ public sealed class TelefoneMap : IEntityTypeConfiguration<Telefone>
 			.HasColumnType("VARCHAR")
 			.HasMaxLength(11)
 			.IsRequired();
+
+		builder
+			.Property(x => x.AlunoGuid)
+			.HasDefaultValue(Guid.Empty);
 	}
 
 	public static void PreLoadedData(ModelBuilder modelBuilder)

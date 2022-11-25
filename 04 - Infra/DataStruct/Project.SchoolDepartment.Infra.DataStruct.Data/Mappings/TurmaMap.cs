@@ -34,6 +34,10 @@ public sealed class TurmaMap : IEntityTypeConfiguration<Turma>
 		builder
 			.Property(x => x.DataFim)
 			.IsRequired();
+
+		builder
+			.Property(x => x.CursoGuid)
+			.HasDefaultValue(Guid.Empty);
 	}
 
 	public static void PreLoadedData(ModelBuilder modelBuilder)
