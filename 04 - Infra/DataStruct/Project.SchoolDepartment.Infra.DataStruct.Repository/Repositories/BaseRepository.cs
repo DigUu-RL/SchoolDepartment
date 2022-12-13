@@ -1,11 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Project.SchoolDepartment.Infra.DataStruct.Data.Contexts;
+using Project.SchoolDepartment.Infra.DataStruct.Data.Entities;
 using Project.SchoolDepartment.Infra.DataStruct.Repository.Helpers;
 using Project.SchoolDepartment.Infra.DataStruct.Repository.Interfaces;
 
 namespace Project.SchoolDepartment.Infra.DataStruct.Repository.Repositories;
 
-public abstract class BaseRepository<TEntity> : IBaseRepository<TEntity> where TEntity : class
+public abstract class BaseRepository<TEntity> : IBaseRepository<TEntity> where TEntity : EntityBase
 {
 	private readonly Context _context;
 
@@ -26,21 +27,40 @@ public abstract class BaseRepository<TEntity> : IBaseRepository<TEntity> where T
 		return data;
 	}
 
+	public virtual async Task CreateOrUpdateAsync(TEntity entity)
+	{
+		if (await _context.FindAsync(typeof(TEntity), entity.Guid) is not TEntity)
+		{
+			await CreateAsync(entity);
+		}
+		else
+		{
+			await UpdateAsync(entity);
+		}
+	}
+
 	public virtual async Task CreateAsync(TEntity entity)
 	{
-		_context.Entry(entity).State = EntityState.Added;
-		await _context.SaveChangesAsync();
+		await Task.Run(() => _context.Entry(entity).State = EntityState.Added);
 	}
 
 	public virtual async Task UpdateAsync(TEntity entity)
 	{
-		_context.Update(entity);
-		await _context.SaveChangesAsync();
+		await Task.Run(() => _context.Update(entity));
 	}
 
 	public virtual async Task DeleteAsync(TEntity entity)
 	{
-		_context.Remove(entity);
-		await _context.SaveChangesAsync();
+		await Task.Run(() => _context.Remove(entity));
+	}
+
+	public async Task<bool> CommitAsync()
+	{
+		return await _context.SaveChangesAsync() > 0;
+	}
+
+	public Task RollbackAsync()
+	{
+		return Task.CompletedTask;
 	}
 }

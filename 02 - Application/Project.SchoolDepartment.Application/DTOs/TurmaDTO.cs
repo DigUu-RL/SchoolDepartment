@@ -6,7 +6,7 @@ public class TurmaDTO
 {
 	public Guid Guid { get; set; }
 	public int QuantidadeAlunos { get; set; }
-	public Periodo Periodo { get; set; }
+	public Period Periodo { get; set; }
 	public DateTime DataInicio { get; set; }
 	public DateTime DataFim { get; set; }
 	public Guid CursoGuid { get; set; }

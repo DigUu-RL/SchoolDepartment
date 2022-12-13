@@ -5,11 +5,11 @@ using Project.SchoolDepartment.Infra.DataStruct.Data.Enums;
 
 namespace Project.SchoolDepartment.Infra.DataStruct.Data.Mappings;
 
-public sealed class AlunoMap : IEntityTypeConfiguration<Aluno>
+public sealed class StudentMap : IEntityTypeConfiguration<Student>
 {
-	public void Configure(EntityTypeBuilder<Aluno> builder)
+	public void Configure(EntityTypeBuilder<Student> builder)
 	{
-		builder.ToTable(nameof(Aluno));
+		builder.ToTable(nameof(Student));
 
 		builder.HasKey(x => x.Guid);
 
@@ -26,13 +26,13 @@ public sealed class AlunoMap : IEntityTypeConfiguration<Aluno>
 			.ValueGeneratedOnAdd();
 
 		builder
-			.Property(x => x.Nome)
+			.Property(x => x.Name)
 			.HasColumnType("VARCHAR")
 			.HasMaxLength(60)
 			.IsRequired();
 
 		builder
-			.Property(x => x.Sobrenome)
+			.Property(x => x.Lastname)
 			.HasColumnType("VARCHAR")
 			.HasMaxLength(120)
 			.IsRequired();
@@ -50,70 +50,74 @@ public sealed class AlunoMap : IEntityTypeConfiguration<Aluno>
 			.IsRequired();
 
 		builder
-			.Property(x => x.Genero)
+			.Property(x => x.Gender)
 			.HasColumnType("VARCHAR")
 			.HasMaxLength(9)
 			.IsRequired();
 
 		builder
-			.Property(x => x.Logradouro)
+			.Property(x => x.Street)
 			.HasColumnType("VARCHAR")
 			.HasMaxLength(160)
 			.IsRequired();
 
 		builder
-			.Property(x => x.Bairro)
+			.Property(x => x.District)
 			.HasColumnType("VARCHAR")
 			.HasMaxLength(80)
 			.IsRequired();
 
 		builder
-			.Property(x => x.Numero)
+			.Property(x => x.Number)
 			.IsRequired();
 
 		builder
-			.Property(x => x.Cidade)
+			.Property(x => x.City)
 			.HasColumnType("VARCHAR")
 			.HasMaxLength(60)
 			.IsRequired();
 
 		builder
-			.Property(x => x.UF)
+			.Property(x => x.State)
 			.HasColumnType("CHAR")
 			.HasMaxLength(2)
 			.IsRequired();
 
 		builder
-			.Property(x => x.TurmaGuid)
+			.Property(x => x.SchoolGuid)
 			.HasDefaultValue(Guid.Empty);
 
 		builder
-			.Property(x => x.CursoGuid)
+			.Property(x => x.CourseGuid)
+			.HasDefaultValue(Guid.Empty);
+
+		builder
+			.Property(x => x.UserGuid)
 			.HasDefaultValue(Guid.Empty);
 	}
 
 	public static void PreLoadedData(ModelBuilder modelBuilder)
 	{
-		var alunos = new List<Aluno>
+		var students = new List<Student>
 		{
-			new Aluno
+			new Student
 			{
 				Guid = Guid.Parse("c70c3bce-c77a-428a-b8c1-28174b6e0ba6"),
-				Nome = "Eduardo",
-				Sobrenome = "Oliveira da Silva",
+				Name = "Eduardo",
+				Lastname = "Oliveira da Silva",
 				CPF = "11111111111",
 				RA = "SFHJHSJH46JY54JY6JS54GARGHSTAEFGSJ4T65TRYH48TSRJTJ5THS5TRHGHAEJKDLF846531AHKFSFJ",
-				Genero = Genero.Masculino,
-				Logradouro = "Rua Aleatória",
-				Bairro = "Bairro Qualquer",
-				Numero = 278,
-				Cidade = "Cidade Qualquer",
-				UF = "SP",
-				CursoGuid = Guid.Parse("a69dda80-aed1-452a-afa7-5c09d4885ba1"),
-				TurmaGuid = Guid.Parse("43b26e0f-93e9-46ca-a574-c5e0b78c7a3b")
+				Gender = Gender.Male,
+				Street = "Rua Aleatória",
+				District = "Bairro Qualquer",
+				Number = 278,
+				City = "Cidade Qualquer",
+				State = "SP",
+				CourseGuid = Guid.Parse("a69dda80-aed1-452a-afa7-5c09d4885ba1"),
+				SchoolGuid = Guid.Parse("43b26e0f-93e9-46ca-a574-c5e0b78c7a3b")
 			}
 		};
 
-		modelBuilder.Entity<Aluno>().HasData(alunos);
+		modelBuilder.Entity<Student>().HasData(students);
 	}
 }

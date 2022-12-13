@@ -8,7 +8,7 @@ public class AlunoModel
 	public string? Sobrenome { get; set; }
 	public string? CPF { get; set; }
 	public string? RA { get; set; }
-	public Genero Genero { get; set; }
+	public Gender Genero { get; set; }
 	public string? Logradouro { get; set; }
 	public string? Bairro { get; set; }
 	public int Numero { get; set; }

@@ -5,11 +5,11 @@ using Project.SchoolDepartment.Infra.DataStruct.Data.Enums;
 
 namespace Project.SchoolDepartment.Infra.DataStruct.Data.Mappings;
 
-public sealed class TurmaMap : IEntityTypeConfiguration<Turma>
+public sealed class SchoolMap : IEntityTypeConfiguration<School>
 {
-	public void Configure(EntityTypeBuilder<Turma> builder)
+	public void Configure(EntityTypeBuilder<School> builder)
 	{
-		builder.ToTable(nameof(Turma));
+		builder.ToTable(nameof(School));
 
 		builder.HasKey(x => x.Guid);
 
@@ -18,43 +18,38 @@ public sealed class TurmaMap : IEntityTypeConfiguration<Turma>
 			.ValueGeneratedOnAdd();
 
 		builder
-			.Property(x => x.QuantidadeAlunos)
-			.IsRequired();
-
-		builder
-			.Property(x => x.Periodo)
+			.Property(x => x.Period)
 			.HasColumnType("VARCHAR")
 			.HasMaxLength(5)
 			.IsRequired();
 
 		builder
-			.Property(x => x.DataInicio)
+			.Property(x => x.StartDate)
 			.IsRequired();
 
 		builder
-			.Property(x => x.DataFim)
+			.Property(x => x.EndDate)
 			.IsRequired();
 
 		builder
-			.Property(x => x.CursoGuid)
+			.Property(x => x.CourseGuid)
 			.HasDefaultValue(Guid.Empty);
 	}
 
 	public static void PreLoadedData(ModelBuilder modelBuilder)
 	{
-		var turmas = new List<Turma> 
+		var turmas = new List<School> 
 		{
-			new Turma 
+			new School 
 			{
 				Guid = Guid.Parse("43b26e0f-93e9-46ca-a574-c5e0b78c7a3b"),
-				QuantidadeAlunos = 1,
-				Periodo = Periodo.Manha,
-				DataInicio = new DateTime(),
-				DataFim = new DateTime(),
-				CursoGuid = Guid.Parse("a69dda80-aed1-452a-afa7-5c09d4885ba1")
+				Period = Period.Morning,
+				StartDate = new DateTime(),
+				EndDate = new DateTime(),
+				CourseGuid = Guid.Parse("a69dda80-aed1-452a-afa7-5c09d4885ba1")
 			} 
 		};
 
-		modelBuilder.Entity<Turma>().HasData(turmas);
+		modelBuilder.Entity<School>().HasData(turmas);
 	}
 }

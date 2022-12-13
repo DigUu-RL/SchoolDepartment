@@ -36,15 +36,15 @@ public class Context : DbContext
 
 	protected override void OnModelCreating(ModelBuilder modelBuilder)
 	{
-		modelBuilder.ApplyConfiguration(new AlunoMap());
-		modelBuilder.ApplyConfiguration(new CursoMap());
-		modelBuilder.ApplyConfiguration(new TurmaMap());
-		modelBuilder.ApplyConfiguration(new TelefoneMap());
+		modelBuilder.ApplyConfiguration(new StudentMap());
+		modelBuilder.ApplyConfiguration(new CourseMap());
+		modelBuilder.ApplyConfiguration(new SchoolMap());
+		modelBuilder.ApplyConfiguration(new CellphoneMap());
 
-		AlunoMap.PreLoadedData(modelBuilder);
-		CursoMap.PreLoadedData(modelBuilder);
-		TurmaMap.PreLoadedData(modelBuilder);
-		TelefoneMap.PreLoadedData(modelBuilder);
+		StudentMap.PreLoadedData(modelBuilder);
+		CourseMap.PreLoadedData(modelBuilder);
+		SchoolMap.PreLoadedData(modelBuilder);
+		CellphoneMap.PreLoadedData(modelBuilder);
 
 		base.OnModelCreating(modelBuilder);
 	}

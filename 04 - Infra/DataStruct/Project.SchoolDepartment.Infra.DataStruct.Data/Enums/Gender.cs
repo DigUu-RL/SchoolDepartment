@@ -1,8 +1,8 @@
 ﻿namespace Project.SchoolDepartment.Infra.DataStruct.Data.Enums;
 
-public enum Periodo
+public enum Gender
 {
-	Manha,
-	Tarde, 
-	Noite
+	Male,
+	Female,
+	Other
 }

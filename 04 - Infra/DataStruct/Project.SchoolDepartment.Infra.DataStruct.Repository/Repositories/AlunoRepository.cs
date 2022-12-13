@@ -6,18 +6,18 @@ using Project.SchoolDepartment.Infra.DataStruct.Repository.Interfaces;
 
 namespace Project.SchoolDepartment.Infra.DataStruct.Repository.Repositories;
 
-public class AlunoRepository : BaseRepository<Aluno>, IAlunoRepository
+public class AlunoRepository : BaseRepository<Student>, IAlunoRepository
 {
 	public AlunoRepository(Context context) : base(context) { }
 
-	public override async Task<PaginatedList<Aluno>> GetAllAsync(int page, int quantity)
+	public override async Task<PaginatedList<Student>> GetAllAsync(int page, int quantity)
 	{
-		IQueryable<Aluno> query = Queryable
-			.Include(a => a.Telefones)
-			.Include(a => a.Curso)
-			.Include(a => a.Turma);
+		IQueryable<Student> query = Queryable
+			.Include(a => a.Cellphones)
+			.Include(a => a.Course)
+			.Include(a => a.School);
 
-		PaginatedList<Aluno> data = await PaginatedList<Aluno>.CreateInstanceAsync(query, page, quantity);
+		PaginatedList<Student> data = await PaginatedList<Student>.CreateInstanceAsync(query, page, quantity);
 		return data;
 	}
 }

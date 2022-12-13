@@ -4,11 +4,11 @@ using Project.SchoolDepartment.Infra.DataStruct.Data.Entities;
 
 namespace Project.SchoolDepartment.Infra.DataStruct.Data.Mappings;
 
-public sealed class CursoMap : IEntityTypeConfiguration<Curso>
+public sealed class CourseMap : IEntityTypeConfiguration<Course>
 {
-	public void Configure(EntityTypeBuilder<Curso> builder)
+	public void Configure(EntityTypeBuilder<Course> builder)
 	{
-		builder.ToTable(nameof(Curso));
+		builder.ToTable(nameof(Course));
 
 		builder.HasKey(x => x.Guid);
 
@@ -17,7 +17,7 @@ public sealed class CursoMap : IEntityTypeConfiguration<Curso>
 			.ValueGeneratedOnAdd();
 
 		builder
-			.Property(x => x.Nome)
+			.Property(x => x.Name)
 			.HasColumnType("VARCHAR")
 			.HasMaxLength(180)
 			.IsRequired();
@@ -25,15 +25,15 @@ public sealed class CursoMap : IEntityTypeConfiguration<Curso>
 
 	public static void PreLoadedData(ModelBuilder modelBuilder)
 	{
-		var cursos = new List<Curso>
+		var courses = new List<Course>
 		{
-			new Curso
+			new Course
 			{
 				Guid = Guid.Parse("a69dda80-aed1-452a-afa7-5c09d4885ba1"),
-				Nome = "Ciência da Computação"
+				Name = "Ciência da Computação"
 			}
 		};
 
-		modelBuilder.Entity<Curso>().HasData(cursos);
+		modelBuilder.Entity<Course>().HasData(courses);
 	}
 }

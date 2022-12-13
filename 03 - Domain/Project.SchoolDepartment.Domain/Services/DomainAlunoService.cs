@@ -23,7 +23,7 @@ public class DomainAlunoService : IDomainAlunoService
 
 	public async Task<PaginatedModel<AlunoModel>> GetAllAsync(int page, int quantity)
 	{
-		PaginatedList<Aluno> data = await _alunoRepository.GetAllAsync(page, quantity);
+		PaginatedList<Student> data = await _alunoRepository.GetAllAsync(page, quantity);
 
 		var model = new PaginatedModel<AlunoModel>
 		{
@@ -38,7 +38,7 @@ public class DomainAlunoService : IDomainAlunoService
 
 	public async Task<AlunoModel> GetByGuidAsync(Guid guid)
 	{
-		Aluno? data = await _alunoRepository.GetByGuidAsync(guid);
+		Student? data = await _alunoRepository.GetByGuidAsync(guid);
 
 		if (data is null)
 			throw new GlobalException("Aluno não encontrado!", HttpStatusCode.NotFound);
@@ -49,7 +49,7 @@ public class DomainAlunoService : IDomainAlunoService
 
 	public async Task CreateAsync(AlunoRequest request)
 	{
-		var aluno = new Aluno
+		var aluno = new Student
 		{
 
 		};
@@ -59,7 +59,7 @@ public class DomainAlunoService : IDomainAlunoService
 
 	public async Task UpdateAsync(AlunoRequest request)
 	{
-		Aluno? data = await _alunoRepository.GetByGuidAsync(/*request.Guid*/Guid.NewGuid());
+		Student? data = await _alunoRepository.GetByGuidAsync(/*request.Guid*/Guid.NewGuid());
 
 		if (data is null)
 			throw new GlobalException("Aluno não encontrado!", HttpStatusCode.NotFound);
@@ -71,7 +71,7 @@ public class DomainAlunoService : IDomainAlunoService
 
 	public async Task DeleteAsync(Guid guid)
 	{
-		Aluno? data = await _alunoRepository.GetByGuidAsync(guid);
+		Student? data = await _alunoRepository.GetByGuidAsync(guid);
 
 		if (data is null)
 			throw new GlobalException("Aluno não encontrado!", HttpStatusCode.NotFound);

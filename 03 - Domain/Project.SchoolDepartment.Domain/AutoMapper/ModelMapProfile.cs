@@ -8,9 +8,9 @@ public class ModelMapProfile : Profile
 {
 	public ModelMapProfile()
 	{
-		CreateMap(typeof(Aluno), typeof(AlunoModel));
-		CreateMap(typeof(Curso), typeof(CursoModel));
-		CreateMap(typeof(Turma), typeof(TurmaModel));
-		CreateMap(typeof(Telefone), typeof(TelefoneModel));
+		CreateMap(typeof(Student), typeof(AlunoModel));
+		CreateMap(typeof(Course), typeof(CursoModel));
+		CreateMap(typeof(School), typeof(TurmaModel));
+		CreateMap(typeof(Cellphone), typeof(TelefoneModel));
 	}
 }
