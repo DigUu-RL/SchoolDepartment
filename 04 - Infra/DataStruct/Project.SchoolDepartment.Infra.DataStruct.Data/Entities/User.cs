@@ -6,4 +6,5 @@ public class User : EntityBase
 	public string? Email { get; set; }
 	public string? PasswordHash { get; set; }
 	public bool IsStudent { get; set; }
+	public bool IsConfirmed { get; set; }
 }

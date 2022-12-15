@@ -114,7 +114,8 @@ public sealed class StudentMap : IEntityTypeConfiguration<Student>
 				City = "Cidade Qualquer",
 				State = "SP",
 				CourseGuid = Guid.Parse("a69dda80-aed1-452a-afa7-5c09d4885ba1"),
-				SchoolGuid = Guid.Parse("43b26e0f-93e9-46ca-a574-c5e0b78c7a3b")
+				SchoolGuid = Guid.Parse("43b26e0f-93e9-46ca-a574-c5e0b78c7a3b"),
+				UserGuid = Guid.Parse("9284F301-155A-4642-A526-BD7B941DDD9A")
 			}
 		};
 
