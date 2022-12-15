@@ -1,11 +1,14 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 
-namespace Project.SchoolDepartment.Web.API.Controllers
+namespace Project.SchoolDepartment.Web.API.Controllers;
+
+[ApiController]
+[Route("api/account")]
+public class AccountController : ControllerBase
 {
-	[Route("api/[controller]")]
-	[ApiController]
-	public class AccountController : ControllerBase
+	[HttpPost]
+	public async Task<IActionResult> SendConfirmationLink(Guid user)
 	{
+		return NoContent();
 	}
 }
