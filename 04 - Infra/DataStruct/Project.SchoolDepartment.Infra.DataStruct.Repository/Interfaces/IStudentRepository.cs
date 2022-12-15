@@ -2,7 +2,7 @@
 
 namespace Project.SchoolDepartment.Infra.DataStruct.Repository.Interfaces;
 
-public interface IAlunoRepository : IBaseRepository<Student>
+public interface IStudentRepository : IBaseRepository<Student>
 {
 	
 }

@@ -1,6 +1,6 @@
 ﻿namespace Project.SchoolDepartment.Domain.Requests;
 
-public class TelefoneRequest
+public class CellphoneRequest
 {
 	public string? Numero { get; set; }
 }

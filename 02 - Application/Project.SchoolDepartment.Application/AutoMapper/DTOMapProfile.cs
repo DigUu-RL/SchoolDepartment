@@ -8,17 +8,17 @@ public class DTOMapProfile : Profile
 {
 	public DTOMapProfile()
 	{
-		CreateMap(typeof(AlunoModel), typeof(AlunoDTO));
-		CreateMap(typeof(CursoModel), typeof(CursoDTO));
-		CreateMap(typeof(TurmaModel), typeof(TurmaDTO));
-		CreateMap(typeof(TelefoneModel), typeof(TelefoneDTO));
+		CreateMap(typeof(StudentModel), typeof(StudentDTO));
+		CreateMap(typeof(CourseModel), typeof(CourseDTO));
+		CreateMap(typeof(SchoolModel), typeof(SchoolDTO));
+		CreateMap(typeof(CellphoneModel), typeof(CellphoneDTO));
 
 		#region PAGINATED'S
 
-		CreateMap(typeof(PaginatedModel<AlunoModel>), typeof(PaginatedDTO<AlunoDTO>));
-		CreateMap(typeof(PaginatedModel<CursoModel>), typeof(PaginatedDTO<CursoDTO>));
-		CreateMap(typeof(PaginatedModel<TurmaModel>), typeof(PaginatedDTO<TurmaDTO>));
-		CreateMap(typeof(PaginatedModel<TelefoneModel>), typeof(PaginatedDTO<TelefoneDTO>));
+		CreateMap(typeof(PaginatedModel<StudentModel>), typeof(PaginatedDTO<StudentDTO>));
+		CreateMap(typeof(PaginatedModel<CourseModel>), typeof(PaginatedDTO<CourseDTO>));
+		CreateMap(typeof(PaginatedModel<SchoolModel>), typeof(PaginatedDTO<SchoolDTO>));
+		CreateMap(typeof(PaginatedModel<CellphoneModel>), typeof(PaginatedDTO<CellphoneDTO>));
 
 		#endregion
 	}

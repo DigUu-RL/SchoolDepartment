@@ -10,72 +10,72 @@ using System.Net;
 
 namespace Project.SchoolDepartment.Domain.Services;
 
-public class DomainAlunoService : IDomainAlunoService
+public class DomainStudentService : IDomainStudentService
 {
-	private readonly IAlunoRepository _alunoRepository;
+	private readonly IStudentRepository _studentRepository;
 	private readonly IMapper _mapper;
 
-	public DomainAlunoService(IAlunoRepository alunoRepository, IMapper mapper)
+	public DomainStudentService(IStudentRepository studentRepository, IMapper mapper)
 	{
-		_alunoRepository = alunoRepository;
+		_studentRepository = studentRepository;
 		_mapper = mapper;
 	}
 
-	public async Task<PaginatedModel<AlunoModel>> GetAllAsync(int page, int quantity)
+	public async Task<PaginatedModel<StudentModel>> GetAllAsync(int page, int quantity)
 	{
-		PaginatedList<Student> data = await _alunoRepository.GetAllAsync(page, quantity);
+		PaginatedList<Student> data = await _studentRepository.GetAllAsync(page, quantity);
 
-		var model = new PaginatedModel<AlunoModel>
+		var model = new PaginatedModel<StudentModel>
 		{
 			Page = data.Page,
 			Pages = data.Pages,
 			Total = data.Total,
-			Data = _mapper.Map<List<AlunoModel>>(data)
+			Data = _mapper.Map<List<StudentModel>>(data)
 		};
 
 		return model;
 	}
 
-	public async Task<AlunoModel> GetByGuidAsync(Guid guid)
+	public async Task<StudentModel> GetByGuidAsync(Guid guid)
 	{
-		Student? data = await _alunoRepository.GetByGuidAsync(guid);
+		Student? data = await _studentRepository.GetByGuidAsync(guid);
 
 		if (data is null)
 			throw new GlobalException("Aluno não encontrado!", HttpStatusCode.NotFound);
 
-		AlunoModel model = _mapper.Map<AlunoModel>(data);
+		StudentModel model = _mapper.Map<StudentModel>(data);
 		return model;
 	}
 
-	public async Task CreateAsync(AlunoRequest request)
+	public async Task CreateAsync(StudentRequest request)
 	{
 		var aluno = new Student
 		{
 
 		};
 
-		await _alunoRepository.CreateAsync(aluno);
+		await _studentRepository.CreateAsync(aluno);
 	}
 
-	public async Task UpdateAsync(AlunoRequest request)
+	public async Task UpdateAsync(StudentRequest request)
 	{
-		Student? data = await _alunoRepository.GetByGuidAsync(/*request.Guid*/Guid.NewGuid());
+		Student? data = await _studentRepository.GetByGuidAsync(/*request.Guid*/Guid.NewGuid());
 
 		if (data is null)
 			throw new GlobalException("Aluno não encontrado!", HttpStatusCode.NotFound);
 
 		// code ...
 
-		await _alunoRepository.UpdateAsync(data);
+		await _studentRepository.UpdateAsync(data);
 	}
 
 	public async Task DeleteAsync(Guid guid)
 	{
-		Student? data = await _alunoRepository.GetByGuidAsync(guid);
+		Student? data = await _studentRepository.GetByGuidAsync(guid);
 
 		if (data is null)
 			throw new GlobalException("Aluno não encontrado!", HttpStatusCode.NotFound);
 
-		await _alunoRepository.DeleteAsync(data);
+		await _studentRepository.DeleteAsync(data);
 	}
 }

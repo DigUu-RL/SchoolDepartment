@@ -1,13 +1,10 @@
 ﻿using Hangfire;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Project.SchoolDepartment.Application.DTOs;
 using Project.SchoolDepartment.Application.Interfaces;
 using Project.SchoolDepartment.Application.Services;
 using Project.SchoolDepartment.Domain.Interfaces;
-using Project.SchoolDepartment.Domain.Models;
 using Project.SchoolDepartment.Domain.Services;
-using Project.SchoolDepartment.Infra.CrossCutting.CCT.AutoMapper;
 using Project.SchoolDepartment.Infra.DataStruct.Data.Contexts;
 using Project.SchoolDepartment.Infra.DataStruct.Data.Entities;
 using Project.SchoolDepartment.Infra.DataStruct.Repository.Interfaces;
@@ -23,9 +20,9 @@ public static class ConfigureServiceCollection
 
 		services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
-		services.AddScoped(typeof(IApplicationAlunoService), typeof(ApplicationAlunoService));
-		services.AddScoped(typeof(IDomainAlunoService), typeof(DomainAlunoService));
-		services.AddScoped(typeof(IAlunoRepository), typeof(AlunoRepository));
+		services.AddScoped(typeof(IApplicationStudentService), typeof(ApplicationStudentService));
+		services.AddScoped(typeof(IDomainStudentService), typeof(DomainStudentService));
+		services.AddScoped(typeof(IStudentRepository), typeof(StudentRepository));
 
 		services.ConfigureHangfire(configuration);
 

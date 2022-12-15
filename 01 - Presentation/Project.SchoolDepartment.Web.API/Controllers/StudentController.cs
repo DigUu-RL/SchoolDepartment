@@ -8,11 +8,11 @@ namespace Project.SchoolDepartment.Web.API.Controllers;
 [Route("api/aluno")]
 public class StudentController : ControllerBase
 {
-	private readonly IApplicationAlunoService _studentService;
+	private readonly IApplicationStudentService _studentService;
 
-	public StudentController(IApplicationAlunoService alunoService)
+	public StudentController(IApplicationStudentService studentService)
 	{
-		_studentService = alunoService;
+		_studentService = studentService;
 	}
 
 	[HttpGet]
@@ -28,14 +28,14 @@ public class StudentController : ControllerBase
 	}
 
 	[HttpPost("create")]
-	public async Task<IActionResult> Create([FromBody] AlunoRequest request)
+	public async Task<IActionResult> Create([FromBody] StudentRequest request)
 	{
 		await _studentService.CreateAsync(request);
 		return Ok();
 	}
 
 	[HttpPut("update")]
-	public async Task<IActionResult> Update([FromBody] AlunoRequest request)
+	public async Task<IActionResult> Update([FromBody] StudentRequest request)
 	{
 		await _studentService.UpdateAsync(request);
 		return NoContent();

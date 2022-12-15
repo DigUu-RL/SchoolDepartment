@@ -6,9 +6,9 @@ using Project.SchoolDepartment.Infra.DataStruct.Repository.Interfaces;
 
 namespace Project.SchoolDepartment.Infra.DataStruct.Repository.Repositories;
 
-public class AlunoRepository : BaseRepository<Student>, IAlunoRepository
+public class StudentRepository : BaseRepository<Student>, IStudentRepository
 {
-	public AlunoRepository(Context context) : base(context) { }
+	public StudentRepository(Context context) : base(context) { }
 
 	public override async Task<PaginatedList<Student>> GetAllAsync(int page, int quantity)
 	{
