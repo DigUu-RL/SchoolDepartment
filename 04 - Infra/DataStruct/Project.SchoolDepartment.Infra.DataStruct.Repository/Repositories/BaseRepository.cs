@@ -8,28 +8,28 @@ namespace Project.SchoolDepartment.Infra.DataStruct.Repository.Repositories;
 
 public abstract class BaseRepository<TEntity> : IBaseRepository<TEntity> where TEntity : EntityBase
 {
-	private readonly Context _context;
+	private readonly AppDbContext _dbContext;
 
-	protected BaseRepository(Context context)
+	protected BaseRepository(AppDbContext dbContext)
 	{
-		_context = context;
-		Queryable = context.Set<TEntity>().AsQueryable<TEntity>();
+		_dbContext = dbContext;
+		Query = dbContext.Set<TEntity>().AsQueryable<TEntity>();
 	}
 
-	protected Context Context { get => _context; }
-	protected IQueryable<TEntity> Queryable { get; }
+	protected AppDbContext DbContext { get => _dbContext; }
+	protected IQueryable<TEntity> Query { get; }
 
 	public abstract Task<PaginatedList<TEntity>> GetAllAsync(int page, int quantity);
 
 	public virtual async Task<TEntity?> GetByGuidAsync(Guid guid)
 	{
-		TEntity? data = await _context.FindAsync<TEntity>(guid);
+		TEntity? data = await _dbContext.FindAsync<TEntity>(guid);
 		return data;
 	}
 
 	public virtual async Task CreateOrUpdateAsync(TEntity entity)
 	{
-		if (await _context.FindAsync(typeof(TEntity), entity.Guid) is not TEntity)
+		if (await _dbContext.FindAsync(typeof(TEntity), entity.Guid) is not TEntity)
 		{
 			await CreateAsync(entity);
 		}
@@ -41,22 +41,22 @@ public abstract class BaseRepository<TEntity> : IBaseRepository<TEntity> where T
 
 	public virtual async Task CreateAsync(TEntity entity)
 	{
-		await Task.Run(() => _context.Entry(entity).State = EntityState.Added);
+		await Task.Run(() => _dbContext.Entry(entity).State = EntityState.Added);
 	}
 
 	public virtual async Task UpdateAsync(TEntity entity)
 	{
-		await Task.Run(() => _context.Update(entity));
+		await Task.Run(() => _dbContext.Update(entity));
 	}
 
 	public virtual async Task DeleteAsync(TEntity entity)
 	{
-		await Task.Run(() => _context.Remove(entity));
+		await Task.Run(() => _dbContext.Remove(entity));
 	}
 
 	public async Task<bool> CommitAsync()
 	{
-		return await _context.SaveChangesAsync() > 0;
+		return await _dbContext.SaveChangesAsync() > 0;
 	}
 
 	public Task RollbackAsync()

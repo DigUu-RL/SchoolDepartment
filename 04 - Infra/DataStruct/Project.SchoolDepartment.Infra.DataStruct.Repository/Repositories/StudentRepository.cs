@@ -8,11 +8,11 @@ namespace Project.SchoolDepartment.Infra.DataStruct.Repository.Repositories;
 
 public class StudentRepository : BaseRepository<Student>, IStudentRepository
 {
-	public StudentRepository(Context context) : base(context) { }
+	public StudentRepository(AppDbContext dbContext) : base(dbContext) { }
 
 	public override async Task<PaginatedList<Student>> GetAllAsync(int page, int quantity)
 	{
-		IQueryable<Student> query = Queryable
+		IQueryable<Student> query = Query
 			.Include(a => a.Cellphones)
 			.Include(a => a.Course)
 			.Include(a => a.School);

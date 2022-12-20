@@ -2,6 +2,7 @@
 using Newtonsoft.Json;
 using Project.SchoolDepartment.Infra.Middleware.Exceptions;
 using System.Net;
+using System.Runtime.InteropServices;
 
 namespace Project.SchoolDepartment.Infra.Middleware;
 

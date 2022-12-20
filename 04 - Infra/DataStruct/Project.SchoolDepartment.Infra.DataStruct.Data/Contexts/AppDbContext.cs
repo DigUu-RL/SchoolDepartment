@@ -4,7 +4,7 @@ using Project.SchoolDepartment.Infra.DataStruct.Data.Mappings;
 
 namespace Project.SchoolDepartment.Infra.DataStruct.Data.Contexts;
 
-public class Context : DbContext
+public class AppDbContext : DbContext
 {
 	private const string connectionString = @"Data Source = localhost\SQLEXPRESS; 
 		Initial Catalog = school_department_db; 
@@ -17,19 +17,19 @@ public class Context : DbContext
 
 	private readonly IConfiguration _configuration;
 
-	public Context()
+	public AppDbContext()
 	{
 
 	}
 
-	public Context(IConfiguration configuration)
+	public AppDbContext(IConfiguration configuration)
 	{
 		_configuration = configuration;
 	}
 
 	protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 	{
-		optionsBuilder.UseSqlServer(_configuration.GetConnectionString(nameof(Project.SchoolDepartment)) /*connectionString*/);
+		optionsBuilder.UseSqlServer(_configuration.GetConnectionString(nameof(SchoolDepartment)) /*connectionString*/);
 
 		base.OnConfiguring(optionsBuilder);
 	}

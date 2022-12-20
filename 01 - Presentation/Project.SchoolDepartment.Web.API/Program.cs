@@ -30,6 +30,8 @@ if (app.Environment.IsDevelopment())
 	app.UseHangfireDashboard("/hangfire");
 }
 
+app.UseRateLimiter();
+
 app.UseMiddleware(typeof(ErrorMiddleware));
 
 app.UseCors(x => x.AllowAnyOrigin().AllowAnyHeader().AllowAnyHeader());
