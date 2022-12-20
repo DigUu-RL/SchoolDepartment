@@ -5,7 +5,7 @@ using Project.SchoolDepartment.Domain.Requests;
 namespace Project.SchoolDepartment.Web.API.Controllers;
 
 [ApiController]
-[Route("api/aluno")]
+[Route("api/student")]
 public class StudentController : ControllerBase
 {
 	private readonly IApplicationStudentService _studentService;

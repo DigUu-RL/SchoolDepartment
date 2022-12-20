@@ -9,7 +9,12 @@ public class UserMap : IEntityTypeConfiguration<User>
 	public void Configure(EntityTypeBuilder<User> builder)
 	{
 		builder.ToTable(nameof(User));
+
 		builder.HasKey(x => x.Guid);
+
+		builder
+			.HasIndex(x => x.Token)
+			.IsUnique();
 
 		builder
 			.Property(x => x.Guid)
@@ -39,6 +44,12 @@ public class UserMap : IEntityTypeConfiguration<User>
 			.IsRequired();
 
 		builder
+			.Property(x => x.Token)
+			.HasColumnType("VARCHAR")
+			.HasMaxLength(255)
+			.IsRequired();
+
+		builder
 			.Property(x => x.IsConfirmed)
 			.HasDefaultValue(false)
 			.IsRequired();
@@ -53,7 +64,8 @@ public class UserMap : IEntityTypeConfiguration<User>
 				Guid = Guid.Parse("9284F301-155A-4642-A526-BD7B941DDD9A"),
 				Login = "diguu_rl",
 				Email = "rodrigogeribola@hotmail.com",
-				PasswordHash = "8sfM3ZZo4QvV7xKGxIyvg441+YFCuWMicZOM0Aqlj05p5a/buyT+keDIRYv6sd5/wkm1pCaePa+Ry6eAksgJ2w=="
+				PasswordHash = "8sfM3ZZo4QvV7xKGxIyvg441+YFCuWMicZOM0Aqlj05p5a/buyT+keDIRYv6sd5/wkm1pCaePa+Ry6eAksgJ2w==",
+				Token = "MyFirstToken1234567890++"
 			}
 		};
 

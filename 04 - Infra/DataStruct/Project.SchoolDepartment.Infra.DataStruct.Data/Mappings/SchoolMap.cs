@@ -20,7 +20,7 @@ public sealed class SchoolMap : IEntityTypeConfiguration<School>
 		builder
 			.Property(x => x.Period)
 			.HasColumnType("VARCHAR")
-			.HasMaxLength(5)
+			.HasMaxLength(50)
 			.IsRequired();
 
 		builder

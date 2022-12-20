@@ -4,10 +4,10 @@ namespace Project.SchoolDepartment.Integration.Services;
 
 public class IntegrationApiService : IIntegrationApiService
 {
-	private readonly HttpClient _http;
+	private readonly HttpClient _client;
 
 	public IntegrationApiService()
 	{
-		_http = new HttpClient();
+		_client = new HttpClient();
 	}
 }

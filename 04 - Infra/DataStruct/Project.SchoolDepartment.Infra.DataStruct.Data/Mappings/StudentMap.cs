@@ -52,7 +52,7 @@ public sealed class StudentMap : IEntityTypeConfiguration<Student>
 		builder
 			.Property(x => x.Gender)
 			.HasColumnType("VARCHAR")
-			.HasMaxLength(9)
+			.HasMaxLength(50)
 			.IsRequired();
 
 		builder

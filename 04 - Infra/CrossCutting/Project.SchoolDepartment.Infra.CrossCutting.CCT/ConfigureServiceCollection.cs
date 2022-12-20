@@ -10,6 +10,8 @@ using Project.SchoolDepartment.Domain.Services;
 using Project.SchoolDepartment.Infra.DataStruct.Data.Contexts;
 using Project.SchoolDepartment.Infra.DataStruct.Repository.Interfaces;
 using Project.SchoolDepartment.Infra.DataStruct.Repository.Repositories;
+using Project.SchoolDepartment.Integration.Interfaces;
+using Project.SchoolDepartment.Integration.Services;
 using System.Net;
 using System.Threading.RateLimiting;
 
@@ -22,6 +24,8 @@ public static class ConfigureServiceCollection
 		services.AddDbContext<AppDbContext>();
 
 		services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
+		services.AddScoped(typeof(IIntegrationApiService), typeof(IntegrationApiService));
 
 		services.AddScoped(typeof(IApplicationStudentService), typeof(ApplicationStudentService));
 		services.AddScoped(typeof(IDomainStudentService), typeof(DomainStudentService));

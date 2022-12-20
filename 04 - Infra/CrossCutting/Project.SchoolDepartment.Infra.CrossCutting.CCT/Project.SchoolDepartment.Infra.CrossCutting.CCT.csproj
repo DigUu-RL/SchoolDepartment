@@ -17,6 +17,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\02 - Application\Project.SchoolDepartment.Application\Project.SchoolDepartment.Application.csproj" />
+    <ProjectReference Include="..\..\..\05 - Integration\Project.SchoolDepartment.Integration\Project.SchoolDepartment.Integration.csproj" />
     <ProjectReference Include="..\..\DataStruct\Project.SchoolDepartment.Infra.DataStruct.Data\Project.SchoolDepartment.Infra.DataStruct.Data.csproj" />
   </ItemGroup>
 
