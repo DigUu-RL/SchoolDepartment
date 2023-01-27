@@ -13,6 +13,7 @@ public sealed class PaginatedList<T> : List<T>
 		Page = page;
 		Pages = (int) Math.Ceiling(total / (double) quantity);
 		Total = total;
+
 		AddRange(items);
 	}
 

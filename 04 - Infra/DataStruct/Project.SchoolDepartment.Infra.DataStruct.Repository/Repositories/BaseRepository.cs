@@ -1,5 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Project.SchoolDepartment.Infra.DataStruct.Data.Contexts;
+﻿using Project.SchoolDepartment.Infra.DataStruct.Data.Contexts;
 using Project.SchoolDepartment.Infra.DataStruct.Data.Entities;
 using Project.SchoolDepartment.Infra.DataStruct.Repository.Helpers;
 using Project.SchoolDepartment.Infra.DataStruct.Repository.Interfaces;
@@ -29,19 +28,13 @@ public abstract class BaseRepository<TEntity> : IBaseRepository<TEntity> where T
 
 	public virtual async Task CreateOrUpdateAsync(TEntity entity)
 	{
-		if (await _dbContext.FindAsync(typeof(TEntity), entity.Guid) is not TEntity)
-		{
-			await CreateAsync(entity);
-		}
-		else
-		{
-			await UpdateAsync(entity);
-		}
+		Task task = await _dbContext.FindAsync(typeof(TEntity), entity.Guid) is null ? CreateAsync(entity) : UpdateAsync(entity);
+		await task;
 	}
 
 	public virtual async Task CreateAsync(TEntity entity)
 	{
-		await Task.Run(() => _dbContext.Entry(entity).State = EntityState.Added);
+		await _dbContext.AddAsync(entity);
 	}
 
 	public virtual async Task UpdateAsync(TEntity entity)
@@ -54,9 +47,9 @@ public abstract class BaseRepository<TEntity> : IBaseRepository<TEntity> where T
 		await Task.Run(() => _dbContext.Remove(entity));
 	}
 
-	public async Task<bool> CommitAsync()
+	public async Task CommitAsync()
 	{
-		return await _dbContext.SaveChangesAsync() > 0;
+		await _dbContext.SaveChangesAsync();
 	}
 
 	public Task RollbackAsync()

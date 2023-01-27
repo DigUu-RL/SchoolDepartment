@@ -1,4 +1,5 @@
 ﻿using Project.SchoolDepartment.Infra.DataStruct.Repository.Helpers;
+using System.Linq.Expressions;
 
 namespace Project.SchoolDepartment.Infra.DataStruct.Repository.Interfaces;
 

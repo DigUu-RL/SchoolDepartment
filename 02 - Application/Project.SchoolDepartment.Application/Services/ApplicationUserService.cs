@@ -14,21 +14,6 @@ public class ApplicationUserService : IApplicationUserService
 		_userService = userService;
 	}
 
-	public Task ConfirmLink(Guid guid, string token)
-	{
-		throw new NotImplementedException();
-	}
-
-	public Task CreateAsync(UserRequest request)
-	{
-		throw new NotImplementedException();
-	}
-
-	public Task DeleteAsync(Guid guid)
-	{
-		throw new NotImplementedException();
-	}
-
 	public Task<PaginatedDTO<UserDTO>> GetAllAsync(int page, int quantity)
 	{
 		throw new NotImplementedException();
@@ -39,7 +24,7 @@ public class ApplicationUserService : IApplicationUserService
 		throw new NotImplementedException();
 	}
 
-	public Task SendConfirmationLink(Guid guid)
+	public Task CreateAsync(UserRequest request)
 	{
 		throw new NotImplementedException();
 	}
@@ -47,5 +32,20 @@ public class ApplicationUserService : IApplicationUserService
 	public Task UpdateAsync(UserRequest request)
 	{
 		throw new NotImplementedException();
+	}
+
+	public Task DeleteAsync(Guid guid)
+	{
+		throw new NotImplementedException();
+	}
+
+	public async Task SendConfirmationLink(Guid guid)
+	{
+		await _userService.SendConfirmationLink(guid);
+	}
+
+	public async Task ConfirmLink(Guid guid, string token)
+	{
+		await _userService.ConfirmLink(guid, token);
 	}
 }

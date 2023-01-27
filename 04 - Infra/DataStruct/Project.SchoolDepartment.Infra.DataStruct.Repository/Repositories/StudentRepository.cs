@@ -12,10 +12,7 @@ public class StudentRepository : BaseRepository<Student>, IStudentRepository
 
 	public override async Task<PaginatedList<Student>> GetAllAsync(int page, int quantity)
 	{
-		IQueryable<Student> query = Query
-			.Include(a => a.Cellphones)
-			.Include(a => a.Course)
-			.Include(a => a.School);
+		IQueryable<Student> query = Query.Include(x => x.Cellphones);
 
 		PaginatedList<Student> data = await PaginatedList<Student>.CreateInstanceAsync(query, page, quantity);
 		return data;
