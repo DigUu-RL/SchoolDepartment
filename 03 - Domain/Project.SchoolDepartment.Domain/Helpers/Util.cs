@@ -7,7 +7,7 @@ public static class Util
 {
 	private static readonly Random _random = new();
 
-	public static async Task<string> CreateStringHash(string content)
+	public static async Task<string> CreateStringHashAsync(string content)
 	{
 		return Convert.ToBase64String(await SHA512.Create().ComputeHashAsync(new MemoryStream(Encoding.UTF8.GetBytes(content))));
 	}

@@ -12,11 +12,10 @@ public abstract class BaseRepository<TEntity> : IBaseRepository<TEntity> where T
 	protected BaseRepository(AppDbContext dbContext)
 	{
 		_dbContext = dbContext;
-		Query = dbContext.Set<TEntity>().AsQueryable<TEntity>();
 	}
 
-	protected AppDbContext DbContext { get => _dbContext; }
-	protected IQueryable<TEntity> Query { get; }
+	protected AppDbContext DbContext => _dbContext;
+	protected IQueryable<TEntity> Query => _dbContext.Set<TEntity>().AsQueryable();
 
 	public abstract Task<PaginatedList<TEntity>> GetAllAsync(int page, int quantity);
 
