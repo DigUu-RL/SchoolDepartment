@@ -1,48 +1,33 @@
 ﻿using LinqSpecs;
 using Project.SchoolDepartment.Infra.DataStruct.Data.Entities;
+using Project.SchoolDepartment.Infra.DataStruct.Data.Enums;
 
 namespace Project.SchoolDepartment.Infra.DataStruct.Repository.Specifications;
 
 public static class StudentSpecification
 {
-	/// <summary>
-	/// Find student by <see cref="Guid"/>
-	/// </summary>
-	/// <param name="guid"></param>
-	/// <returns></returns>
-	public static Specification<Student> ByGuid(Guid guid)
+	public static Specification<Student> ById(Guid id)
 	{
-		return new AdHocSpecification<Student>(x => x.Guid == guid);
+		return new AdHocSpecification<Student>(x => x.Guid == id);
 	}
 
-	/// <summary>
-	/// Find student by course
-	/// </summary>
-	/// <param name="courseGuid"></param>
-	/// <returns></returns>
-	public static Specification<Student> ByCourse(Guid courseGuid)
+	public static Specification<Student> ByCourse(Guid courseId)
 	{
-		return new AdHocSpecification<Student>(x => x.CourseGuid == courseGuid);
+		return new AdHocSpecification<Student>(x => x.CourseGuid == courseId);
 	}
 
-
-	/// <summary>
-	/// Find student by school
-	/// </summary>
-	/// <param name="schoolGuid"></param>
-	/// <returns></returns>
-	public static Specification<Student> BySchool(Guid schoolGuid)
+	public static Specification<Student> BySchool(Guid schoolId)
 	{
-		return new AdHocSpecification<Student>(x => x.SchoolGuid == schoolGuid);
+		return new AdHocSpecification<Student>(x => x.SchoolGuid == schoolId);
 	}
 
-	/// <summary>
-	/// Find student by <see cref="Cellphone"/>
-	/// </summary>
-	/// <param name="cellphone"></param>
-	/// <returns></returns>
 	public static Specification<Student> ByCellphone(Cellphone cellphone)
 	{
 		return new AdHocSpecification<Student>(x => x.Cellphones != null && x.Cellphones.Contains(cellphone));
+	}
+
+	public static Specification<Student> ByGender(Gender gender)
+	{
+		return new AdHocSpecification<Student>(x => x.Gender == gender);
 	}
 }

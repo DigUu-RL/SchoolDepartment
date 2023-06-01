@@ -3,11 +3,11 @@
 namespace Project.SchoolDepartment.Infra.Middleware.Exceptions;
 
 [Serializable]
-public class GlobalException : Exception
+public abstract class BaseException : Exception
 {
 	public HttpStatusCode StatusCode { get; }
 
-	public GlobalException(string message, HttpStatusCode statusCode) : base(message)
+	protected BaseException(string message, HttpStatusCode statusCode) : base(message)
 	{
 		StatusCode = statusCode;
 	}

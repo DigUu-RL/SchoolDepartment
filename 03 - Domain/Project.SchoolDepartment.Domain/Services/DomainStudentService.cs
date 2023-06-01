@@ -39,8 +39,8 @@ public class DomainStudentService : IDomainStudentService
 	public async Task<StudentModel> GetByGuidAsync(Guid guid)
 	{
 		Student? data = await _studentRepository.GetByGuidAsync(guid) 
-			?? throw new GlobalException("Aluno não encontrado!", HttpStatusCode.NotFound);
-
+			?? throw new NotFoundException("Aluno não encontrado!");
+		
 		StudentModel model = _mapper.Map<StudentModel>(data);
 		return model;
 	}
@@ -58,7 +58,7 @@ public class DomainStudentService : IDomainStudentService
 	public async Task UpdateAsync(StudentRequest request)
 	{
 		Student? data = await _studentRepository.GetByGuidAsync(/*request.Guid*/Guid.NewGuid()) 
-			?? throw new GlobalException("Aluno não encontrado!", HttpStatusCode.NotFound);
+			?? throw new NotFoundException("Aluno não encontrado!");
 
 		// code ...
 
@@ -68,8 +68,13 @@ public class DomainStudentService : IDomainStudentService
 	public async Task DeleteAsync(Guid guid)
 	{
 		Student? data = await _studentRepository.GetByGuidAsync(guid) 
-			?? throw new GlobalException("Aluno não encontrado!", HttpStatusCode.NotFound);
+			?? throw new NotFoundException("Aluno não encontrado!");
 
 		await _studentRepository.DeleteAsync(data);
+	}
+
+	public void Validate()
+	{
+		throw new NotImplementedException();
 	}
 }

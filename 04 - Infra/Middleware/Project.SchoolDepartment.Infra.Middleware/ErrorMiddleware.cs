@@ -2,7 +2,6 @@
 using Newtonsoft.Json;
 using Project.SchoolDepartment.Infra.Middleware.Exceptions;
 using System.Net;
-using System.Runtime.InteropServices;
 
 namespace Project.SchoolDepartment.Infra.Middleware;
 
@@ -19,9 +18,9 @@ public class ErrorMiddleware
 	{
 		try
 		{
-			await next(context);
+			await next.Invoke(context);
 		}
-		catch (GlobalException ex)
+		catch (BaseException ex)
 		{
 			await HandleExceptionAsync(context, ex, ex.StatusCode);
 		}
@@ -33,7 +32,7 @@ public class ErrorMiddleware
 
 	private static async Task HandleExceptionAsync(HttpContext context, Exception ex, HttpStatusCode statusCode = default)
 	{
-		if (statusCode is default(HttpStatusCode))
+		if (ex is not BaseException)
 			statusCode = HttpStatusCode.InternalServerError;
 
 		string result = JsonConvert.SerializeObject(new

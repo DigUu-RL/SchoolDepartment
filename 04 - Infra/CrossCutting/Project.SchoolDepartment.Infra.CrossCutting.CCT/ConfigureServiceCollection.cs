@@ -8,7 +8,6 @@ using Project.SchoolDepartment.Application.Services;
 using Project.SchoolDepartment.Domain.Interfaces;
 using Project.SchoolDepartment.Domain.Services;
 using Project.SchoolDepartment.Infra.DataStruct.Data.Contexts;
-using Project.SchoolDepartment.Infra.DataStruct.Data.Entities;
 using Project.SchoolDepartment.Infra.DataStruct.Repository.Interfaces;
 using Project.SchoolDepartment.Infra.DataStruct.Repository.Repositories;
 using Project.SchoolDepartment.Integration.Interfaces;

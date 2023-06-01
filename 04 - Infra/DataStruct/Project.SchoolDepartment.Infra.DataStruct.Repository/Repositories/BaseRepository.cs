@@ -14,7 +14,6 @@ public abstract class BaseRepository<TEntity> : IBaseRepository<TEntity> where T
 		_dbContext = dbContext;
 	}
 
-	protected AppDbContext DbContext => _dbContext;
 	protected IQueryable<TEntity> Query => _dbContext.Set<TEntity>().AsQueryable();
 
 	public abstract Task<PaginatedList<TEntity>> GetAllAsync(int page, int quantity);

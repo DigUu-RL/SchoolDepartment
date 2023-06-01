@@ -3,7 +3,7 @@ using Project.SchoolDepartment.Domain.Requests;
 
 namespace Project.SchoolDepartment.Domain.Interfaces;
 
-public interface IDomainStudentService
+public interface IDomainStudentService : IDomainServiceBase
 {
 	Task<PaginatedModel<StudentModel>> GetAllAsync(int page, int quantity);
 	Task<StudentModel> GetByGuidAsync(Guid guid);
