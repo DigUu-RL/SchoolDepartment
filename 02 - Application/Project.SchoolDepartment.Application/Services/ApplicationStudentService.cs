@@ -25,7 +25,7 @@ public class ApplicationStudentService : IApplicationStudentService
 
 	public async Task<StudentDTO> GetByIdAsync(Guid id)
 	{
-		StudentDTO data = _mapper.Map<StudentDTO>(await _studentService.GetByGuidAsync(id));
+		StudentDTO data = _mapper.Map<StudentDTO>(await _studentService.GetByIdAsync(id));
 		return data;
 	}
 

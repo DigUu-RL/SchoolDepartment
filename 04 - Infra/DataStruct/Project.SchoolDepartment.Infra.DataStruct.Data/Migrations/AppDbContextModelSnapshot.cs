@@ -17,83 +17,119 @@ namespace Project.SchoolDepartment.Infra.DataStruct.Data.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "7.0.0")
+                .HasAnnotation("ProductVersion", "7.0.3")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
             modelBuilder.Entity("Project.SchoolDepartment.Infra.DataStruct.Data.Entities.Cellphone", b =>
                 {
-                    b.Property<Guid>("Guid")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("Excluded")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("LastUpdate")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Number")
                         .IsRequired()
                         .HasMaxLength(11)
                         .HasColumnType("VARCHAR");
 
-                    b.Property<Guid>("StudentGuid")
+                    b.Property<Guid>("StudentId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier")
                         .HasDefaultValue(new Guid("00000000-0000-0000-0000-000000000000"));
 
-                    b.HasKey("Guid");
+                    b.HasKey("Id");
 
-                    b.HasIndex("StudentGuid");
+                    b.HasIndex("StudentId");
 
                     b.ToTable("Cellphone", (string)null);
 
                     b.HasData(
                         new
                         {
-                            Guid = new Guid("164c3b10-6880-475f-8aec-fb1f24ce93eb"),
+                            Id = new Guid("fa2eb5c7-3804-4f61-98b1-19fe9c6995c1"),
+                            CreateDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Excluded = false,
+                            LastUpdate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Number = "99999999999",
-                            StudentGuid = new Guid("c70c3bce-c77a-428a-b8c1-28174b6e0ba6")
+                            StudentId = new Guid("c70c3bce-c77a-428a-b8c1-28174b6e0ba6")
                         },
                         new
                         {
-                            Guid = new Guid("b721dc19-3a29-47e5-8c4f-cb6bfc11ba70"),
+                            Id = new Guid("f5e08fb3-2840-4051-8de7-6e5e939088e5"),
+                            CreateDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Excluded = false,
+                            LastUpdate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Number = "88888888888",
-                            StudentGuid = new Guid("c70c3bce-c77a-428a-b8c1-28174b6e0ba6")
+                            StudentId = new Guid("c70c3bce-c77a-428a-b8c1-28174b6e0ba6")
                         });
                 });
 
             modelBuilder.Entity("Project.SchoolDepartment.Infra.DataStruct.Data.Entities.Course", b =>
                 {
-                    b.Property<Guid>("Guid")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("Excluded")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("LastUpdate")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(180)
                         .HasColumnType("VARCHAR");
 
-                    b.HasKey("Guid");
+                    b.HasKey("Id");
 
                     b.ToTable("Course", (string)null);
 
                     b.HasData(
                         new
                         {
-                            Guid = new Guid("a69dda80-aed1-452a-afa7-5c09d4885ba1"),
+                            Id = new Guid("a69dda80-aed1-452a-afa7-5c09d4885ba1"),
+                            CreateDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Excluded = false,
+                            LastUpdate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Ciência da Computação"
                         });
                 });
 
             modelBuilder.Entity("Project.SchoolDepartment.Infra.DataStruct.Data.Entities.School", b =>
                 {
-                    b.Property<Guid>("Guid")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("CourseGuid")
+                    b.Property<Guid>("CourseId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier")
                         .HasDefaultValue(new Guid("00000000-0000-0000-0000-000000000000"));
 
+                    b.Property<DateTime>("CreateDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<DateTime>("EndDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("Excluded")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("LastUpdate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Period")
@@ -104,18 +140,21 @@ namespace Project.SchoolDepartment.Infra.DataStruct.Data.Migrations
                     b.Property<DateTime>("StartDate")
                         .HasColumnType("datetime2");
 
-                    b.HasKey("Guid");
+                    b.HasKey("Id");
 
-                    b.HasIndex("CourseGuid");
+                    b.HasIndex("CourseId");
 
                     b.ToTable("School", (string)null);
 
                     b.HasData(
                         new
                         {
-                            Guid = new Guid("43b26e0f-93e9-46ca-a574-c5e0b78c7a3b"),
-                            CourseGuid = new Guid("a69dda80-aed1-452a-afa7-5c09d4885ba1"),
+                            Id = new Guid("43b26e0f-93e9-46ca-a574-c5e0b78c7a3b"),
+                            CourseId = new Guid("a69dda80-aed1-452a-afa7-5c09d4885ba1"),
+                            CreateDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Excluded = false,
+                            LastUpdate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Period = "Morning",
                             StartDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         });
@@ -123,7 +162,7 @@ namespace Project.SchoolDepartment.Infra.DataStruct.Data.Migrations
 
             modelBuilder.Entity("Project.SchoolDepartment.Infra.DataStruct.Data.Entities.Student", b =>
                 {
-                    b.Property<Guid>("Guid")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
@@ -137,25 +176,34 @@ namespace Project.SchoolDepartment.Infra.DataStruct.Data.Migrations
                         .HasMaxLength(60)
                         .HasColumnType("VARCHAR");
 
-                    b.Property<Guid>("CourseGuid")
+                    b.Property<Guid>("CourseId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier")
                         .HasDefaultValue(new Guid("00000000-0000-0000-0000-000000000000"));
+
+                    b.Property<DateTime>("CreateDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("District")
                         .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("VARCHAR");
 
+                    b.Property<bool>("Excluded")
+                        .HasColumnType("bit");
+
                     b.Property<string>("Gender")
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("VARCHAR");
 
-                    b.Property<string>("Lastname")
+                    b.Property<string>("LastName")
                         .IsRequired()
                         .HasMaxLength(120)
                         .HasColumnType("VARCHAR");
+
+                    b.Property<DateTime>("LastUpdate")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -170,7 +218,7 @@ namespace Project.SchoolDepartment.Infra.DataStruct.Data.Migrations
                         .HasMaxLength(80)
                         .HasColumnType("CHAR");
 
-                    b.Property<Guid>("SchoolGuid")
+                    b.Property<Guid>("SchoolId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier")
                         .HasDefaultValue(new Guid("00000000-0000-0000-0000-000000000000"));
@@ -185,57 +233,66 @@ namespace Project.SchoolDepartment.Infra.DataStruct.Data.Migrations
                         .HasMaxLength(160)
                         .HasColumnType("VARCHAR");
 
-                    b.Property<Guid>("UserGuid")
+                    b.Property<Guid>("UserId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier")
                         .HasDefaultValue(new Guid("00000000-0000-0000-0000-000000000000"));
 
-                    b.HasKey("Guid");
+                    b.HasKey("Id");
 
                     b.HasIndex("CPF")
                         .IsUnique();
 
-                    b.HasIndex("CourseGuid");
+                    b.HasIndex("CourseId");
 
                     b.HasIndex("RA")
                         .IsUnique();
 
-                    b.HasIndex("SchoolGuid");
+                    b.HasIndex("SchoolId");
 
-                    b.HasIndex("UserGuid");
+                    b.HasIndex("UserId");
 
                     b.ToTable("Student", (string)null);
 
                     b.HasData(
                         new
                         {
-                            Guid = new Guid("c70c3bce-c77a-428a-b8c1-28174b6e0ba6"),
+                            Id = new Guid("c70c3bce-c77a-428a-b8c1-28174b6e0ba6"),
                             CPF = "11111111111",
                             City = "Cidade Qualquer",
-                            CourseGuid = new Guid("a69dda80-aed1-452a-afa7-5c09d4885ba1"),
+                            CourseId = new Guid("a69dda80-aed1-452a-afa7-5c09d4885ba1"),
+                            CreateDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             District = "Bairro Qualquer",
+                            Excluded = false,
                             Gender = "Male",
-                            Lastname = "Oliveira da Silva",
+                            LastName = "Oliveira da Silva",
+                            LastUpdate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Eduardo",
                             Number = 278,
                             RA = "SFHJHSJH46JY54JY6JS54GARGHSTAEFGSJ4T65TRYH48TSRJTJ5THS5TRHGHAEJKDLF846531AHKFSFJ",
-                            SchoolGuid = new Guid("43b26e0f-93e9-46ca-a574-c5e0b78c7a3b"),
+                            SchoolId = new Guid("43b26e0f-93e9-46ca-a574-c5e0b78c7a3b"),
                             State = "SP",
                             Street = "Rua Aleatória",
-                            UserGuid = new Guid("9284f301-155a-4642-a526-bd7b941ddd9a")
+                            UserId = new Guid("9284f301-155a-4642-a526-bd7b941ddd9a")
                         });
                 });
 
             modelBuilder.Entity("Project.SchoolDepartment.Infra.DataStruct.Data.Entities.User", b =>
                 {
-                    b.Property<Guid>("Guid")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreateDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasMaxLength(200)
                         .HasColumnType("VARCHAR");
+
+                    b.Property<bool>("Excluded")
+                        .HasColumnType("bit");
 
                     b.Property<bool>("IsConfirmed")
                         .ValueGeneratedOnAdd()
@@ -246,6 +303,9 @@ namespace Project.SchoolDepartment.Infra.DataStruct.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bit")
                         .HasDefaultValue(true);
+
+                    b.Property<DateTime>("LastUpdate")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Login")
                         .IsRequired()
@@ -262,7 +322,7 @@ namespace Project.SchoolDepartment.Infra.DataStruct.Data.Migrations
                         .HasMaxLength(255)
                         .HasColumnType("VARCHAR");
 
-                    b.HasKey("Guid");
+                    b.HasKey("Id");
 
                     b.HasIndex("Token")
                         .IsUnique();
@@ -272,10 +332,13 @@ namespace Project.SchoolDepartment.Infra.DataStruct.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Guid = new Guid("9284f301-155a-4642-a526-bd7b941ddd9a"),
+                            Id = new Guid("9284f301-155a-4642-a526-bd7b941ddd9a"),
+                            CreateDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "rodrigogeribola@hotmail.com",
+                            Excluded = false,
                             IsConfirmed = false,
                             IsStudent = false,
+                            LastUpdate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Login = "diguu_rl",
                             PasswordHash = "8sfM3ZZo4QvV7xKGxIyvg441+YFCuWMicZOM0Aqlj05p5a/buyT+keDIRYv6sd5/wkm1pCaePa+Ry6eAksgJ2w==",
                             Token = "MyFirstToken1234567890++"
@@ -286,7 +349,7 @@ namespace Project.SchoolDepartment.Infra.DataStruct.Data.Migrations
                 {
                     b.HasOne("Project.SchoolDepartment.Infra.DataStruct.Data.Entities.Student", "Student")
                         .WithMany("Cellphones")
-                        .HasForeignKey("StudentGuid")
+                        .HasForeignKey("StudentId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -297,7 +360,7 @@ namespace Project.SchoolDepartment.Infra.DataStruct.Data.Migrations
                 {
                     b.HasOne("Project.SchoolDepartment.Infra.DataStruct.Data.Entities.Course", "Course")
                         .WithMany("Schools")
-                        .HasForeignKey("CourseGuid")
+                        .HasForeignKey("CourseId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -308,19 +371,19 @@ namespace Project.SchoolDepartment.Infra.DataStruct.Data.Migrations
                 {
                     b.HasOne("Project.SchoolDepartment.Infra.DataStruct.Data.Entities.Course", "Course")
                         .WithMany("Students")
-                        .HasForeignKey("CourseGuid")
+                        .HasForeignKey("CourseId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Project.SchoolDepartment.Infra.DataStruct.Data.Entities.School", "School")
                         .WithMany("Students")
-                        .HasForeignKey("SchoolGuid")
+                        .HasForeignKey("SchoolId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Project.SchoolDepartment.Infra.DataStruct.Data.Entities.User", "User")
                         .WithMany()
-                        .HasForeignKey("UserGuid")
+                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

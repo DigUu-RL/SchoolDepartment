@@ -10,10 +10,10 @@ public sealed class CellphoneMap : IEntityTypeConfiguration<Cellphone>
 	{
 		builder.ToTable(nameof(Cellphone));
 
-		builder.HasKey(x => x.Guid);
+		builder.HasKey(x => x.Id);
 
 		builder
-			.Property(x => x.Guid)
+			.Property(x => x.Id)
 			.ValueGeneratedOnAdd();
 		
 		builder
@@ -23,7 +23,7 @@ public sealed class CellphoneMap : IEntityTypeConfiguration<Cellphone>
 			.IsRequired();
 
 		builder
-			.Property(x => x.StudentGuid)
+			.Property(x => x.StudentId)
 			.HasDefaultValue(Guid.Empty);
 	}
 
@@ -33,15 +33,15 @@ public sealed class CellphoneMap : IEntityTypeConfiguration<Cellphone>
 		{
 			new Cellphone
 			{
-				Guid = Guid.NewGuid(),
+				Id = Guid.NewGuid(),
 				Number = "9".PadRight(11, '9'),
-				StudentGuid = Guid.Parse("c70c3bce-c77a-428a-b8c1-28174b6e0ba6")
+				StudentId = Guid.Parse("c70c3bce-c77a-428a-b8c1-28174b6e0ba6")
 			},
 			new Cellphone
 			{
-				Guid = Guid.NewGuid(),
+				Id = Guid.NewGuid(),
 				Number = "8".PadRight(11, '8'), 
-				StudentGuid = Guid.Parse("c70c3bce-c77a-428a-b8c1-28174b6e0ba6")
+				StudentId = Guid.Parse("c70c3bce-c77a-428a-b8c1-28174b6e0ba6")
 			}
 		};
 

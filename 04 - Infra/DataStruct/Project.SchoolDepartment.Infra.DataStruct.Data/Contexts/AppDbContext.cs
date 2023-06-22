@@ -31,8 +31,7 @@ public class AppDbContext : DbContext
 
 	protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 	{
-		optionsBuilder.UseSqlServer(_connectionString);
-
+		optionsBuilder.UseSqlServer(connectionString);
 		base.OnConfiguring(optionsBuilder);
 	}
 

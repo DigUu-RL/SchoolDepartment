@@ -11,10 +11,10 @@ public sealed class SchoolMap : IEntityTypeConfiguration<School>
 	{
 		builder.ToTable(nameof(School));
 
-		builder.HasKey(x => x.Guid);
+		builder.HasKey(x => x.Id);
 
 		builder
-			.Property(x => x.Guid)
+			.Property(x => x.Id)
 			.ValueGeneratedOnAdd();
 
 		builder
@@ -32,7 +32,7 @@ public sealed class SchoolMap : IEntityTypeConfiguration<School>
 			.IsRequired();
 
 		builder
-			.Property(x => x.CourseGuid)
+			.Property(x => x.CourseId)
 			.HasDefaultValue(Guid.Empty);
 	}
 
@@ -42,11 +42,11 @@ public sealed class SchoolMap : IEntityTypeConfiguration<School>
 		{
 			new School 
 			{
-				Guid = Guid.Parse("43b26e0f-93e9-46ca-a574-c5e0b78c7a3b"),
+				Id = Guid.Parse("43b26e0f-93e9-46ca-a574-c5e0b78c7a3b"),
 				Period = Period.Morning,
 				StartDate = new DateTime(),
 				EndDate = new DateTime(),
-				CourseGuid = Guid.Parse("a69dda80-aed1-452a-afa7-5c09d4885ba1")
+				CourseId = Guid.Parse("a69dda80-aed1-452a-afa7-5c09d4885ba1")
 			} 
 		};
 

@@ -10,10 +10,10 @@ public sealed class CourseMap : IEntityTypeConfiguration<Course>
 	{
 		builder.ToTable(nameof(Course));
 
-		builder.HasKey(x => x.Guid);
+		builder.HasKey(x => x.Id);
 
 		builder
-			.Property(x => x.Guid)
+			.Property(x => x.Id)
 			.ValueGeneratedOnAdd();
 
 		builder
@@ -29,7 +29,7 @@ public sealed class CourseMap : IEntityTypeConfiguration<Course>
 		{
 			new Course
 			{
-				Guid = Guid.Parse("a69dda80-aed1-452a-afa7-5c09d4885ba1"),
+				Id = Guid.Parse("a69dda80-aed1-452a-afa7-5c09d4885ba1"),
 				Name = "Ciência da Computação"
 			}
 		};

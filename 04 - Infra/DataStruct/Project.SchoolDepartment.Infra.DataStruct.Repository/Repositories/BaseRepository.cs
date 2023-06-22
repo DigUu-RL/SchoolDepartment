@@ -18,7 +18,7 @@ public abstract class BaseRepository<TEntity> : IBaseRepository<TEntity> where T
 
 	public abstract Task<PaginatedList<TEntity>> GetAllAsync(int page, int quantity);
 
-	public virtual async Task<TEntity?> GetByGuidAsync(Guid guid)
+	public virtual async Task<TEntity?> GetByIdAsync(Guid guid)
 	{
 		TEntity? data = await _dbContext.FindAsync<TEntity>(guid);
 		return data;
@@ -26,17 +26,21 @@ public abstract class BaseRepository<TEntity> : IBaseRepository<TEntity> where T
 
 	public virtual async Task CreateOrUpdateAsync(TEntity entity)
 	{
-		Task task = await _dbContext.FindAsync(typeof(TEntity), entity.Guid) is null ? CreateAsync(entity) : UpdateAsync(entity);
+		Task task = await _dbContext.FindAsync(typeof(TEntity), entity.Id) is null ? CreateAsync(entity) : UpdateAsync(entity);
 		await task;
 	}
 
 	public virtual async Task CreateAsync(TEntity entity)
 	{
+		entity.CreateDate = DateTime.UtcNow;
+		entity.LastUpdate = DateTime.UtcNow;
+
 		await _dbContext.AddAsync(entity);
 	}
 
 	public virtual async Task UpdateAsync(TEntity entity)
 	{
+		entity.LastUpdate = DateTime.UtcNow;
 		await Task.Run(() => _dbContext.Update(entity));
 	}
 

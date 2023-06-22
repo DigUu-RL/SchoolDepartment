@@ -8,17 +8,17 @@ public static class StudentSpecification
 {
 	public static Specification<Student> ById(Guid id)
 	{
-		return new AdHocSpecification<Student>(x => x.Guid == id);
+		return new AdHocSpecification<Student>(x => x.Id == id);
 	}
 
 	public static Specification<Student> ByCourse(Guid courseId)
 	{
-		return new AdHocSpecification<Student>(x => x.CourseGuid == courseId);
+		return new AdHocSpecification<Student>(x => x.CourseId == courseId);
 	}
 
 	public static Specification<Student> BySchool(Guid schoolId)
 	{
-		return new AdHocSpecification<Student>(x => x.SchoolGuid == schoolId);
+		return new AdHocSpecification<Student>(x => x.SchoolId == schoolId);
 	}
 
 	public static Specification<Student> ByCellphone(Cellphone cellphone)

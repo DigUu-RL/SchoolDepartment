@@ -1,18 +1,20 @@
-﻿using Project.SchoolDepartment.Infra.DataStruct.Data.Enums;
+﻿using Project.SchoolDepartment.Domain.Requests.Contracts;
+using Project.SchoolDepartment.Infra.DataStruct.Data.Enums;
 
 namespace Project.SchoolDepartment.Domain.Requests;
 
-public class StudentRequest
+public class StudentRequest : IRequest
 {
-	public string? Nome { get; set; }
-	public string? Sobrenome { get; set; }
+    public Guid Id { get; set; }
+    public string? Name { get; set; }
+	public string? LastName { get; set; }
 	public string? CPF { get; set; }
 	public string? RA { get; set; }
-	public Gender Genero { get; set; }
-	public string? Logradouro { get; set; }
-	public string? Bairro { get; set; }
-	public int Numero { get; set; }
-	public string? Cidade { get; set; }
-	public string? UF { get; set; }
-	public List<CellphoneRequest>? Telefones { get; set; }
+	public Gender Gender { get; set; }
+	public string? Street { get; set; }
+	public string? District { get; set; }
+	public int Number { get; set; }
+	public string? City { get; set; }
+	public string? State { get; set; }
+	public List<CellphoneRequest>? Cellphones { get; set; }
 }

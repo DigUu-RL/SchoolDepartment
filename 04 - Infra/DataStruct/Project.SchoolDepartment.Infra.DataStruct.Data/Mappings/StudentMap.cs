@@ -11,7 +11,7 @@ public sealed class StudentMap : IEntityTypeConfiguration<Student>
 	{
 		builder.ToTable(nameof(Student));
 
-		builder.HasKey(x => x.Guid);
+		builder.HasKey(x => x.Id);
 
 		builder
 			.HasIndex(x => x.CPF)
@@ -22,7 +22,7 @@ public sealed class StudentMap : IEntityTypeConfiguration<Student>
 			.IsUnique();
 
 		builder
-			.Property(x => x.Guid)
+			.Property(x => x.Id)
 			.ValueGeneratedOnAdd();
 
 		builder
@@ -32,7 +32,7 @@ public sealed class StudentMap : IEntityTypeConfiguration<Student>
 			.IsRequired();
 
 		builder
-			.Property(x => x.Lastname)
+			.Property(x => x.LastName)
 			.HasColumnType("VARCHAR")
 			.HasMaxLength(120)
 			.IsRequired();
@@ -84,15 +84,15 @@ public sealed class StudentMap : IEntityTypeConfiguration<Student>
 			.IsRequired();
 
 		builder
-			.Property(x => x.SchoolGuid)
+			.Property(x => x.SchoolId)
 			.HasDefaultValue(Guid.Empty);
 
 		builder
-			.Property(x => x.CourseGuid)
+			.Property(x => x.CourseId)
 			.HasDefaultValue(Guid.Empty);
 
 		builder
-			.Property(x => x.UserGuid)
+			.Property(x => x.UserId)
 			.HasDefaultValue(Guid.Empty);
 	}
 
@@ -102,9 +102,9 @@ public sealed class StudentMap : IEntityTypeConfiguration<Student>
 		{
 			new Student
 			{
-				Guid = Guid.Parse("c70c3bce-c77a-428a-b8c1-28174b6e0ba6"),
+				Id = Guid.Parse("c70c3bce-c77a-428a-b8c1-28174b6e0ba6"),
 				Name = "Eduardo",
-				Lastname = "Oliveira da Silva",
+				LastName = "Oliveira da Silva",
 				CPF = "11111111111",
 				RA = "SFHJHSJH46JY54JY6JS54GARGHSTAEFGSJ4T65TRYH48TSRJTJ5THS5TRHGHAEJKDLF846531AHKFSFJ",
 				Gender = Gender.Male,
@@ -113,9 +113,9 @@ public sealed class StudentMap : IEntityTypeConfiguration<Student>
 				Number = 278,
 				City = "Cidade Qualquer",
 				State = "SP",
-				CourseGuid = Guid.Parse("a69dda80-aed1-452a-afa7-5c09d4885ba1"),
-				SchoolGuid = Guid.Parse("43b26e0f-93e9-46ca-a574-c5e0b78c7a3b"),
-				UserGuid = Guid.Parse("9284F301-155A-4642-A526-BD7B941DDD9A")
+				CourseId = Guid.Parse("a69dda80-aed1-452a-afa7-5c09d4885ba1"),
+				SchoolId = Guid.Parse("43b26e0f-93e9-46ca-a574-c5e0b78c7a3b"),
+				UserId = Guid.Parse("9284F301-155A-4642-A526-BD7B941DDD9A")
 			}
 		};
 

@@ -10,14 +10,14 @@ public class UserMap : IEntityTypeConfiguration<User>
 	{
 		builder.ToTable(nameof(User));
 
-		builder.HasKey(x => x.Guid);
+		builder.HasKey(x => x.Id);
 
 		builder
 			.HasIndex(x => x.Token)
 			.IsUnique();
 
 		builder
-			.Property(x => x.Guid)
+			.Property(x => x.Id)
 			.ValueGeneratedOnAdd();
 
 		builder
@@ -61,7 +61,7 @@ public class UserMap : IEntityTypeConfiguration<User>
 		{
 			new User
 			{
-				Guid = Guid.Parse("9284F301-155A-4642-A526-BD7B941DDD9A"),
+				Id = Guid.Parse("9284F301-155A-4642-A526-BD7B941DDD9A"),
 				Login = "diguu_rl",
 				Email = "rodrigogeribola@hotmail.com",
 				PasswordHash = "8sfM3ZZo4QvV7xKGxIyvg441+YFCuWMicZOM0Aqlj05p5a/buyT+keDIRYv6sd5/wkm1pCaePa+Ry6eAksgJ2w==",

@@ -4,5 +4,5 @@ namespace Project.SchoolDepartment.Infra.DataStruct.Repository.Interfaces;
 
 public interface IStudentRepository : IBaseRepository<Student>
 {
-	
+
 }

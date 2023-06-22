@@ -5,6 +5,6 @@ public class Cellphone : EntityBase
 	public string? Number { get; set; }
 
 	// relationships
-	public Guid StudentGuid { get; set; }
+	public Guid StudentId { get; set; }
 	public Student? Student { get; set; }
 }
