@@ -33,7 +33,7 @@ public sealed class SchoolMap : IEntityTypeConfiguration<School>
 
 		builder
 			.Property(x => x.CourseId)
-			.HasDefaultValue(Guid.Empty);
+			.HasDefaultValue(null);
 	}
 
 	public static void PreLoadedData(ModelBuilder modelBuilder)

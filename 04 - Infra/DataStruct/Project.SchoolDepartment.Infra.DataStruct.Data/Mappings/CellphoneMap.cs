@@ -24,7 +24,7 @@ public sealed class CellphoneMap : IEntityTypeConfiguration<Cellphone>
 
 		builder
 			.Property(x => x.StudentId)
-			.HasDefaultValue(Guid.Empty);
+			.HasDefaultValue(null);
 	}
 
 	public static void PreLoadedData(ModelBuilder modelBuilder)

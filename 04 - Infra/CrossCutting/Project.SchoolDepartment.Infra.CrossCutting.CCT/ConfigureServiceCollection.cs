@@ -21,6 +21,8 @@ public static class ConfigureServiceCollection
 {
 	public static IServiceCollection ConfigureServices(this IServiceCollection services, IConfiguration configuration)
 	{
+		Console.WriteLine("Starting register project dependecies...");
+
 		services.AddDbContext<AppDbContext>();
 
 		services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
@@ -50,6 +52,8 @@ public static class ConfigureServiceCollection
 			);
 		});
 
+		Console.WriteLine("Project dependencies are configured!");
+
 		services.ConfigureHangfire(configuration);
 
 		return services;
@@ -57,9 +61,12 @@ public static class ConfigureServiceCollection
 
 	private static IServiceCollection ConfigureHangfire(this IServiceCollection services, IConfiguration configuration)
 	{
+		Console.WriteLine("Starting configure Hangfire Recurring Jobs...");
 		services.AddHangfire(x => x.UseSqlServerStorage(configuration.GetConnectionString(nameof(Hangfire))));
 
 		// configure recurring jobs ...
+
+		Console.WriteLine("Recurring Jobs are configured!");
 
 		return services;
 	}

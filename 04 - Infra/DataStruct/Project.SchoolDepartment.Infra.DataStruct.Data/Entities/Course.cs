@@ -2,7 +2,7 @@
 
 public class Course : EntityBase
 {
-	public string? Name { get; set; }
+	public string Name { get; set; } = string.Empty;
 
 	// relationships
 	public ICollection<Student>? Students { get; set; }

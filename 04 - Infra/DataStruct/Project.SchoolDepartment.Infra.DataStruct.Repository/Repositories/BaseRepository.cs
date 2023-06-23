@@ -5,7 +5,7 @@ using Project.SchoolDepartment.Infra.DataStruct.Repository.Interfaces;
 
 namespace Project.SchoolDepartment.Infra.DataStruct.Repository.Repositories;
 
-public abstract class BaseRepository<TEntity> : IBaseRepository<TEntity> where TEntity : EntityBase
+public class BaseRepository<TEntity> : IBaseRepository<TEntity> where TEntity : EntityBase
 {
 	private readonly AppDbContext _dbContext;
 
@@ -16,7 +16,10 @@ public abstract class BaseRepository<TEntity> : IBaseRepository<TEntity> where T
 
 	protected IQueryable<TEntity> Query => _dbContext.Set<TEntity>().AsQueryable();
 
-	public abstract Task<PaginatedList<TEntity>> GetAllAsync(int page, int quantity);
+	public virtual async Task<PaginatedList<TEntity>> GetAllAsync(int page, int quantity)
+	{
+		return await Query.ToPaginatedListAsync(page, quantity);
+	}
 
 	public virtual async Task<TEntity?> GetByIdAsync(Guid guid)
 	{

@@ -85,15 +85,15 @@ public sealed class StudentMap : IEntityTypeConfiguration<Student>
 
 		builder
 			.Property(x => x.SchoolId)
-			.HasDefaultValue(Guid.Empty);
+			.HasDefaultValue(null);
 
 		builder
 			.Property(x => x.CourseId)
-			.HasDefaultValue(Guid.Empty);
+			.HasDefaultValue(null);
 
 		builder
 			.Property(x => x.UserId)
-			.HasDefaultValue(Guid.Empty);
+			.HasDefaultValue(null);
 	}
 
 	public static void PreLoadedData(ModelBuilder modelBuilder)

@@ -16,11 +16,16 @@ public class Student : EntityBase
 	public string State { get; set; } = string.Empty;
 
 	// relationships
-	public Guid CourseId { get; set; }
+	public Guid? CourseId { get; set; }
 	public Course? Course { get; set; }
-	public Guid SchoolId { get; set; }
+	public Guid? SchoolId { get; set; }
 	public School? School { get; set; }
 	public ICollection<Cellphone>? Cellphones { get; set; }
-	public Guid UserId { get; set; }
+	public Guid? UserId { get; set; }
 	public User? User { get; set; }
+
+	public override string ToString()
+	{
+		return $"{Id}.{Name} {LastName}";
+	}
 }

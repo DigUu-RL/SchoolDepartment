@@ -9,7 +9,7 @@ public class School : EntityBase
 	public DateTime EndDate { get; set; }
 
 	// relationships
-	public Guid CourseId { get; set; }
+	public Guid? CourseId { get; set; }
 	public Course? Course { get; set; }
 	public ICollection<Student>? Students { get; set; }
 }

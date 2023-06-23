@@ -61,7 +61,9 @@ public class DomainStudentService : DomainServiceBase<StudentRequest>, IDomainSt
 			District = request.District!,
 			Number= request.Number,
 			City = request.City!,
-			State = request.State!
+			State = request.State!,
+			CourseId = null,
+			SchoolId = null
 		};
 
 		await _studentRepository.CreateAsync(student);
