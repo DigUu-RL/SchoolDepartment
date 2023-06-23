@@ -52,6 +52,12 @@ public class BaseRepository<TEntity> : IBaseRepository<TEntity> where TEntity : 
 		await Task.Run(() => _dbContext.Remove(entity));
 	}
 
+	public async Task SetExcludedAsync(TEntity entity)
+	{
+		entity.Excluded = true;
+		await UpdateAsync(entity);
+	}
+
 	public async Task CommitAsync()
 	{
 		await _dbContext.SaveChangesAsync();

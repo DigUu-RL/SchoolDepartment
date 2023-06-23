@@ -10,4 +10,5 @@ public interface IBaseRepository<TEntity> : IUnitOfWork where TEntity : class
 	Task CreateAsync(TEntity entity);
 	Task UpdateAsync(TEntity entity);
 	Task DeleteAsync(TEntity entity);
+	Task SetExcludedAsync(TEntity entity);
 }

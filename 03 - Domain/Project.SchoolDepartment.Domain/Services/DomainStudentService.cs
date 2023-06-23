@@ -72,12 +72,22 @@ public class DomainStudentService : DomainServiceBase<StudentRequest>, IDomainSt
 
 	public async Task UpdateAsync(StudentRequest request)
 	{
-		Student? data = await _studentRepository.GetByIdAsync(request.Id)
+		Validate(request);
+
+		Student? student = await _studentRepository.GetByIdAsync(request.Id)
 			?? throw new NotFoundException("Aluno não encontrado!");
 
-		// code ...
+		student.Name = request.Name!;
+		student.LastName = request.LastName!;
+		student.Gender = request.Gender;
+		student.Street = request.Street!;
+		student.District = request.District!;
+		student.Number = request.Number;
+		student.City = request.City!;
+		student.State = request.State!;
 
-		await _studentRepository.UpdateAsync(data);
+		await _studentRepository.UpdateAsync(student);
+		await _studentRepository.CommitAsync();
 	}
 
 	public async Task DeleteAsync(Guid guid)
@@ -86,6 +96,7 @@ public class DomainStudentService : DomainServiceBase<StudentRequest>, IDomainSt
 			?? throw new NotFoundException("Aluno não encontrado!");
 
 		await _studentRepository.DeleteAsync(data);
+		await _studentRepository.CommitAsync();
 	}
 
 	public override void Validate(StudentRequest request)
