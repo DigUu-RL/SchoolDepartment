@@ -1,6 +1,6 @@
 ﻿using System.Linq.Expressions;
 
-namespace Project.SchoolDepartment.Domain.Specs.Contracts;
+namespace Project.SchoolDepartment.Infra.Specs.Contracts;
 
 public sealed class ExpressionSpecification<TClass> : Specification<TClass> where TClass : class
 {

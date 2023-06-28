@@ -3,6 +3,6 @@
 public enum Period
 {
 	Morning,
-	Afternoon, 
+	Afternoon,
 	Night
 }

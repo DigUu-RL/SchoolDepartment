@@ -5,8 +5,8 @@ namespace Project.SchoolDepartment.Domain.Requests;
 
 public class StudentRequest : IRequest
 {
-    public Guid Id { get; set; }
-    public string? Name { get; set; }
+	public Guid Id { get; set; }
+	public string? Name { get; set; }
 	public string? LastName { get; set; }
 	public string? CPF { get; set; }
 	public string? RA { get; set; }

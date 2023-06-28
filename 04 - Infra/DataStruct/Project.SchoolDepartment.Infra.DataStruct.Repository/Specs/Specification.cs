@@ -1,8 +1,7 @@
-﻿using Project.SchoolDepartment.Domain.Specs.Contracts;
-using Project.SchoolDepartment.Domain.Specs.Interfaces;
+﻿using Project.SchoolDepartment.Infra.Specs.Contracts;
 using System.Linq.Expressions;
 
-namespace Project.SchoolDepartment.Domain.Specs;
+namespace Project.SchoolDepartment.Infra.Specs;
 
 public abstract class Specification<TClass> : ISpecification<TClass> where TClass : class
 {

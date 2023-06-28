@@ -1,13 +1,12 @@
-﻿using Project.SchoolDepartment.Domain.Specs.Interfaces;
-using System.Linq.Expressions;
+﻿using System.Linq.Expressions;
 
-namespace Project.SchoolDepartment.Domain.Specs.Contracts;
+namespace Project.SchoolDepartment.Infra.Specs.Contracts;
 
 public sealed class NotSpecification<TClass> : Specification<TClass> where TClass : class
 {
-	private readonly ISpecification<TClass> _specification;
+	private readonly Specification<TClass> _specification;
 
-	public NotSpecification(ISpecification<TClass> specification)
+	public NotSpecification(Specification<TClass> specification)
 	{
 		_specification = specification ?? throw new ArgumentNullException(nameof(specification));
 	}

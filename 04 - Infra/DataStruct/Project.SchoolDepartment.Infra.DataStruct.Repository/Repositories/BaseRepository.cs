@@ -2,6 +2,8 @@
 using Project.SchoolDepartment.Infra.DataStruct.Data.Entities;
 using Project.SchoolDepartment.Infra.DataStruct.Repository.Helpers;
 using Project.SchoolDepartment.Infra.DataStruct.Repository.Interfaces;
+using Project.SchoolDepartment.Infra.Specs;
+using Project.SchoolDepartment.Infra.Specs.Contracts;
 
 namespace Project.SchoolDepartment.Infra.DataStruct.Repository.Repositories;
 
@@ -16,9 +18,10 @@ public class BaseRepository<TEntity> : IBaseRepository<TEntity> where TEntity : 
 
 	protected IQueryable<TEntity> Query => _dbContext.Set<TEntity>().AsQueryable();
 
-	public virtual async Task<PaginatedList<TEntity>> GetAllAsync(int page, int quantity)
+	public virtual async Task<PaginatedList<TEntity>> GetAllAsync(int page, int quantity, Specification<TEntity>? specification = null)
 	{
-		return await Query.ToPaginatedListAsync(page, quantity);
+		specification ??= new TrueSpecification<TEntity>();
+		return await Query.Where(specification).ToPaginatedListAsync(page, quantity);
 	}
 
 	public virtual async Task<TEntity?> GetByIdAsync(Guid guid)

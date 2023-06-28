@@ -15,7 +15,7 @@ public sealed class CellphoneMap : IEntityTypeConfiguration<Cellphone>
 		builder
 			.Property(x => x.Id)
 			.ValueGeneratedOnAdd();
-		
+
 		builder
 			.Property(x => x.Number)
 			.HasColumnType("VARCHAR")
@@ -40,7 +40,7 @@ public sealed class CellphoneMap : IEntityTypeConfiguration<Cellphone>
 			new Cellphone
 			{
 				Id = Guid.NewGuid(),
-				Number = "8".PadRight(11, '8'), 
+				Number = "8".PadRight(11, '8'),
 				StudentId = Guid.Parse("c70c3bce-c77a-428a-b8c1-28174b6e0ba6")
 			}
 		};

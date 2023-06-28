@@ -59,7 +59,7 @@ public class DomainStudentService : DomainServiceBase<StudentRequest>, IDomainSt
 			Gender = request.Gender,
 			Street = request.Street!,
 			District = request.District!,
-			Number= request.Number,
+			Number = request.Number,
 			City = request.City!,
 			State = request.State!,
 			CourseId = null,

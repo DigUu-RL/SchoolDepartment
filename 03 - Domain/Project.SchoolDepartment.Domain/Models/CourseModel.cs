@@ -3,7 +3,7 @@
 public class CourseModel
 {
 	public Guid Guid { get; set; }
-	public string? Name { get; set; }
+	public string Name { get; set; } = string.Empty;
 	public ICollection<StudentModel>? Students { get; set; }
 	public ICollection<SchoolModel>? Schools { get; set; }
 }
