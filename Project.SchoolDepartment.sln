@@ -17,7 +17,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CrossCutting", "CrossCuttin
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Middleware", "Middleware", "{B0AA7845-A3C4-4102-BD03-F8005E88DA5A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Project.SchoolDepartment.Web.API", "01 - Presentation\Project.SchoolDepartment.Web.API\Project.SchoolDepartment.Web.API.csproj", "{721D8218-0AB1-4601-9C27-9C482AC4161D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SchoolDepartment.Web.API", "01 - Presentation\Project.SchoolDepartment.Web.API\SchoolDepartment.Web.API.csproj", "{721D8218-0AB1-4601-9C27-9C482AC4161D}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Project.SchoolDepartment.Infra.DataStruct.Data", "04 - Infra\DataStruct\Project.SchoolDepartment.Infra.DataStruct.Data\Project.SchoolDepartment.Infra.DataStruct.Data.csproj", "{2D838372-13E0-4894-BB96-D5A30D6EC323}"
 EndProject

@@ -33,6 +33,12 @@ public static class ConfigureServiceCollection
 		services.AddScoped(typeof(IDomainStudentService), typeof(DomainStudentService));
 		services.AddScoped(typeof(IStudentRepository), typeof(StudentRepository));
 
+		services.AddScoped(typeof(IApplicationCourseService), typeof(ApplicationCourseService));
+		services.AddScoped(typeof(IDomainCourseService), typeof(DomainCourseService));
+		services.AddScoped(typeof(ICourseRepository), typeof(CourseRepository));
+		
+		services.AddScoped(typeof(IRepositoryWrapper), typeof(RepositoryWrapper));
+
 		services.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));
 
 		// configuring the requests limiter
