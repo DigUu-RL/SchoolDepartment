@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Project.SchoolDepartment.Application.Interfaces;
+using Project.SchoolDepartment.Domain.Helpers;
 using Project.SchoolDepartment.Domain.Requests;
 
 namespace Project.SchoolDepartment.Web.API.Controllers;
@@ -16,9 +17,9 @@ public class StudentController : ControllerBase
 	}
 
 	[HttpGet]
-	public async Task<IActionResult> GetAll(int page = 1, int quantity = 10)
+	public async Task<IActionResult> GetAll(Search<StudentRequest> search)
 	{
-		return Ok(await _studentService.GetAllAsync(page, quantity));
+		return Ok(await _studentService.GetAllAsync(search));
 	}
 
 	[HttpGet("{id}")]

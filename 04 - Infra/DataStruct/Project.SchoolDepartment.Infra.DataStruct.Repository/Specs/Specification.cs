@@ -1,27 +1,28 @@
-﻿using Project.SchoolDepartment.Infra.Specs.Contracts;
+﻿using Project.SchoolDepartment.Infra.DataStruct.Data.Entities;
+using Project.SchoolDepartment.Infra.Specs.Contracts;
 using System.Linq.Expressions;
 
 namespace Project.SchoolDepartment.Infra.Specs;
 
-public abstract class Specification<TClass> : ISpecification<TClass> where TClass : class
+public abstract class Specification<TEntity> where TEntity : EntityBase
 {
-	public static implicit operator Expression<Func<TClass, bool>>(Specification<TClass> specification) => specification.ToExpression();
-	public static implicit operator Func<TClass, bool>(Specification<TClass> specification) => specification.ToExpression().Compile();
+	public static implicit operator Expression<Func<TEntity, bool>>(Specification<TEntity> specification) => specification.ToExpression();
+	public static implicit operator Func<TEntity, bool>(Specification<TEntity> specification) => specification.ToExpression().Compile();
 
-	public abstract Expression<Func<TClass, bool>> ToExpression();
+	public abstract Expression<Func<TEntity, bool>> ToExpression();
 
-	public static ISpecification<TClass> operator &(Specification<TClass> left, Specification<TClass> right)
+	public static Specification<TEntity> operator &(Specification<TEntity> left, Specification<TEntity> right)
 	{
-		return new AndSpecification<TClass>(left, right);
+		return new AndSpecification<TEntity>(left, right);
 	}
 
-	public static ISpecification<TClass> operator |(Specification<TClass> left, Specification<TClass> right)
+	public static Specification<TEntity> operator |(Specification<TEntity> left, Specification<TEntity> right)
 	{
-		return new OrSpecification<TClass>(left, right);
+		return new OrSpecification<TEntity>(left, right);
 	}
 
-	public static ISpecification<TClass> operator !(Specification<TClass> specification)
+	public static Specification<TEntity> operator !(Specification<TEntity> specification)
 	{
-		return new NotSpecification<TClass>(specification);
+		return new NotSpecification<TEntity>(specification);
 	}
 }

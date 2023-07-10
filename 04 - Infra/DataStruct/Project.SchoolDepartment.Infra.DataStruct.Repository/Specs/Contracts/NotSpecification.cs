@@ -1,19 +1,20 @@
-﻿using System.Linq.Expressions;
+﻿using Project.SchoolDepartment.Infra.DataStruct.Data.Entities;
+using System.Linq.Expressions;
 
 namespace Project.SchoolDepartment.Infra.Specs.Contracts;
 
-public sealed class NotSpecification<TClass> : Specification<TClass> where TClass : class
+public sealed class NotSpecification<TEntity> : Specification<TEntity> where TEntity : EntityBase
 {
-	private readonly Specification<TClass> _specification;
+	private readonly Specification<TEntity> _specification;
 
-	public NotSpecification(Specification<TClass> specification)
+	public NotSpecification(Specification<TEntity> specification)
 	{
 		_specification = specification ?? throw new ArgumentNullException(nameof(specification));
 	}
 
-	public override Expression<Func<TClass, bool>> ToExpression()
+	public override Expression<Func<TEntity, bool>> ToExpression()
 	{
-		Expression<Func<TClass, bool>> expression = _specification.ToExpression();
-		return Expression.Lambda<Func<TClass, bool>>(expression, expression.Parameters);
+		Expression<Func<TEntity, bool>> expression = _specification.ToExpression();
+		return Expression.Lambda<Func<TEntity, bool>>(expression, expression.Parameters);
 	}
 }

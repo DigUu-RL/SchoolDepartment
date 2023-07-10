@@ -1,23 +1,24 @@
-﻿using System.Linq.Expressions;
+﻿using Project.SchoolDepartment.Infra.DataStruct.Data.Entities;
+using System.Linq.Expressions;
 
 namespace Project.SchoolDepartment.Infra.Specs.Contracts;
 
-public sealed class OrSpecification<TClass> : Specification<TClass> where TClass : class
+public sealed class OrSpecification<TEntity> : Specification<TEntity> where TEntity : EntityBase
 {
-	private readonly Specification<TClass> _left;
-	private readonly Specification<TClass> _right;
+	private readonly Specification<TEntity> _left;
+	private readonly Specification<TEntity> _right;
 
-	public OrSpecification(Specification<TClass> left, Specification<TClass> right)
+	public OrSpecification(Specification<TEntity> left, Specification<TEntity> right)
 	{
 		_left = left ?? throw new ArgumentNullException(nameof(left));
 		_right = right ?? throw new ArgumentNullException(nameof(right));
 	}
 
-	public override Expression<Func<TClass, bool>> ToExpression()
+	public override Expression<Func<TEntity, bool>> ToExpression()
 	{
-		Expression<Func<TClass, bool>> left = _left.ToExpression();
-		Expression<Func<TClass, bool>> right = _right.ToExpression();
+		Expression<Func<TEntity, bool>> left = _left.ToExpression();
+		Expression<Func<TEntity, bool>> right = _right.ToExpression();
 
-		return Expression.Lambda<Func<TClass, bool>>(Expression.OrElse(left, right));
+		return Expression.Lambda<Func<TEntity, bool>>(Expression.OrElse(left, right));
 	}
 }

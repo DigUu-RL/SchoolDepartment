@@ -41,13 +41,11 @@ public class AppDbContext : DbContext
 		modelBuilder.ApplyConfiguration(new CourseMap());
 		modelBuilder.ApplyConfiguration(new SchoolMap());
 		modelBuilder.ApplyConfiguration(new CellphoneMap());
-		modelBuilder.ApplyConfiguration(new UserMap());
 
 		StudentMap.PreLoadedData(modelBuilder);
 		CourseMap.PreLoadedData(modelBuilder);
 		SchoolMap.PreLoadedData(modelBuilder);
 		CellphoneMap.PreLoadedData(modelBuilder);
-		UserMap.PreLoadedData(modelBuilder);
 
 		base.OnModelCreating(modelBuilder);
 	}

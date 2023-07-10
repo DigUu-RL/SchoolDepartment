@@ -1,12 +1,17 @@
 ﻿using AutoMapper;
 using Project.SchoolDepartment.Domain.Helpers;
+using Project.SchoolDepartment.Domain.Helpers.Extensions;
 using Project.SchoolDepartment.Domain.Interfaces;
 using Project.SchoolDepartment.Domain.Models;
 using Project.SchoolDepartment.Domain.Requests;
+using Project.SchoolDepartment.Domain.Specs.Custom;
 using Project.SchoolDepartment.Infra.DataStruct.Data.Entities;
+using Project.SchoolDepartment.Infra.DataStruct.Data.Enums;
 using Project.SchoolDepartment.Infra.DataStruct.Repository.Helpers;
 using Project.SchoolDepartment.Infra.DataStruct.Repository.Interfaces;
 using Project.SchoolDepartment.Infra.Middleware.Exceptions;
+using Project.SchoolDepartment.Infra.Specs;
+using Project.SchoolDepartment.Infra.Specs.Contracts;
 using System.Net;
 using InvalidDataException = Project.SchoolDepartment.Infra.Middleware.Exceptions.InvalidDataException;
 
@@ -23,9 +28,50 @@ public class DomainStudentService : DomainServiceBase<StudentRequest>, IDomainSt
 		_mapper = mapper;
 	}
 
-	public async Task<PaginatedModel<StudentModel>> GetAllAsync(int page, int quantity)
+	public async Task<PaginatedModel<StudentModel>> GetAllAsync(Search<StudentRequest> search)
 	{
-		PaginatedList<Student> data = await _studentRepository.GetAllAsync(page, quantity);
+		Specification<Student> specification = new TrueSpecification<Student>();
+
+		if (search.Filter is not null)
+		{
+			if (!search.Filter.Id.Equals(Guid.Empty))
+				specification &= StudentSpecfication.ById(search.Filter.Id);
+
+			if (!string.IsNullOrEmpty(search.Filter.Name))
+				specification &= StudentSpecfication.ByName(search.Filter.Name);
+
+			if (!string.IsNullOrEmpty(search.Filter.LastName))
+				specification &= StudentSpecfication.ByName(search.Filter.LastName);
+
+			if (!string.IsNullOrEmpty(search.Filter.LastName))
+				specification &= StudentSpecfication.ByLastName(search.Filter.LastName);
+
+			if (!string.IsNullOrEmpty(search.Filter.CPF))
+				specification &= StudentSpecfication.ByCPF(search.Filter.CPF);
+
+			if (!string.IsNullOrEmpty(search.Filter.RA))
+				specification &= StudentSpecfication.ByRA(search.Filter.RA);
+
+			if (search.Filter.Gender.IsValid<Gender>())
+				specification &= StudentSpecfication.ByGender(search.Filter.Gender);
+
+			if (!string.IsNullOrEmpty(search.Filter.Street))
+				specification &= StudentSpecfication.ByStreet(search.Filter.Street);
+
+			if (!string.IsNullOrEmpty(search.Filter.District))
+				specification &= StudentSpecfication.ByDistrict(search.Filter.District);
+
+			if (search.Filter.Number > 0)
+				specification &= StudentSpecfication.ByNumber(search.Filter.Number);
+
+			if (!string.IsNullOrEmpty(search.Filter.City))
+				specification &= StudentSpecfication.ByCity(search.Filter.City);
+
+			if (!string.IsNullOrEmpty(search.Filter.State))
+				specification &= StudentSpecfication.ByState(search.Filter.State);
+		}
+
+		PaginatedList<Student> data = await _studentRepository.GetAllAsync(search.Page, search.Quantity, specification);
 
 		var model = new PaginatedModel<StudentModel>
 		{

@@ -1,9 +1,10 @@
-﻿using Project.SchoolDepartment.Infra.DataStruct.Repository.Helpers;
+﻿using Project.SchoolDepartment.Infra.DataStruct.Data.Entities;
+using Project.SchoolDepartment.Infra.DataStruct.Repository.Helpers;
 using Project.SchoolDepartment.Infra.Specs;
 
 namespace Project.SchoolDepartment.Infra.DataStruct.Repository.Interfaces;
 
-public interface IBaseRepository<TEntity> : IUnitOfWork where TEntity : class
+public interface IBaseRepository<TEntity> : IUnitOfWork where TEntity : EntityBase
 {
 	Task<PaginatedList<TEntity>> GetAllAsync(int page, int quantity, Specification<TEntity>? specification = null);
 	Task<TEntity?> GetByIdAsync(Guid guid);

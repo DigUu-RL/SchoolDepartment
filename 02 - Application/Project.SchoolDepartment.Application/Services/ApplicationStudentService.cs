@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Project.SchoolDepartment.Application.DTOs;
 using Project.SchoolDepartment.Application.Interfaces;
+using Project.SchoolDepartment.Domain.Helpers;
 using Project.SchoolDepartment.Domain.Interfaces;
 using Project.SchoolDepartment.Domain.Requests;
 
@@ -17,9 +18,9 @@ public class ApplicationStudentService : IApplicationStudentService
 		_mapper = mapper;
 	}
 
-	public async Task<PaginatedDTO<StudentDTO>> GetAllAsync(int page, int quantity)
+	public async Task<PaginatedDTO<StudentDTO>> GetAllAsync(Search<StudentRequest> search)
 	{
-		PaginatedDTO<StudentDTO> data = _mapper.Map<PaginatedDTO<StudentDTO>>(await _studentService.GetAllAsync(page, quantity));
+		PaginatedDTO<StudentDTO> data = _mapper.Map<PaginatedDTO<StudentDTO>>(await _studentService.GetAllAsync(search));
 		return data;
 	}
 
