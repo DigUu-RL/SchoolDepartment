@@ -44,14 +44,7 @@ public class DomainCourseService : IDomainCourseService
 
 		PaginatedList<Course> data = await _courseRepository.GetAllAsync(search.Page, search.Quantity, specification);
 
-		var model = new PaginatedModel<CourseModel>
-		{
-			Page = data.Page,
-			Pages = data.Pages,
-			Total = data.Total,
-			Data = _mapper.Map<List<CourseModel>>(data)
-		};
-
+		PaginatedModel<CourseModel> model = new(data.Page, data.Pages, data.Total, _mapper.Map<List<CourseModel>>(data));
 		return model;
 	}
 
