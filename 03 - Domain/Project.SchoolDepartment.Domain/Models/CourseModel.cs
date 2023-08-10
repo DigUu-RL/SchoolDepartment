@@ -1,9 +1,3 @@
 ﻿namespace Project.SchoolDepartment.Domain.Models;
 
-public class CourseModel
-{
-	public Guid Guid { get; set; }
-	public string Name { get; set; } = string.Empty;
-	public ICollection<StudentModel>? Students { get; set; }
-	public ICollection<SchoolModel>? Schools { get; set; }
-}
+public record CourseModel(Guid Guid, string Name, ICollection<StudentModel>? Students, ICollection<SchoolModel>? Schools);

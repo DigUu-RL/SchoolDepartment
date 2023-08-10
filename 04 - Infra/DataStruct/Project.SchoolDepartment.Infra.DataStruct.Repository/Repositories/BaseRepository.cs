@@ -14,9 +14,10 @@ public class BaseRepository<TEntity> : IBaseRepository<TEntity> where TEntity : 
 	protected BaseRepository(AppDbContext dbContext)
 	{
 		_dbContext = dbContext;
+		Query = dbContext.Set<TEntity>().AsQueryable();
 	}
 
-	protected IQueryable<TEntity> Query => _dbContext.Set<TEntity>().AsQueryable();
+	protected IQueryable<TEntity> Query { get; }
 
 	public virtual async Task<PaginatedList<TEntity>> GetAllAsync(int page, int quantity, Specification<TEntity>? specification = null)
 	{

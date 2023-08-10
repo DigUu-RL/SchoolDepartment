@@ -73,14 +73,7 @@ public class DomainStudentService : DomainServiceBase<StudentRequest>, IDomainSt
 
 		PaginatedList<Student> data = await _studentRepository.GetAllAsync(search.Page, search.Quantity, specification);
 
-		var model = new PaginatedModel<StudentModel>
-		{
-			Page = data.Page,
-			Pages = data.Pages,
-			Total = data.Total,
-			Data = _mapper.Map<List<StudentModel>>(data)
-		};
-
+		var model = new PaginatedModel<StudentModel>(data.Page, data.Pages, data.Total, _mapper.Map<List<StudentModel>>(data));
 		return model;
 	}
 

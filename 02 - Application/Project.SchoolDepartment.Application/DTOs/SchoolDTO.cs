@@ -2,12 +2,4 @@
 
 namespace Project.SchoolDepartment.Application.DTOs;
 
-public class SchoolDTO
-{
-	public Guid Guid { get; set; }
-	public Period Period { get; set; }
-	public DateTime StartDate { get; set; }
-	public DateTime EndDate { get; set; }
-	public CourseDTO? Course { get; set; }
-	public ICollection<StudentDTO>? Students { get; set; }
-}
+public record SchoolDTO(Guid Guid, Period Period, DateTime StartDate, DateTime EndDate, CourseDTO? Course, ICollection<StudentDTO>? Students);
