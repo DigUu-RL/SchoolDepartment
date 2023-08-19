@@ -7,8 +7,8 @@ public static class PaginatedListExtensions
 		return PaginatedList<TSource>.CreateInstance(source, page, quantity);
 	}
 
-	public static async Task<PaginatedList<TSource>> ToPaginatedListAsync<TSource>(this IEnumerable<TSource> source, int page, int quantity)
+	public static async Task<PaginatedList<TSource>> ToPaginatedListAsync<TSource>(this IQueryable<TSource> query, int page, int quantity)
 	{
-		return await PaginatedList<TSource>.CreateInstanceAsync(source, page, quantity);
+		return await PaginatedList<TSource>.CreateInstanceAsync(query, page, quantity);
 	}
 }

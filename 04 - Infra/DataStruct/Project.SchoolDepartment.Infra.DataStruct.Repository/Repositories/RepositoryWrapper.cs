@@ -14,7 +14,7 @@ public class RepositoryWrapper : IRepositoryWrapper
 		_courseRepository = courseRepository;
 	}
 
-    public IBaseRepository<Student> Student { get => _studentRepository; }
-    public IBaseRepository<Course> Course { get => _courseRepository; }
+    public IBaseRepository<Student> Student => _studentRepository;
+    public IBaseRepository<Course> Course => _courseRepository;
 	public IBaseRepository<School> School => throw new NotImplementedException();
 }

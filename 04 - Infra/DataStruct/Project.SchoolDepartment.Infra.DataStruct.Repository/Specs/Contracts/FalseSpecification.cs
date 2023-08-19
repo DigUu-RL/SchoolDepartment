@@ -1,16 +1,15 @@
-﻿using Project.SchoolDepartment.Infra.DataStruct.Data.Entities;
-using System.Linq.Expressions;
+﻿using System.Linq.Expressions;
 
 namespace Project.SchoolDepartment.Infra.Specs.Contracts;
 
-public sealed class FalseSpecification<TEntity> : Specification<TEntity> where TEntity : EntityBase
+public sealed class FalseSpecification<T> : Specification<T>
 {
 	public FalseSpecification()
 	{
 	}
 
-	public override Expression<Func<TEntity, bool>> ToExpression()
+	public override Expression<Func<T, bool>> ToExpression()
 	{
-		return (TEntity x) => false;
+		return (T x) => false;
 	}
 }

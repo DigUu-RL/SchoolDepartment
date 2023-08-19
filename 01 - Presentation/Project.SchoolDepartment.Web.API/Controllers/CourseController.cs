@@ -18,9 +18,9 @@ public class CourseController : Controller
 	}
 
 	[HttpGet]
-	public async Task<IActionResult> GetAllAsync(Search<CourseRequest> search)
+	public async Task<IActionResult> GetAllAsync([FromQuery] Search<CourseRequest> search)
 	{
-		PaginatedDTO<CourseDTO> data = await _courseService.GetAllAsync(search);
+		PaginatedDTO<CourseDTO> data = await _courseService.GetAsync(search);
 		return Ok(data);
 	}
 }

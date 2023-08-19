@@ -19,7 +19,7 @@ public class BaseRepository<TEntity> : IBaseRepository<TEntity> where TEntity : 
 
 	protected IQueryable<TEntity> Query { get; }
 
-	public virtual async Task<PaginatedList<TEntity>> GetAllAsync(int page, int quantity, Specification<TEntity>? specification = null)
+	public virtual async Task<PaginatedList<TEntity>> GetAsync(int page, int quantity, Specification<TEntity>? specification = null)
 	{
 		specification ??= new TrueSpecification<TEntity>();
 		return await Query.Where(specification).ToPaginatedListAsync(page, quantity);

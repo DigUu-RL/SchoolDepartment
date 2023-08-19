@@ -6,7 +6,7 @@ namespace Project.SchoolDepartment.Infra.DataStruct.Repository.Repositories;
 
 public class CourseRepository : BaseRepository<Course>, ICourseRepository
 {
-	protected CourseRepository(AppDbContext dbContext) : base(dbContext)
+	public CourseRepository(AppDbContext dbContext) : base(dbContext)
 	{
 	}
 }

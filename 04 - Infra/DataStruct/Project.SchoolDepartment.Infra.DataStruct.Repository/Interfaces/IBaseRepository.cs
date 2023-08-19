@@ -6,7 +6,7 @@ namespace Project.SchoolDepartment.Infra.DataStruct.Repository.Interfaces;
 
 public interface IBaseRepository<TEntity> : IUnitOfWork where TEntity : EntityBase
 {
-	Task<PaginatedList<TEntity>> GetAllAsync(int page, int quantity, Specification<TEntity>? specification = null);
+	Task<PaginatedList<TEntity>> GetAsync(int page, int quantity, Specification<TEntity>? specification = null);
 	Task<TEntity?> GetByIdAsync(Guid guid);
 	Task CreateOrUpdateAsync(TEntity entity);
 	Task CreateAsync(TEntity entity);

@@ -4,8 +4,9 @@ namespace Project.SchoolDepartment.Domain.Models;
 
 public record StudentModel
 (
+	Guid Id,
 	string Name,
-	string Lastname,
+	string LastName,
 	string CPF,
 	string RA,
 	Gender Gender,
@@ -14,9 +15,9 @@ public record StudentModel
 	int Number,
 	string City,
 	string State,
-	Guid CourseGuid,
+	Guid CourseId,
 	CourseModel? Course,
-	Guid SchoolGuid,
+	Guid SchoolId,
 	SchoolModel? School,
 	ICollection<CellphoneModel>? Cellphones
 );

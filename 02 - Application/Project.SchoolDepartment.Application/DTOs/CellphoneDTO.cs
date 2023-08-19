@@ -1,3 +1,3 @@
 ﻿namespace Project.SchoolDepartment.Application.DTOs;
 
-public record CellphoneDTO(Guid Guid, string? Number, StudentDTO? Student);
+public record CellphoneDTO(Guid Id, string? Number, Guid? StudentId, StudentDTO? Student);

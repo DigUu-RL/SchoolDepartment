@@ -7,7 +7,7 @@ namespace Project.SchoolDepartment.Application.Interfaces;
 public interface IApplicationStudentService
 {
 	Task<StudentDTO> GetByIdAsync(Guid id);
-	Task<PaginatedDTO<StudentDTO>> GetAllAsync(Search<StudentRequest> search);
+	Task<PaginatedDTO<StudentDTO>> GetAsync(Search<StudentRequest> search);
 	Task CreateAsync(StudentRequest request);
 	Task UpdateAsync(StudentRequest request);
 	Task DeleteAsync(Guid id);

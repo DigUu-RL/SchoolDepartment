@@ -18,9 +18,9 @@ public class ApplicationStudentService : IApplicationStudentService
 		_mapper = mapper;
 	}
 
-	public async Task<PaginatedDTO<StudentDTO>> GetAllAsync(Search<StudentRequest> search)
+	public async Task<PaginatedDTO<StudentDTO>> GetAsync(Search<StudentRequest> search)
 	{
-		PaginatedDTO<StudentDTO> data = _mapper.Map<PaginatedDTO<StudentDTO>>(await _studentService.GetAllAsync(search));
+		PaginatedDTO<StudentDTO> data = _mapper.Map<PaginatedDTO<StudentDTO>>(await _studentService.GetAsync(search));
 		return data;
 	}
 

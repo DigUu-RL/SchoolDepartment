@@ -1,16 +1,15 @@
-﻿using Project.SchoolDepartment.Infra.DataStruct.Data.Entities;
-using System.Linq.Expressions;
+﻿using System.Linq.Expressions;
 
 namespace Project.SchoolDepartment.Infra.Specs.Contracts;
 
-public sealed class TrueSpecification<TEntity> : Specification<TEntity> where TEntity : EntityBase
+public sealed class TrueSpecification<T> : Specification<T>
 {
 	public TrueSpecification()
 	{
 	}
 
-	public override Expression<Func<TEntity, bool>> ToExpression()
+	public override Expression<Func<T, bool>> ToExpression()
 	{
-		return (TEntity x) => true;
+		return (T x) => true;
 	}
 }

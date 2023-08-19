@@ -17,7 +17,7 @@ using InvalidDataException = Project.SchoolDepartment.Infra.Middleware.Exception
 
 namespace Project.SchoolDepartment.Domain.Services;
 
-public class DomainStudentService : DomainServiceBase<StudentRequest>, IDomainStudentService
+public class DomainStudentService : DomainServiceBase<Student, StudentRequest>, IDomainStudentService
 {
 	private readonly IStudentRepository _studentRepository;
 	private readonly IMapper _mapper;
@@ -28,52 +28,13 @@ public class DomainStudentService : DomainServiceBase<StudentRequest>, IDomainSt
 		_mapper = mapper;
 	}
 
-	public async Task<PaginatedModel<StudentModel>> GetAllAsync(Search<StudentRequest> search)
+	public async Task<PaginatedModel<StudentModel>> GetAsync(Search<StudentRequest> search)
 	{
-		Specification<Student> specification = new TrueSpecification<Student>();
+		Specification<Student> specification = GetSpecification(search);
 
-		if (search.Filter is not null)
-		{
-			if (!search.Filter.Id.Equals(Guid.Empty))
-				specification &= StudentSpecfication.ById(search.Filter.Id);
+		PaginatedList<Student> data = await _studentRepository.GetAsync(search.Page, search.Quantity, specification);
 
-			if (!string.IsNullOrEmpty(search.Filter.Name))
-				specification &= StudentSpecfication.ByName(search.Filter.Name);
-
-			if (!string.IsNullOrEmpty(search.Filter.LastName))
-				specification &= StudentSpecfication.ByName(search.Filter.LastName);
-
-			if (!string.IsNullOrEmpty(search.Filter.LastName))
-				specification &= StudentSpecfication.ByLastName(search.Filter.LastName);
-
-			if (!string.IsNullOrEmpty(search.Filter.CPF))
-				specification &= StudentSpecfication.ByCPF(search.Filter.CPF);
-
-			if (!string.IsNullOrEmpty(search.Filter.RA))
-				specification &= StudentSpecfication.ByRA(search.Filter.RA);
-
-			if (search.Filter.Gender.IsValid<Gender>())
-				specification &= StudentSpecfication.ByGender(search.Filter.Gender);
-
-			if (!string.IsNullOrEmpty(search.Filter.Street))
-				specification &= StudentSpecfication.ByStreet(search.Filter.Street);
-
-			if (!string.IsNullOrEmpty(search.Filter.District))
-				specification &= StudentSpecfication.ByDistrict(search.Filter.District);
-
-			if (search.Filter.Number > 0)
-				specification &= StudentSpecfication.ByNumber(search.Filter.Number);
-
-			if (!string.IsNullOrEmpty(search.Filter.City))
-				specification &= StudentSpecfication.ByCity(search.Filter.City);
-
-			if (!string.IsNullOrEmpty(search.Filter.State))
-				specification &= StudentSpecfication.ByState(search.Filter.State);
-		}
-
-		PaginatedList<Student> data = await _studentRepository.GetAllAsync(search.Page, search.Quantity, specification);
-
-		PaginatedModel<StudentModel> model = new(data.Page, data.Pages, data.Total, _mapper.Map<List<StudentModel>>(data));
+		var model = new PaginatedModel<StudentModel>(data.Page, data.Pages, data.Total, _mapper.Map<List<StudentModel>>(data));
 		return model;
 	}
 
@@ -163,5 +124,48 @@ public class DomainStudentService : DomainServiceBase<StudentRequest>, IDomainSt
 
 		if (string.IsNullOrEmpty(request.State))
 			throw new RequiredDataException("Estado é obrigatório", HttpStatusCode.BadRequest);
+	}
+
+	public override Specification<Student> GetSpecification(Search<StudentRequest> search)
+	{
+		Specification<Student> specification = base.GetSpecification(search);
+
+		if (search.Filter is not null)
+		{
+			if (!search.Filter.Id.Equals(Guid.Empty))
+				specification &= StudentSpecfication.ById(search.Filter.Id);
+
+			if (!string.IsNullOrEmpty(search.Filter.Name))
+				specification &= StudentSpecfication.ByName(search.Filter.Name);
+
+			if (!string.IsNullOrEmpty(search.Filter.LastName))
+				specification &= StudentSpecfication.ByLastName(search.Filter.LastName);
+
+			if (!string.IsNullOrEmpty(search.Filter.CPF))
+				specification &= StudentSpecfication.ByCPF(search.Filter.CPF);
+
+			if (!string.IsNullOrEmpty(search.Filter.RA))
+				specification &= StudentSpecfication.ByRA(search.Filter.RA);
+
+			if (search.Filter.Gender.IsValid<Gender>())
+				specification &= StudentSpecfication.ByGender(search.Filter.Gender);
+
+			if (!string.IsNullOrEmpty(search.Filter.Street))
+				specification &= StudentSpecfication.ByStreet(search.Filter.Street);
+
+			if (!string.IsNullOrEmpty(search.Filter.District))
+				specification &= StudentSpecfication.ByDistrict(search.Filter.District);
+
+			if (search.Filter.Number > 0)
+				specification &= StudentSpecfication.ByNumber(search.Filter.Number);
+
+			if (!string.IsNullOrEmpty(search.Filter.City))
+				specification &= StudentSpecfication.ByCity(search.Filter.City);
+
+			if (!string.IsNullOrEmpty(search.Filter.State))
+				specification &= StudentSpecfication.ByState(search.Filter.State);
+		}
+
+		return specification;
 	}
 }

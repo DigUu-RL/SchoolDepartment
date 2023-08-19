@@ -6,7 +6,7 @@ namespace Project.SchoolDepartment.Domain.Interfaces;
 
 public interface IDomainCourseService
 {
-	Task<PaginatedModel<CourseModel>> GetAllAsync(Search<CourseRequest> search);
+	Task<PaginatedModel<CourseModel>> GetAsync(Search<CourseRequest> search);
 	Task<CourseModel> GetByIdAsync(Guid id);
 	Task CreateAsync(CourseRequest request);
 	Task UpdateAsync(CourseRequest request);

@@ -21,8 +21,6 @@ public class Student : EntityBase
 	public Guid? SchoolId { get; set; }
 	public School? School { get; set; }
 	public ICollection<Cellphone>? Cellphones { get; set; }
-	public Guid? UserId { get; set; }
-	public User? User { get; set; }
 
 	public override string ToString()
 	{

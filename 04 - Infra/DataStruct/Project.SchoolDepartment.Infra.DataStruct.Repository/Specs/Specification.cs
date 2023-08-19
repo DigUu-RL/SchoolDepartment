@@ -4,25 +4,25 @@ using System.Linq.Expressions;
 
 namespace Project.SchoolDepartment.Infra.Specs;
 
-public abstract class Specification<TEntity> where TEntity : EntityBase
+public abstract class Specification<T>
 {
-	public static implicit operator Expression<Func<TEntity, bool>>(Specification<TEntity> specification) => specification.ToExpression();
-	public static implicit operator Func<TEntity, bool>(Specification<TEntity> specification) => specification.ToExpression().Compile();
+	public static implicit operator Expression<Func<T, bool>>(Specification<T> specification) => specification.ToExpression();
+	public static implicit operator Func<T, bool>(Specification<T> specification) => specification.ToExpression().Compile();
 
-	public abstract Expression<Func<TEntity, bool>> ToExpression();
+	public abstract Expression<Func<T, bool>> ToExpression();
 
-	public static Specification<TEntity> operator &(Specification<TEntity> left, Specification<TEntity> right)
+	public static Specification<T> operator &(Specification<T> left, Specification<T> right)
 	{
-		return new AndSpecification<TEntity>(left, right);
+		return new AndSpecification<T>(left, right);
 	}
 
-	public static Specification<TEntity> operator |(Specification<TEntity> left, Specification<TEntity> right)
+	public static Specification<T> operator |(Specification<T> left, Specification<T> right)
 	{
-		return new OrSpecification<TEntity>(left, right);
+		return new OrSpecification<T>(left, right);
 	}
 
-	public static Specification<TEntity> operator !(Specification<TEntity> specification)
+	public static Specification<T> operator !(Specification<T> specification)
 	{
-		return new NotSpecification<TEntity>(specification);
+		return new NotSpecification<T>(specification);
 	}
 }

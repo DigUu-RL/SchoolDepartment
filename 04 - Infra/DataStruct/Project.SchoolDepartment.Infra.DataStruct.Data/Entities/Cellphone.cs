@@ -1,4 +1,6 @@
-﻿namespace Project.SchoolDepartment.Infra.DataStruct.Data.Entities;
+﻿using System.Text.Json.Serialization;
+
+namespace Project.SchoolDepartment.Infra.DataStruct.Data.Entities;
 
 public class Cellphone : EntityBase
 {

@@ -4,6 +4,7 @@ namespace Project.SchoolDepartment.Application.DTOs;
 
 public record StudentDTO
 (
+	Guid Id,
 	string Name, 
 	string LastName, 
 	string CPF, 

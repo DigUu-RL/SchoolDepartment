@@ -17,9 +17,15 @@ public class StudentController : ControllerBase
 	}
 
 	[HttpGet]
-	public async Task<IActionResult> GetAll(Search<StudentRequest> search)
+	public async Task<IActionResult> Get([FromQuery] Search<StudentRequest> search)
 	{
-		return Ok(await _studentService.GetAllAsync(search));
+		return Ok(await _studentService.GetAsync(search));
+	}
+
+	[HttpGet("all")]
+	public async Task<IActionResult> GetAll()
+	{
+		return Ok();
 	}
 
 	[HttpGet("{id}")]
