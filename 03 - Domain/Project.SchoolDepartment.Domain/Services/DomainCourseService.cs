@@ -12,7 +12,7 @@ using Project.SchoolDepartment.Infra.Specs.Contracts;
 
 namespace Project.SchoolDepartment.Domain.Services;
 
-public class DomainCourseService : DomainServiceBase<Course, CourseRequest>, IDomainCourseService
+public class DomainCourseService : IDomainCourseService
 {
 	private readonly ICourseRepository _courseRepository;
 	private readonly IMapper _mapper;
@@ -53,9 +53,9 @@ public class DomainCourseService : DomainServiceBase<Course, CourseRequest>, IDo
 		throw new NotImplementedException();
 	}
 
-	public override Specification<Course> GetSpecification(Search<CourseRequest> search)
+	public Specification<Course> GetSpecification(Search<CourseRequest> search)
 	{
-		Specification<Course> specification = base.GetSpecification(search);
+		Specification<Course> specification = new TrueSpecification<Course>();
 
 		if (search.Filter is not null)
 		{

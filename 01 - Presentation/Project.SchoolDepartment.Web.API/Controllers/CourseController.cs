@@ -8,7 +8,7 @@ namespace Project.SchoolDepartment.Web.API.Controllers;
 
 [ApiController]
 [Route("api/course")]
-public class CourseController : Controller
+public class CourseController : BaseController<CourseRequest>
 {
 	private readonly IApplicationCourseService _courseService;
 
@@ -17,10 +17,31 @@ public class CourseController : Controller
 		_courseService = courseService;
 	}
 
-	[HttpGet]
-	public async Task<IActionResult> GetAllAsync([FromQuery] Search<CourseRequest> search)
+	public override Task<IActionResult> Create([FromBody] CourseRequest request)
 	{
-		PaginatedDTO<CourseDTO> data = await _courseService.GetAsync(search);
+		throw new NotImplementedException();
+	}
+
+	public override Task<IActionResult> Delete(Guid id)
+	{
+		throw new NotImplementedException();
+	}
+
+	[HttpGet]
+	public override async Task<IActionResult> GetAll([FromQuery] Search<CourseRequest> search)
+	{
+		PaginatedDTO<CourseDTO> data = await _courseService.GetAllAsync(search);
 		return Ok(data);
+	}
+
+
+	public override Task<IActionResult> GetById(Guid id)
+	{
+		throw new NotImplementedException();
+	}
+
+	public override Task<IActionResult> Update([FromBody] CourseRequest request)
+	{
+		throw new NotImplementedException();
 	}
 }

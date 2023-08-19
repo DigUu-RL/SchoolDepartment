@@ -1,4 +1,5 @@
-﻿using Project.SchoolDepartment.Infra.DataStruct.Data.Enums;
+﻿using Project.SchoolDepartment.Application.DTOs.Contratcts;
+using Project.SchoolDepartment.Infra.DataStruct.Data.Enums;
 
 namespace Project.SchoolDepartment.Application.DTOs;
 
@@ -20,4 +21,4 @@ public record StudentDTO
 	Guid? SchoolId, 
 	SchoolDTO? School, 
 	ICollection<CellphoneDTO>? Cellphones
-);
+) : IDTO;

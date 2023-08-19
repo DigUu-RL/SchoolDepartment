@@ -1,8 +1,10 @@
 ﻿using Project.SchoolDepartment.Application.DTOs;
+using Project.SchoolDepartment.Domain.Helpers;
 using Project.SchoolDepartment.Domain.Requests;
 
 namespace Project.SchoolDepartment.Application.Interfaces;
 
-public interface IApplicationCourseService : IApplicationServiceBase<CourseDTO, CourseRequest>
+public interface IApplicationSchoolService : IApplicationServiceBase<SchoolDTO, SchoolRequest>
 {
+	
 }

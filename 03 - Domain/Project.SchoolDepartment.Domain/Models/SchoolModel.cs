@@ -1,4 +1,5 @@
-﻿using Project.SchoolDepartment.Infra.DataStruct.Data.Enums;
+﻿using Project.SchoolDepartment.Domain.Models.Contracts;
+using Project.SchoolDepartment.Infra.DataStruct.Data.Enums;
 
 namespace Project.SchoolDepartment.Domain.Models;
 
@@ -11,4 +12,4 @@ public record SchoolModel
 	Guid? CourseId,
 	CourseModel? Course,
 	ICollection<StudentModel>? Students
-);
+) : IModel;

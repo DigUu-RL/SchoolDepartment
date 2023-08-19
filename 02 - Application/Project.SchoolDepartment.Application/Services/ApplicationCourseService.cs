@@ -19,7 +19,7 @@ public class ApplicationCourseService : IApplicationCourseService
 		_mapper = mapper;
 	}
 
-	public async Task<PaginatedDTO<CourseDTO>> GetAsync(Search<CourseRequest> search)
+	public async Task<PaginatedDTO<CourseDTO>> GetAllAsync(Search<CourseRequest> search)
 	{
 		PaginatedModel<CourseModel> data = await _courseService.GetAsync(search);
 		return _mapper.Map<PaginatedDTO<CourseDTO>>(data);

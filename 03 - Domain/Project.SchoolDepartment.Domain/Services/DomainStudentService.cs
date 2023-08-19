@@ -11,12 +11,13 @@ using Project.SchoolDepartment.Infra.DataStruct.Repository.Helpers;
 using Project.SchoolDepartment.Infra.DataStruct.Repository.Interfaces;
 using Project.SchoolDepartment.Infra.Middleware.Exceptions;
 using Project.SchoolDepartment.Infra.Specs;
+using Project.SchoolDepartment.Infra.Specs.Contracts;
 using System.Net;
 using InvalidDataException = Project.SchoolDepartment.Infra.Middleware.Exceptions.InvalidDataException;
 
 namespace Project.SchoolDepartment.Domain.Services;
 
-public class DomainStudentService : DomainServiceBase<Student, StudentRequest>, IDomainStudentService
+public class DomainStudentService : IDomainStudentService
 {
 	private readonly IStudentRepository _studentRepository;
 	private readonly IMapper _mapper;
@@ -98,7 +99,7 @@ public class DomainStudentService : DomainServiceBase<Student, StudentRequest>, 
 		await _studentRepository.CommitAsync();
 	}
 
-	public override void Validate(StudentRequest request)
+	public void Validate(StudentRequest request)
 	{
 		if (string.IsNullOrEmpty(request.Name))
 			throw new RequiredDataException("Nome é obrigatório", HttpStatusCode.BadRequest);
@@ -125,9 +126,9 @@ public class DomainStudentService : DomainServiceBase<Student, StudentRequest>, 
 			throw new RequiredDataException("Estado é obrigatório", HttpStatusCode.BadRequest);
 	}
 
-	public override Specification<Student> GetSpecification(Search<StudentRequest> search)
+	public Specification<Student> GetSpecification(Search<StudentRequest> search)
 	{
-		Specification<Student> specification = base.GetSpecification(search);
+		Specification<Student> specification = new TrueSpecification<Student>();
 
 		if (search.Filter is not null)
 		{

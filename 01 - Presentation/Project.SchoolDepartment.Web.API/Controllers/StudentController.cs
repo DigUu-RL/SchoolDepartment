@@ -7,7 +7,7 @@ namespace Project.SchoolDepartment.Web.API.Controllers;
 
 [ApiController]
 [Route("api/student")]
-public class StudentController : ControllerBase
+public class StudentController : BaseController<StudentRequest>
 {
 	private readonly IApplicationStudentService _studentService;
 
@@ -17,39 +17,33 @@ public class StudentController : ControllerBase
 	}
 
 	[HttpGet]
-	public async Task<IActionResult> Get([FromQuery] Search<StudentRequest> search)
+	public override async Task<IActionResult> GetAll(Search<StudentRequest> search)
 	{
-		return Ok(await _studentService.GetAsync(search));
-	}
-
-	[HttpGet("all")]
-	public async Task<IActionResult> GetAll()
-	{
-		return Ok();
+		return Ok(await _studentService.GetAllAsync(search));
 	}
 
 	[HttpGet("{id}")]
-	public async Task<IActionResult> GetById(Guid id)
+	public override async Task<IActionResult> GetById(Guid id)
 	{
 		return Ok(await _studentService.GetByIdAsync(id));
 	}
 
 	[HttpPost("create")]
-	public async Task<IActionResult> Create([FromBody] StudentRequest request)
+	public override async Task<IActionResult> Create([FromBody] StudentRequest request)
 	{
 		await _studentService.CreateAsync(request);
 		return Ok();
 	}
 
 	[HttpPut("update")]
-	public async Task<IActionResult> Update([FromBody] StudentRequest request)
+	public override async Task<IActionResult> Update([FromBody] StudentRequest request)
 	{
 		await _studentService.UpdateAsync(request);
 		return NoContent();
 	}
 
 	[HttpDelete("delete/{id}")]
-	public async Task<IActionResult> Delete(Guid id)
+	public override async Task<IActionResult> Delete(Guid id)
 	{
 		await _studentService.DeleteAsync(id);
 		return NoContent();

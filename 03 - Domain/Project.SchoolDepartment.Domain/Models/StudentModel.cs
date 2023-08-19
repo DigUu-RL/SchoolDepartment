@@ -1,4 +1,5 @@
-﻿using Project.SchoolDepartment.Infra.DataStruct.Data.Enums;
+﻿using Project.SchoolDepartment.Domain.Models.Contracts;
+using Project.SchoolDepartment.Infra.DataStruct.Data.Enums;
 
 namespace Project.SchoolDepartment.Domain.Models;
 
@@ -20,4 +21,4 @@ public record StudentModel
 	Guid SchoolId,
 	SchoolModel? School,
 	ICollection<CellphoneModel>? Cellphones
-);
+) : IModel;

@@ -1,3 +1,5 @@
-﻿namespace Project.SchoolDepartment.Application.DTOs;
+﻿using Project.SchoolDepartment.Application.DTOs.Contratcts;
 
-public record CourseDTO(Guid Id, string Name, ICollection<StudentDTO>? Students, ICollection<SchoolDTO>? Schools);
+namespace Project.SchoolDepartment.Application.DTOs;
+
+public record CourseDTO(Guid Id, string Name, ICollection<StudentDTO>? Students, ICollection<SchoolDTO>? Schools) : IDTO;
