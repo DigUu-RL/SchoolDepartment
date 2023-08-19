@@ -11,7 +11,6 @@ using Project.SchoolDepartment.Infra.DataStruct.Repository.Helpers;
 using Project.SchoolDepartment.Infra.DataStruct.Repository.Interfaces;
 using Project.SchoolDepartment.Infra.Middleware.Exceptions;
 using Project.SchoolDepartment.Infra.Specs;
-using Project.SchoolDepartment.Infra.Specs.Contracts;
 using System.Net;
 using InvalidDataException = Project.SchoolDepartment.Infra.Middleware.Exceptions.InvalidDataException;
 
