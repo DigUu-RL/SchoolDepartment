@@ -5,16 +5,14 @@ namespace Project.SchoolDepartment.Infra.DataStruct.Repository.Repositories;
 
 public class RepositoryWrapper : IRepositoryWrapper
 {
-    private readonly IBaseRepository<Student> _studentRepository;
-    private readonly IBaseRepository<Course> _courseRepository;
+	public IBaseRepository<Student> Student { get; }
+	public IBaseRepository<Course> Course { get; }
+	public IBaseRepository<School> School { get; }
 
-	public RepositoryWrapper(IStudentRepository studentRepository, ICourseRepository courseRepository)
+	public RepositoryWrapper(IStudentRepository studentRepository, ICourseRepository courseRepository, ISchoolRepository schoolrepository)
 	{
-		_studentRepository = studentRepository;
-		_courseRepository = courseRepository;
+		Student = studentRepository;
+		Course = courseRepository;
+		School = schoolrepository;
 	}
-
-    public IBaseRepository<Student> Student => _studentRepository;
-    public IBaseRepository<Course> Course => _courseRepository;
-	public IBaseRepository<School> School => throw new NotImplementedException();
 }

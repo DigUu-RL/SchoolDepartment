@@ -19,6 +19,12 @@ public class BaseRepository<TEntity> : IBaseRepository<TEntity> where TEntity : 
 
 	protected IQueryable<TEntity> Query { get; }
 
+	public virtual IQueryable<TEntity> GetAll(Specification<TEntity>? specification = null)
+	{
+		specification ??= new TrueSpecification<TEntity>();
+		return Query.Where(specification);
+	}
+
 	public virtual async Task<PaginatedList<TEntity>> GetAsync(int page, int quantity, Specification<TEntity>? specification = null)
 	{
 		specification ??= new TrueSpecification<TEntity>();

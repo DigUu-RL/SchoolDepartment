@@ -5,6 +5,7 @@ using Project.SchoolDepartment.Domain.Helpers;
 using Project.SchoolDepartment.Domain.Interfaces;
 using Project.SchoolDepartment.Domain.Models;
 using Project.SchoolDepartment.Domain.Requests;
+using Project.SchoolDepartment.Infra.DataStruct.Repository.Helpers;
 
 namespace Project.SchoolDepartment.Application.Services;
 
@@ -19,9 +20,9 @@ public class ApplicationCourseService : IApplicationCourseService
 		_mapper = mapper;
 	}
 
-	public async Task<PaginatedDTO<CourseDTO>> GetAllAsync(Search<CourseRequest> search)
+	public async Task<PaginatedDTO<CourseDTO>> GetAsync(Search<CourseRequest> search)
 	{
-		PaginatedModel<CourseModel> data = await _courseService.GetAsync(search);
+		PaginatedList<CourseModel> data = await _courseService.GetAsync(search);
 		return _mapper.Map<PaginatedDTO<CourseDTO>>(data);
 	}
 

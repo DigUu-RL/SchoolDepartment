@@ -18,9 +18,9 @@ public class ApplicationSchoolService : IApplicationSchoolService
 		_mapper = mapper;
 	}
 
-	public async Task<PaginatedDTO<SchoolDTO>> GetAllAsync(Search<SchoolRequest> search)
+	public async Task<PaginatedDTO<SchoolDTO>> GetAsync(Search<SchoolRequest> search)
 	{
-		PaginatedDTO<SchoolDTO> data = _mapper.Map<PaginatedDTO<SchoolDTO>>(await _schoolService.GetAllAsync(search));
+		PaginatedDTO<SchoolDTO> data = _mapper.Map<PaginatedDTO<SchoolDTO>>(await _schoolService.GetAsync(search));
 		return data;
 	}
 

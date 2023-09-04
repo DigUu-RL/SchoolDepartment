@@ -4,9 +4,9 @@ using Project.SchoolDepartment.Infra.DataStruct.Repository.Interfaces;
 
 namespace Project.SchoolDepartment.Infra.DataStruct.Repository.Repositories;
 
-public class StudentRepository : BaseRepository<Student>, IStudentRepository
+public class SchoolRepository : BaseRepository<School>, ISchoolRepository
 {
-	public StudentRepository(AppDbContext dbContext) : base(dbContext)
+	public SchoolRepository(AppDbContext dbContext) : base(dbContext)
 	{
 	}
 }

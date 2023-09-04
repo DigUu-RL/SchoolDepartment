@@ -23,14 +23,12 @@ public class DomainCourseService : IDomainCourseService
 		_mapper = mapper;
 	}
 
-	public async Task<PaginatedModel<CourseModel>> GetAsync(Search<CourseRequest> search)
+	public async Task<PaginatedList<CourseModel>> GetAsync(Search<CourseRequest> search)
 	{
 		Specification<Course> specification = GetSpecification(search);
 
 		PaginatedList<Course> data = await _courseRepository.GetAsync(search.Page, search.Quantity, specification);
-
-		PaginatedModel<CourseModel> model = new(data.Page, data.Pages, data.Total, _mapper.Map<List<CourseModel>>(data));
-		return model;
+		return _mapper.Map<PaginatedList<CourseModel>>(data);
 	}
 
 	public Task<CourseModel> GetByIdAsync(Guid id)
@@ -65,11 +63,11 @@ public class DomainCourseService : IDomainCourseService
 			if (!string.IsNullOrEmpty(search.Filter.Name))
 				specification &= CourseSpecification.ByName(search.Filter.Name);
 
-			if (!search.Filter.StudentId.Equals(Guid.Empty))
-				specification &= CourseSpecification.ByStudentId(search.Filter.StudentId);
+			if (search.Filter.StudentId is not null && !search.Filter.StudentId.Equals(Guid.Empty))
+				specification &= CourseSpecification.ByStudentId(search.Filter.StudentId.Value);
 
-			if (!search.Filter.SchoolId.Equals(Guid.Empty))
-				specification &= CourseSpecification.BySchoolId(search.Filter.SchoolId);
+			if (search.Filter.SchoolId is not null && !search.Filter.SchoolId.Equals(Guid.Empty))
+				specification &= CourseSpecification.BySchoolId(search.Filter.SchoolId.Value);
 		}
 
 		return specification;

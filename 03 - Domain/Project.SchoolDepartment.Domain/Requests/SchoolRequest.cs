@@ -4,4 +4,5 @@ namespace Project.SchoolDepartment.Domain.Requests;
 
 public class SchoolRequest : IRequest
 {
+	public Guid? Id { get; set; }
 }

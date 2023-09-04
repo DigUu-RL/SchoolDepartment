@@ -2,4 +2,10 @@
 
 namespace Project.SchoolDepartment.Domain.Models;
 
-public record PaginatedModel<T>(int Page, int Pages, int Total, List<T>? Data) : IModel;
+public class PaginatedModel<T> : IModel
+{
+	public int Page { get; set; }
+	public int Pages { get; set; }
+	public int Total { get; set; }
+	public List<T>? Data { get; set; }
+}

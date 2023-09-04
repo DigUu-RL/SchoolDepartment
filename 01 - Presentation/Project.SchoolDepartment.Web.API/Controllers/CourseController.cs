@@ -17,11 +17,13 @@ public class CourseController : BaseController<CourseRequest>
 		_courseService = courseService;
 	}
 
+	[HttpPost]
 	public override Task<IActionResult> Create([FromBody] CourseRequest request)
 	{
 		throw new NotImplementedException();
 	}
 
+	[HttpDelete("delete/{id}")]
 	public override Task<IActionResult> Delete(Guid id)
 	{
 		throw new NotImplementedException();
@@ -30,16 +32,18 @@ public class CourseController : BaseController<CourseRequest>
 	[HttpGet]
 	public override async Task<IActionResult> GetAll([FromQuery] Search<CourseRequest> search)
 	{
-		PaginatedDTO<CourseDTO> data = await _courseService.GetAllAsync(search);
+		PaginatedDTO<CourseDTO> data = await _courseService.GetAsync(search);
 		return Ok(data);
 	}
 
 
+	[HttpGet("{id}")]
 	public override Task<IActionResult> GetById(Guid id)
 	{
 		throw new NotImplementedException();
 	}
 
+	[HttpPut]
 	public override Task<IActionResult> Update([FromBody] CourseRequest request)
 	{
 		throw new NotImplementedException();

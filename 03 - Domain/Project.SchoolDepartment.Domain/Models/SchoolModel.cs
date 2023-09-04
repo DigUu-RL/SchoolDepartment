@@ -3,13 +3,15 @@ using Project.SchoolDepartment.Infra.DataStruct.Data.Enums;
 
 namespace Project.SchoolDepartment.Domain.Models;
 
-public record SchoolModel
-(
-	Guid Id,
-	Period Period,
-	DateTime StartDate,
-	DateTime EndDate,
-	Guid? CourseId,
-	CourseModel? Course,
-	ICollection<StudentModel>? Students
-) : IModel;
+public class SchoolModel : IModel
+{
+	public Guid? Id { get; set; }
+	public Period? Period { get; set; }
+	public DateTime? StartDate { get; set; }
+	public DateTime? EndDate { get; set; }
+
+	// relationships
+	public Guid? CourseId { get; set; }
+	public CourseModel? Course { get; set; }
+	public ICollection<StudentModel>? Students { get; set; }
+}

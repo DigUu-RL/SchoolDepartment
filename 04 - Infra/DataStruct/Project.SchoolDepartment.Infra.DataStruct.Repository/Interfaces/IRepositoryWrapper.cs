@@ -4,7 +4,7 @@ namespace Project.SchoolDepartment.Infra.DataStruct.Repository.Interfaces;
 
 public interface IRepositoryWrapper
 {
-    public IBaseRepository<Student> Student { get; }
-    public IBaseRepository<Course> Course { get; }
-    public IBaseRepository<School> School { get; }
+	public IBaseRepository<Student> Student { get; }
+	public IBaseRepository<Course> Course { get; }
+	public IBaseRepository<School> School { get; }
 }

@@ -17,18 +17,21 @@ public class SchoolController : BaseController<SchoolRequest>
 		_schoolService = schoolService;
 	}
 
+	[HttpGet]
 	public override async Task<IActionResult> GetAll([FromQuery] Search<SchoolRequest> search)
 	{
-		PaginatedDTO<SchoolDTO> data = await _schoolService.GetAllAsync(search);
+		PaginatedDTO<SchoolDTO> data = await _schoolService.GetAsync(search);
 		return Ok(data);
 	}
 
+	[HttpGet("{id}")]
 	public override async Task<IActionResult> GetById(Guid id)
 	{
 		SchoolDTO data = await _schoolService.GetByIdAsync(id);
 		return Ok(data);
 	}
 
+	[HttpPost("create")]
 	public override async Task<IActionResult> Create([FromBody] SchoolRequest request)
 	{
 		await _schoolService.CreateAsync(request);

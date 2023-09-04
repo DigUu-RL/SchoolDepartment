@@ -34,8 +34,13 @@ public class DomainStudentService : IDomainStudentService
 
 		PaginatedList<Student> data = await _studentRepository.GetAsync(search.Page, search.Quantity, specification);
 
-		var model = new PaginatedModel<StudentModel>(data.Page, data.Pages, data.Total, _mapper.Map<List<StudentModel>>(data));
-		return model;
+		return new PaginatedModel<StudentModel>
+		{
+			Page = data.Page,
+			Pages = data.Pages,
+			Total = data.Total,
+			Data = _mapper.Map<List<StudentModel>>(data)
+		};
 	}
 
 	public async Task<StudentModel> GetByIdAsync(Guid guid)
@@ -56,10 +61,10 @@ public class DomainStudentService : IDomainStudentService
 			LastName = request!.LastName!,
 			CPF = request.CPF!,
 			RA = Util.RandomString(80),
-			Gender = request.Gender,
+			Gender = request.Gender!.Value,
 			Street = request.Street!,
 			District = request.District!,
-			Number = request.Number,
+			Number = request.Number!.Value,
 			City = request.City!,
 			State = request.State!,
 			CourseId = null,
@@ -74,15 +79,15 @@ public class DomainStudentService : IDomainStudentService
 	{
 		Validate(request);
 
-		Student? student = await _studentRepository.GetByIdAsync(request.Id)
+		Student? student = await _studentRepository.GetByIdAsync(request.Id ?? Guid.Empty)
 			?? throw new NotFoundException("Aluno não encontrado!");
 
 		student.Name = request.Name!;
 		student.LastName = request.LastName!;
-		student.Gender = request.Gender;
+		student.Gender = request.Gender!.Value;
 		student.Street = request.Street!;
 		student.District = request.District!;
-		student.Number = request.Number;
+		student.Number = request.Number!.Value;
 		student.City = request.City!;
 		student.State = request.State!;
 
@@ -99,7 +104,7 @@ public class DomainStudentService : IDomainStudentService
 		await _studentRepository.CommitAsync();
 	}
 
-	public void Validate(StudentRequest request)
+	private static void Validate(StudentRequest request)
 	{
 		if (string.IsNullOrEmpty(request.Name))
 			throw new RequiredDataException("Nome é obrigatório", HttpStatusCode.BadRequest);
@@ -126,14 +131,14 @@ public class DomainStudentService : IDomainStudentService
 			throw new RequiredDataException("Estado é obrigatório", HttpStatusCode.BadRequest);
 	}
 
-	public Specification<Student> GetSpecification(Search<StudentRequest> search)
+	private static Specification<Student> GetSpecification(Search<StudentRequest> search)
 	{
 		Specification<Student> specification = new TrueSpecification<Student>();
 
 		if (search.Filter is not null)
 		{
-			if (!search.Filter.Id.Equals(Guid.Empty))
-				specification &= StudentSpecfication.ById(search.Filter.Id);
+			if (search.Filter.Id is not null && search.Filter.Id != Guid.Empty)
+				specification &= StudentSpecfication.ById(search.Filter.Id.Value);
 
 			if (!string.IsNullOrEmpty(search.Filter.Name))
 				specification &= StudentSpecfication.ByName(search.Filter.Name);
@@ -147,8 +152,8 @@ public class DomainStudentService : IDomainStudentService
 			if (!string.IsNullOrEmpty(search.Filter.RA))
 				specification &= StudentSpecfication.ByRA(search.Filter.RA);
 
-			if (search.Filter.Gender.IsValid<Gender>())
-				specification &= StudentSpecfication.ByGender(search.Filter.Gender);
+			if (search.Filter.Gender is not null && search.Filter.Gender.IsValid<Gender>())
+				specification &= StudentSpecfication.ByGender(search.Filter.Gender.Value);
 
 			if (!string.IsNullOrEmpty(search.Filter.Street))
 				specification &= StudentSpecfication.ByStreet(search.Filter.Street);
@@ -156,8 +161,8 @@ public class DomainStudentService : IDomainStudentService
 			if (!string.IsNullOrEmpty(search.Filter.District))
 				specification &= StudentSpecfication.ByDistrict(search.Filter.District);
 
-			if (search.Filter.Number > 0)
-				specification &= StudentSpecfication.ByNumber(search.Filter.Number);
+			if (search.Filter.Number is not null && search.Filter.Number > 0)
+				specification &= StudentSpecfication.ByNumber(search.Filter.Number.Value);
 
 			if (!string.IsNullOrEmpty(search.Filter.City))
 				specification &= StudentSpecfication.ByCity(search.Filter.City);

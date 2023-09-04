@@ -13,15 +13,6 @@ public class DTOMapProfile : Profile
 		CreateMap(typeof(SchoolModel), typeof(SchoolDTO));
 		CreateMap(typeof(CellphoneModel), typeof(CellphoneDTO));
 
-		#region COLLECTIONS MAP
-
-		CreateMap(typeof(ICollection<StudentModel>), typeof(ICollection<StudentDTO>));
-		CreateMap(typeof(ICollection<CourseModel>), typeof(ICollection<CourseDTO>));
-		CreateMap(typeof(ICollection<SchoolModel>), typeof(ICollection<SchoolDTO>));
-		CreateMap(typeof(ICollection<CellphoneModel>), typeof(ICollection<CellphoneDTO>));
-
-		#endregion
-
 		#region PAGINATED'S MAP
 
 		CreateMap(typeof(PaginatedModel<StudentModel>), typeof(PaginatedDTO<StudentDTO>));

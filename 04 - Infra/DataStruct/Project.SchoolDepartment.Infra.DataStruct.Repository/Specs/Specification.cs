@@ -1,5 +1,4 @@
-﻿using Project.SchoolDepartment.Infra.DataStruct.Data.Entities;
-using Project.SchoolDepartment.Infra.Specs.Contracts;
+﻿using Project.SchoolDepartment.Infra.Specs.Contracts;
 using System.Linq.Expressions;
 
 namespace Project.SchoolDepartment.Infra.Specs;

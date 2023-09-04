@@ -5,9 +5,11 @@ using Project.SchoolDepartment.Domain.Requests.Contracts;
 
 namespace Project.SchoolDepartment.Domain.Interfaces;
 
-public interface IDomainServiceBase<TModel, TRequest> where TModel : IModel where TRequest : class, IRequest
+public interface IDomainServiceBase<TModel, TRequest>
+	where TModel : IModel
+	where TRequest : class, IRequest
 {
-	Task<PaginatedModel<TModel>> GetAllAsync(Search<TRequest> search);
+	Task<PaginatedModel<TModel>> GetAsync(Search<TRequest> search);
 	Task<TModel> GetByIdAsync(Guid id);
 	Task CreateAsync(TRequest request);
 	Task UpdateAsync(TRequest request);

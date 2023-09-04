@@ -19,7 +19,7 @@ public class StudentController : BaseController<StudentRequest>
 	[HttpGet]
 	public override async Task<IActionResult> GetAll(Search<StudentRequest> search)
 	{
-		return Ok(await _studentService.GetAllAsync(search));
+		return Ok(await _studentService.GetAsync(search));
 	}
 
 	[HttpGet("{id}")]
@@ -28,14 +28,14 @@ public class StudentController : BaseController<StudentRequest>
 		return Ok(await _studentService.GetByIdAsync(id));
 	}
 
-	[HttpPost("create")]
+	[HttpPost]
 	public override async Task<IActionResult> Create([FromBody] StudentRequest request)
 	{
 		await _studentService.CreateAsync(request);
 		return Ok();
 	}
 
-	[HttpPut("update")]
+	[HttpPut]
 	public override async Task<IActionResult> Update([FromBody] StudentRequest request)
 	{
 		await _studentService.UpdateAsync(request);

@@ -2,4 +2,12 @@
 
 namespace Project.SchoolDepartment.Application.DTOs;
 
-public record CellphoneDTO(Guid Id, string? Number, Guid? StudentId, StudentDTO? Student) : IDTO;
+public class CellphoneDTO : IDTO
+{
+	public Guid? Id { get; set; }
+	public string? Number { get; set; }
+
+	// relationships
+	public Guid? StudentId { get; set; }
+	public StudentDTO? Student { get; set; }
+}

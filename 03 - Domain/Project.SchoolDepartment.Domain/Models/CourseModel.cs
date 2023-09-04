@@ -2,4 +2,12 @@
 
 namespace Project.SchoolDepartment.Domain.Models;
 
-public record CourseModel(Guid Id, string Name, ICollection<StudentModel>? Students, ICollection<SchoolModel>? Schools) : IModel;
+public class CourseModel : IModel
+{
+	public Guid? Id { get; set; }
+	public string? Name { get; set; }
+
+	// relationships
+	public ICollection<StudentModel>? Students { get; set; }
+	public ICollection<SchoolModel>? Schools { get; set; }
+}

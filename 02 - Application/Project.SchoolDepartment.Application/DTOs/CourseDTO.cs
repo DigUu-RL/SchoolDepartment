@@ -2,4 +2,12 @@
 
 namespace Project.SchoolDepartment.Application.DTOs;
 
-public record CourseDTO(Guid Id, string Name, ICollection<StudentDTO>? Students, ICollection<SchoolDTO>? Schools) : IDTO;
+public class CourseDTO : IDTO
+{
+	public Guid? Id { get; set; }
+	public string? Name { get; set; }
+
+	// relationships
+	public ICollection<StudentDTO>? Students { get; set; }
+	public ICollection<SchoolDTO>? Schools { get; set; }
+}

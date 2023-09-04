@@ -6,16 +6,6 @@ namespace Project.SchoolDepartment.Infra.DataStruct.Data.Contexts;
 
 public class AppDbContext : DbContext
 {
-	private const string connectionString = @"Data Source = localhost\SQLEXPRESS; 
-		Initial Catalog = school_department_db; 
-		Integrated Security = True; 
-		Connect Timeout = 30; 
-		Encrypt = False; 
-		TrustServerCertificate = False; 
-		ApplicationIntent = ReadWrite; 
-		MultiSubnetFailover = False;";
-
-	private readonly string _connectionString;
 	private readonly IConfiguration _configuration;
 
 	public AppDbContext()
@@ -26,12 +16,13 @@ public class AppDbContext : DbContext
 	public AppDbContext(IConfiguration configuration)
 	{
 		_configuration = configuration;
-		_connectionString = configuration.GetConnectionString(nameof(SchoolDepartment))!;
 	}
 
 	protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 	{
+		string? connectionString = _configuration.GetConnectionString(nameof(SchoolDepartment));
 		optionsBuilder.UseSqlServer(connectionString);
+
 		base.OnConfiguring(optionsBuilder);
 	}
 
