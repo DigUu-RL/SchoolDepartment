@@ -1,8 +1,9 @@
-﻿using Project.SchoolDepartment.Domain.Requests.Contracts;
+﻿using Project.SchoolDepartment.Domain.Attributes;
 
 namespace Project.SchoolDepartment.Domain.Requests;
 
-public class CourseRequest : IRequest
+[Request]
+public class CourseRequest
 {
 	public Guid Id { get; set; }
 	public string? Name { get; set; }

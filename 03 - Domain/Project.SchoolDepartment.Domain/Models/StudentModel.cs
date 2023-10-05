@@ -1,9 +1,10 @@
-﻿using Project.SchoolDepartment.Domain.Models.Contracts;
+﻿using Project.SchoolDepartment.Domain.Attributes;
 using Project.SchoolDepartment.Infra.DataStruct.Data.Enums;
 
 namespace Project.SchoolDepartment.Domain.Models;
 
-public class StudentModel : IModel
+[Model]
+public class StudentModel
 {
 	public Guid? Id { get; set; }
 	public string? Name { get; set; } = string.Empty;

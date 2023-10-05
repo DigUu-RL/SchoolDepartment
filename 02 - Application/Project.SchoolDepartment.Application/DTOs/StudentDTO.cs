@@ -1,9 +1,8 @@
-﻿using Project.SchoolDepartment.Application.DTOs.Contratcts;
-using Project.SchoolDepartment.Infra.DataStruct.Data.Enums;
+﻿using Project.SchoolDepartment.Infra.DataStruct.Data.Enums;
 
 namespace Project.SchoolDepartment.Application.DTOs;
 
-public class StudentDTO : IDTO
+public class StudentDTO
 {
 	public Guid? Id { get; set; }
 	public string? Name { get; set; }

@@ -1,7 +1,7 @@
 ﻿using Project.SchoolDepartment.Infra.DataStruct.Data.Entities;
 using Project.SchoolDepartment.Infra.DataStruct.Data.Enums;
 using Project.SchoolDepartment.Infra.Specs;
-using Project.SchoolDepartment.Infra.Specs.Contracts;
+using Project.SchoolDepartment.Infra.Specs.Abstractions;
 
 namespace Project.SchoolDepartment.Domain.Specs.Custom;
 

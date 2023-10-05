@@ -11,9 +11,7 @@ using Project.SchoolDepartment.Infra.DataStruct.Repository.Helpers;
 using Project.SchoolDepartment.Infra.DataStruct.Repository.Interfaces;
 using Project.SchoolDepartment.Infra.Middleware.Exceptions;
 using Project.SchoolDepartment.Infra.Specs;
-using Project.SchoolDepartment.Infra.Specs.Contracts;
-using System.Net;
-using InvalidDataException = Project.SchoolDepartment.Infra.Middleware.Exceptions.InvalidDataException;
+using Project.SchoolDepartment.Infra.Specs.Abstractions;
 
 namespace Project.SchoolDepartment.Domain.Services;
 
@@ -53,8 +51,6 @@ public class DomainStudentService : IDomainStudentService
 
 	public async Task CreateAsync(StudentRequest request)
 	{
-		Validate(request);
-
 		var student = new Student
 		{
 			Name = request.Name!,
@@ -77,9 +73,7 @@ public class DomainStudentService : IDomainStudentService
 
 	public async Task UpdateAsync(StudentRequest request)
 	{
-		Validate(request);
-
-		Student? student = await _studentRepository.GetByIdAsync(request.Id ?? Guid.Empty)
+		Student? student = await _studentRepository.GetByIdAsync(request.Id ?? Guid.Empty) 
 			?? throw new NotFoundException("Aluno não encontrado!");
 
 		student.Name = request.Name!;
@@ -104,34 +98,7 @@ public class DomainStudentService : IDomainStudentService
 		await _studentRepository.CommitAsync();
 	}
 
-	private static void Validate(StudentRequest request)
-	{
-		if (string.IsNullOrEmpty(request.Name))
-			throw new RequiredDataException("Nome é obrigatório", HttpStatusCode.BadRequest);
-
-		if (string.IsNullOrEmpty(request.LastName))
-			throw new RequiredDataException("Sobrenome é obrigatório", HttpStatusCode.BadRequest);
-
-		if (string.IsNullOrEmpty(request.CPF))
-			throw new RequiredDataException("CPF é obrigatório", HttpStatusCode.BadRequest);
-
-		if (string.IsNullOrEmpty(request.Street))
-			throw new RequiredDataException("Logradouro/Rua é obrigatório", HttpStatusCode.BadRequest);
-
-		if (string.IsNullOrEmpty(request.District))
-			throw new RequiredDataException("Bairro é obrigatório", HttpStatusCode.BadRequest);
-
-		if (!(request.Number > 0))
-			throw new InvalidDataException("Número inválido", HttpStatusCode.UnprocessableEntity);
-
-		if (string.IsNullOrEmpty(request.City))
-			throw new RequiredDataException("Cidade é obrigatória", HttpStatusCode.BadRequest);
-
-		if (string.IsNullOrEmpty(request.State))
-			throw new RequiredDataException("Estado é obrigatório", HttpStatusCode.BadRequest);
-	}
-
-	private static Specification<Student> GetSpecification(Search<StudentRequest> search)
+	public Specification<Student> GetSpecification(Search<StudentRequest> search)
 	{
 		Specification<Student> specification = new TrueSpecification<Student>();
 

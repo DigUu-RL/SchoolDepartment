@@ -1,8 +1,9 @@
-﻿using Project.SchoolDepartment.Domain.Models.Contracts;
+﻿using Project.SchoolDepartment.Domain.Attributes;
 
 namespace Project.SchoolDepartment.Domain.Models;
 
-public class CellphoneModel : IModel
+[Model]
+public class CellphoneModel
 {
 	public Guid? Id { get; set; }
 	public string? Number { get; set; }

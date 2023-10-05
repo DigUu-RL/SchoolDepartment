@@ -1,6 +1,6 @@
 ﻿using System.Linq.Expressions;
 
-namespace Project.SchoolDepartment.Infra.Specs.Contracts;
+namespace Project.SchoolDepartment.Infra.Specs.Abstractions;
 
 public sealed class ExpressionSpecification<T> : Specification<T>
 {

@@ -1,8 +1,9 @@
-﻿using Project.SchoolDepartment.Domain.Models.Contracts;
+﻿using Project.SchoolDepartment.Domain.Attributes;
 
 namespace Project.SchoolDepartment.Domain.Models;
 
-public class CourseModel : IModel
+[Model]
+public class CourseModel
 {
 	public Guid? Id { get; set; }
 	public string? Name { get; set; }

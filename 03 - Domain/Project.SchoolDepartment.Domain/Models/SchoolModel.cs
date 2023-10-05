@@ -1,9 +1,10 @@
-﻿using Project.SchoolDepartment.Domain.Models.Contracts;
+﻿using Project.SchoolDepartment.Domain.Attributes;
 using Project.SchoolDepartment.Infra.DataStruct.Data.Enums;
 
 namespace Project.SchoolDepartment.Domain.Models;
 
-public class SchoolModel : IModel
+[Model]
+public class SchoolModel
 {
 	public Guid? Id { get; set; }
 	public Period? Period { get; set; }

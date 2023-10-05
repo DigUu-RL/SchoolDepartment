@@ -1,8 +1,9 @@
-﻿using Project.SchoolDepartment.Domain.Models.Contracts;
+﻿using Project.SchoolDepartment.Domain.Attributes;
 
 namespace Project.SchoolDepartment.Domain.Models;
 
-public class PaginatedModel<T> : IModel
+[Model]
+public class PaginatedModel<T>
 {
 	public int Page { get; set; }
 	public int Pages { get; set; }

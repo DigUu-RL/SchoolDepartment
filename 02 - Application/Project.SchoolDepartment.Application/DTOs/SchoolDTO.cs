@@ -1,9 +1,8 @@
-﻿using Project.SchoolDepartment.Application.DTOs.Contratcts;
-using Project.SchoolDepartment.Infra.DataStruct.Data.Enums;
+﻿using Project.SchoolDepartment.Infra.DataStruct.Data.Enums;
 
 namespace Project.SchoolDepartment.Application.DTOs;
 
-public class SchoolDTO : IDTO
+public class SchoolDTO
 {
 	public Guid? Id { get; set; }
 	public Period? Period { get; set; }

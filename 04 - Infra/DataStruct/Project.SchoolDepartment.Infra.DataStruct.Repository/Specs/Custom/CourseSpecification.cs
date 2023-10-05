@@ -1,6 +1,6 @@
 ﻿using Project.SchoolDepartment.Infra.DataStruct.Data.Entities;
 using Project.SchoolDepartment.Infra.Specs;
-using Project.SchoolDepartment.Infra.Specs.Contracts;
+using Project.SchoolDepartment.Infra.Specs.Abstractions;
 
 namespace Project.SchoolDepartment.Infra.DataStruct.Repository.Specs.Custom;
 

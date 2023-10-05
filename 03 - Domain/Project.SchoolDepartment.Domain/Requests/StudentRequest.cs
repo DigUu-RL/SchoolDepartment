@@ -1,9 +1,10 @@
-﻿using Project.SchoolDepartment.Domain.Requests.Contracts;
+﻿using Project.SchoolDepartment.Domain.Attributes;
 using Project.SchoolDepartment.Infra.DataStruct.Data.Enums;
 
 namespace Project.SchoolDepartment.Domain.Requests;
 
-public class StudentRequest : IRequest
+[Request]
+public class StudentRequest
 {
 	public Guid? Id { get; set; }
 	public string? Name { get; set; }

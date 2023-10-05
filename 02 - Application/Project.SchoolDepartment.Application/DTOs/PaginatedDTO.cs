@@ -1,8 +1,6 @@
-﻿using Project.SchoolDepartment.Application.DTOs.Contratcts;
+﻿namespace Project.SchoolDepartment.Application.DTOs;
 
-namespace Project.SchoolDepartment.Application.DTOs;
-
-public class PaginatedDTO<T> : IDTO
+public class PaginatedDTO<T>
 {
 	public int Page { get; set; }
 	public int Pages { get; set; }

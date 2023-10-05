@@ -1,4 +1,4 @@
-﻿using Project.SchoolDepartment.Infra.Specs.Contracts;
+﻿using Project.SchoolDepartment.Infra.Specs.Abstractions;
 using System.Linq.Expressions;
 
 namespace Project.SchoolDepartment.Infra.Specs;

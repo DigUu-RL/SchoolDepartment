@@ -44,4 +44,9 @@ public class ApplicationSchoolService : IApplicationSchoolService
 	{
 		await _schoolService.DeleteAsync(id);
 	}
+
+	public void Validate(SchoolRequest request)
+	{
+		throw new NotImplementedException();
+	}
 }
